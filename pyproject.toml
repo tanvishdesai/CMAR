@@ -1,0 +1,8 @@
+[project]
+name = "cmar"
+version = "0.1.0"
+description = "Cross-Modal Adversarial Robustness for audio-visual deepfake detection"
+requires-python = ">=3.10"
+
+[tool.setuptools.packages.find]
+include = ["cmar*"]

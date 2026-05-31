@@ -1,0 +1,14 @@
+{
+  "dataset_root": "/kaggle/input/fakeavceleb/FakeAVCeleb_v1.2",
+  "lavdf_root": "/kaggle/input/lav-df/LAV-DF",
+  "output_dir": "/kaggle/working/cmar_cache",
+  "n_frames": 16,
+  "image_size": 224,
+  "audio_sr": 16000,
+  "audio_max_seconds": 10.0,
+  "max_audio_tokens": 64,
+  "feature_dtype": "float16",
+  "overwrite": false,
+  "extract_degraded_test": true,
+  "include_train_degraded": false
+}

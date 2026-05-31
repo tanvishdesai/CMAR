@@ -1,0 +1,33 @@
+{
+  "cache_dir": "/kaggle/input/cmar-features-v1/cmar_cache",
+  "output_dir": "/kaggle/working/cmar_runs/visual_only",
+  "seed": 2026,
+  "batch_size": 8,
+  "num_workers": 2,
+  "epochs": 30,
+  "grad_accum_steps": 4,
+  "lr": 0.0002,
+  "ln_lr": 0.0001,
+  "weight_decay": 0.01,
+  "max_grad_norm": 1.0,
+  "warmup_epochs": 3,
+  "early_stop_patience": 5,
+  "consistency_weight": 0.0,
+  "use_consistency": false,
+  "feature_augmentation": false,
+  "amp": false,
+  "monitor_metric": "auc",
+  "save_every": 5,
+  "model": {
+    "visual_dim": 384,
+    "audio_dim": 384,
+    "hidden_dim": 256,
+    "n_segments": 8,
+    "max_frames": 16,
+    "cmcm_layers": 2,
+    "attention_heads": 8,
+    "dropout": 0.3,
+    "visual_only": true,
+    "return_attention": false
+  }
+}

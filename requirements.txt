@@ -1,0 +1,28 @@
+# CertAV: Certified Adversarial Robustness for AV Deepfake Detection
+# Core dependencies
+torch>=2.1
+torchvision>=0.16
+torchaudio>=2.1
+transformers>=4.37
+timm>=0.9.12
+
+# Audio processing
+librosa>=0.10
+soundfile>=0.12
+pydub>=0.25
+
+# Image/video processing
+opencv-python>=4.9
+Pillow>=10.2
+ffmpeg-python>=0.2
+
+# Scientific computing
+scikit-learn>=1.4
+scipy>=1.12
+pandas>=2.1
+numpy>=1.26
+
+# Visualization and utilities
+tqdm
+matplotlib>=3.8
+seaborn>=0.13

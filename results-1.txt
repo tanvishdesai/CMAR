@@ -1,0 +1,1522 @@
+# σ = 0.12 (low noise, high clean accuracy, small certified radius)
+!python /kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/scripts/10_train_certav.py \
+    --sigma 0.12 \
+    --cache-dir /kaggle/input/datasets/vasuaashadesai/cmar-features-clean-v1/cmar_cache \
+    --output-dir /kaggle/working/certav/sigma_0.12 \
+    --epochs 30 --batch-size 8 --grad-accum 4 --patience 7
+
+# σ = 0.25 (moderate noise, balanced tradeoff)
+!python /kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/scripts/10_train_certav.py \
+    --sigma 0.25 \
+    --cache-dir /kaggle/input/datasets/vasuaashadesai/cmar-features-clean-v1/cmar_cache \
+    --output-dir /kaggle/working/certav/sigma_0.25 \
+    --epochs 30 --batch-size 8 --grad-accum 4 --patience 7
+
+# σ = 0.50 (higher noise, larger certified radius)
+!python /kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/scripts/10_train_certav.py \
+    --sigma 0.50 \
+    --cache-dir /kaggle/input/datasets/vasuaashadesai/cmar-features-clean-v1/cmar_cache \
+    --output-dir /kaggle/working/certav/sigma_0.50 \
+    --epochs 30 --batch-size 8 --grad-accum 4 --patience 7
+
+# σ = 1.00 (high noise, largest radius, lower accuracy)
+!python /kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/scripts/10_train_certav.py \
+    --sigma 1.00 \
+    --cache-dir /kaggle/input/datasets/vasuaashadesai/cmar-features-clean-v1/cmar_cache \
+    --output-dir /kaggle/working/certav/sigma_1.00 \
+    --epochs 30 --batch-size 8 --grad-accum 4 --patience 7
+
+Cache coverage (train): 3850/3850
+Cache coverage (val): 825/825
+/kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/cmar/models/temporal_aggregation.py:36: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(layer, num_layers=1)
+Model parameters: 4,316,929 trainable / 4,316,929 total
+Training with σ=0.12, noise_mode=joint
+Device: cuda
+epoch=001 σ=0.12 mode=joint train_loss=0.3091 val_auc=0.7522 val_eer=0.3193
+epoch=002 σ=0.12 mode=joint train_loss=0.2825 val_auc=0.8120 val_eer=0.2573
+epoch=003 σ=0.12 mode=joint train_loss=0.2593 val_auc=0.8141 val_eer=0.2807
+epoch=004 σ=0.12 mode=joint train_loss=0.2428 val_auc=0.8667 val_eer=0.2193
+epoch=005 σ=0.12 mode=joint train_loss=0.2433 val_auc=0.8400 val_eer=0.2660
+epoch=006 σ=0.12 mode=joint train_loss=0.2206 val_auc=0.8793 val_eer=0.2267
+epoch=007 σ=0.12 mode=joint train_loss=0.2008 val_auc=0.8772 val_eer=0.2047
+epoch=008 σ=0.12 mode=joint train_loss=0.1816 val_auc=0.8887 val_eer=0.1980
+epoch=009 σ=0.12 mode=joint train_loss=0.1691 val_auc=0.9080 val_eer=0.2047
+epoch=010 σ=0.12 mode=joint train_loss=0.1449 val_auc=0.9033 val_eer=0.2113
+epoch=011 σ=0.12 mode=joint train_loss=0.1314 val_auc=0.9032 val_eer=0.1967
+epoch=012 σ=0.12 mode=joint train_loss=0.1326 val_auc=0.9163 val_eer=0.1433
+epoch=013 σ=0.12 mode=joint train_loss=0.1021 val_auc=0.9203 val_eer=0.1787
+epoch=014 σ=0.12 mode=joint train_loss=0.0996 val_auc=0.9072 val_eer=0.1980
+epoch=015 σ=0.12 mode=joint train_loss=0.0808 val_auc=0.9090 val_eer=0.1860
+epoch=016 σ=0.12 mode=joint train_loss=0.0743 val_auc=0.9041 val_eer=0.2020
+epoch=017 σ=0.12 mode=joint train_loss=0.0711 val_auc=0.9222 val_eer=0.1467
+epoch=018 σ=0.12 mode=joint train_loss=0.0669 val_auc=0.9130 val_eer=0.1840
+epoch=019 σ=0.12 mode=joint train_loss=0.0423 val_auc=0.9075 val_eer=0.1893
+epoch=020 σ=0.12 mode=joint train_loss=0.0300 val_auc=0.9009 val_eer=0.1847
+epoch=021 σ=0.12 mode=joint train_loss=0.0276 val_auc=0.8974 val_eer=0.1967
+epoch=022 σ=0.12 mode=joint train_loss=0.0217 val_auc=0.8942 val_eer=0.2033
+epoch=023 σ=0.12 mode=joint train_loss=0.0240 val_auc=0.8937 val_eer=0.2100
+epoch=024 σ=0.12 mode=joint train_loss=0.0146 val_auc=0.8950 val_eer=0.2133
+Early stopping after 7 epochs without AUC improvement.
+
+=== Training Complete ===
+Best val AUC: 0.9221688888888888
+Best val EER: 0.14666666666666664
+Checkpoint: /kaggle/working/certav/sigma_0.12/best.pt
+Cache coverage (train): 3850/3850
+Cache coverage (val): 825/825
+/kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/cmar/models/temporal_aggregation.py:36: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(layer, num_layers=1)
+Model parameters: 4,316,929 trainable / 4,316,929 total
+Training with σ=0.25, noise_mode=joint
+Device: cuda
+epoch=001 σ=0.25 mode=joint train_loss=0.3084 val_auc=0.7526 val_eer=0.3200
+epoch=002 σ=0.25 mode=joint train_loss=0.2793 val_auc=0.8201 val_eer=0.2747
+epoch=003 σ=0.25 mode=joint train_loss=0.2578 val_auc=0.8290 val_eer=0.2540
+epoch=004 σ=0.25 mode=joint train_loss=0.2365 val_auc=0.8694 val_eer=0.2133
+epoch=005 σ=0.25 mode=joint train_loss=0.2281 val_auc=0.8740 val_eer=0.1993
+epoch=006 σ=0.25 mode=joint train_loss=0.2239 val_auc=0.8797 val_eer=0.2240
+epoch=007 σ=0.25 mode=joint train_loss=0.1909 val_auc=0.8908 val_eer=0.2087
+epoch=008 σ=0.25 mode=joint train_loss=0.1862 val_auc=0.8936 val_eer=0.2120
+epoch=009 σ=0.25 mode=joint train_loss=0.1729 val_auc=0.8890 val_eer=0.2253
+epoch=010 σ=0.25 mode=joint train_loss=0.1603 val_auc=0.9159 val_eer=0.2000
+epoch=011 σ=0.25 mode=joint train_loss=0.1512 val_auc=0.9008 val_eer=0.2180
+epoch=012 σ=0.25 mode=joint train_loss=0.1287 val_auc=0.9076 val_eer=0.1900
+epoch=013 σ=0.25 mode=joint train_loss=0.1334 val_auc=0.9086 val_eer=0.1753
+epoch=014 σ=0.25 mode=joint train_loss=0.1248 val_auc=0.8983 val_eer=0.2013
+epoch=015 σ=0.25 mode=joint train_loss=0.1145 val_auc=0.9081 val_eer=0.1833
+epoch=016 σ=0.25 mode=joint train_loss=0.0970 val_auc=0.9198 val_eer=0.1633
+epoch=017 σ=0.25 mode=joint train_loss=0.1023 val_auc=0.8892 val_eer=0.2147
+epoch=018 σ=0.25 mode=joint train_loss=0.0877 val_auc=0.8829 val_eer=0.2500
+epoch=019 σ=0.25 mode=joint train_loss=0.0641 val_auc=0.8910 val_eer=0.2013
+epoch=020 σ=0.25 mode=joint train_loss=0.0552 val_auc=0.8933 val_eer=0.2147
+epoch=021 σ=0.25 mode=joint train_loss=0.0521 val_auc=0.8656 val_eer=0.2273
+epoch=022 σ=0.25 mode=joint train_loss=0.0361 val_auc=0.8646 val_eer=0.2260
+epoch=023 σ=0.25 mode=joint train_loss=0.0379 val_auc=0.8607 val_eer=0.2127
+Early stopping after 7 epochs without AUC improvement.
+
+=== Training Complete ===
+Best val AUC: 0.9198222222222222
+Best val EER: 0.16333333333333333
+Checkpoint: /kaggle/working/certav/sigma_0.25/best.pt
+Cache coverage (train): 3850/3850
+Cache coverage (val): 825/825
+/kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/cmar/models/temporal_aggregation.py:36: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(layer, num_layers=1)
+Model parameters: 4,316,929 trainable / 4,316,929 total
+Training with σ=0.5, noise_mode=joint
+Device: cuda
+epoch=001 σ=0.50 mode=joint train_loss=0.3090 val_auc=0.7522 val_eer=0.3193
+epoch=002 σ=0.50 mode=joint train_loss=0.2817 val_auc=0.8237 val_eer=0.2813
+epoch=003 σ=0.50 mode=joint train_loss=0.2630 val_auc=0.8007 val_eer=0.2800
+epoch=004 σ=0.50 mode=joint train_loss=0.2427 val_auc=0.8723 val_eer=0.2013
+epoch=005 σ=0.50 mode=joint train_loss=0.2376 val_auc=0.8755 val_eer=0.2400
+epoch=006 σ=0.50 mode=joint train_loss=0.2446 val_auc=0.8870 val_eer=0.1873
+epoch=007 σ=0.50 mode=joint train_loss=0.2353 val_auc=0.8719 val_eer=0.2187
+epoch=008 σ=0.50 mode=joint train_loss=0.1972 val_auc=0.8598 val_eer=0.2567
+epoch=009 σ=0.50 mode=joint train_loss=0.1955 val_auc=0.8657 val_eer=0.2660
+epoch=010 σ=0.50 mode=joint train_loss=0.1772 val_auc=0.8809 val_eer=0.2133
+epoch=011 σ=0.50 mode=joint train_loss=0.1714 val_auc=0.8929 val_eer=0.2287
+epoch=012 σ=0.50 mode=joint train_loss=0.1579 val_auc=0.8771 val_eer=0.2267
+epoch=013 σ=0.50 mode=joint train_loss=0.1476 val_auc=0.9271 val_eer=0.1373
+epoch=014 σ=0.50 mode=joint train_loss=0.1420 val_auc=0.9185 val_eer=0.1667
+epoch=015 σ=0.50 mode=joint train_loss=0.1188 val_auc=0.8953 val_eer=0.2127
+epoch=016 σ=0.50 mode=joint train_loss=0.1232 val_auc=0.9137 val_eer=0.2060
+epoch=017 σ=0.50 mode=joint train_loss=0.1078 val_auc=0.9114 val_eer=0.2113
+epoch=018 σ=0.50 mode=joint train_loss=0.1046 val_auc=0.9134 val_eer=0.1933
+epoch=019 σ=0.50 mode=joint train_loss=0.0987 val_auc=0.9132 val_eer=0.1940
+epoch=020 σ=0.50 mode=joint train_loss=0.0880 val_auc=0.9182 val_eer=0.1780
+Early stopping after 7 epochs without AUC improvement.
+
+=== Training Complete ===
+Best val AUC: 0.9271111111111112
+Best val EER: 0.1373333333333333
+Checkpoint: /kaggle/working/certav/sigma_0.50/best.pt
+Cache coverage (train): 3850/3850
+Cache coverage (val): 825/825
+/kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/cmar/models/temporal_aggregation.py:36: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(layer, num_layers=1)
+Model parameters: 4,316,929 trainable / 4,316,929 total
+Training with σ=1.0, noise_mode=joint
+Device: cuda
+epoch=001 σ=1.00 mode=joint train_loss=0.3092 val_auc=0.7504 val_eer=0.3313
+epoch=002 σ=1.00 mode=joint train_loss=0.2805 val_auc=0.8137 val_eer=0.2667
+epoch=003 σ=1.00 mode=joint train_loss=0.2613 val_auc=0.8247 val_eer=0.2660
+epoch=004 σ=1.00 mode=joint train_loss=0.2445 val_auc=0.8807 val_eer=0.1960
+epoch=005 σ=1.00 mode=joint train_loss=0.2274 val_auc=0.8926 val_eer=0.2007
+epoch=006 σ=1.00 mode=joint train_loss=0.2251 val_auc=0.8798 val_eer=0.2007
+epoch=007 σ=1.00 mode=joint train_loss=0.2310 val_auc=0.8597 val_eer=0.2660
+epoch=008 σ=1.00 mode=joint train_loss=0.2136 val_auc=0.8774 val_eer=0.2127
+epoch=009 σ=1.00 mode=joint train_loss=0.1990 val_auc=0.9038 val_eer=0.1853
+epoch=010 σ=1.00 mode=joint train_loss=0.1846 val_auc=0.9104 val_eer=0.1887
+epoch=011 σ=1.00 mode=joint train_loss=0.1745 val_auc=0.9148 val_eer=0.1720
+epoch=012 σ=1.00 mode=joint train_loss=0.1619 val_auc=0.9216 val_eer=0.1660
+epoch=013 σ=1.00 mode=joint train_loss=0.1574 val_auc=0.9232 val_eer=0.1353
+epoch=014 σ=1.00 mode=joint train_loss=0.1489 val_auc=0.9304 val_eer=0.1380
+epoch=015 σ=1.00 mode=joint train_loss=0.1495 val_auc=0.9395 val_eer=0.1447
+epoch=016 σ=1.00 mode=joint train_loss=0.1351 val_auc=0.9378 val_eer=0.1600
+epoch=017 σ=1.00 mode=joint train_loss=0.1375 val_auc=0.9254 val_eer=0.1713
+epoch=018 σ=1.00 mode=joint train_loss=0.1292 val_auc=0.9249 val_eer=0.1593
+epoch=019 σ=1.00 mode=joint train_loss=0.1151 val_auc=0.9395 val_eer=0.1360
+epoch=020 σ=1.00 mode=joint train_loss=0.1085 val_auc=0.9417 val_eer=0.1427
+epoch=021 σ=1.00 mode=joint train_loss=0.0993 val_auc=0.9348 val_eer=0.1500
+epoch=022 σ=1.00 mode=joint train_loss=0.0871 val_auc=0.9340 val_eer=0.1580
+epoch=023 σ=1.00 mode=joint train_loss=0.0876 val_auc=0.9435 val_eer=0.1507
+epoch=024 σ=1.00 mode=joint train_loss=0.0735 val_auc=0.9377 val_eer=0.1333
+epoch=025 σ=1.00 mode=joint train_loss=0.0735 val_auc=0.9364 val_eer=0.1360
+epoch=026 σ=1.00 mode=joint train_loss=0.0728 val_auc=0.9379 val_eer=0.1333
+epoch=027 σ=1.00 mode=joint train_loss=0.0664 val_auc=0.9425 val_eer=0.1513
+epoch=028 σ=1.00 mode=joint train_loss=0.0682 val_auc=0.9351 val_eer=0.1353
+epoch=029 σ=1.00 mode=joint train_loss=0.0594 val_auc=0.9420 val_eer=0.1440
+epoch=030 σ=1.00 mode=joint train_loss=0.0659 val_auc=0.9451 val_eer=0.1333
+
+=== Training Complete ===
+Best val AUC: 0.9450666666666666
+Best val EER: 0.1333333333333333
+Checkpoint: /kaggle/working/certav/sigma_1.00/best.pt
+
+
+
+
+
+%%bash
+# Certify all σ variants
+for SIGMA in 0.12 0.25 0.50 1.00; do
+    python /kaggle/working/crtav-intial/CMAR/scripts/11_certify.py \
+        --checkpoint /kaggle/working/crtav-intial/certav/sigma_${SIGMA}/best.pt \
+        --sigma $SIGMA \
+        --cache-dir /kaggle/input/datasets/vasuaashadesai/cmar-features-clean-v1/cmar_cache \
+        --output /kaggle/working/certav/certav_cert_${SIGMA}.json \
+        --n0 100 --n 1000 --alpha 0.001 --batch-size 64
+done
+Device: cuda
+Loading test data (condition=clean)...
+Loaded 825 test samples
+
+Certifying with σ=0.12, n0=100, n=1000, α=0.001, noise_mode=joint
+  [50/825] certified_correct=45/50 (90.0%) abstained=1/50
+  [100/825] certified_correct=91/100 (91.0%) abstained=1/100
+  [150/825] certified_correct=136/150 (90.7%) abstained=1/150
+  [200/825] certified_correct=179/200 (89.5%) abstained=1/200
+  [250/825] certified_correct=224/250 (89.6%) abstained=2/250
+  [300/825] certified_correct=270/300 (90.0%) abstained=2/300
+  [350/825] certified_correct=318/350 (90.9%) abstained=2/350
+  [400/825] certified_correct=363/400 (90.8%) abstained=2/400
+  [450/825] certified_correct=410/450 (91.1%) abstained=2/450
+  [500/825] certified_correct=454/500 (90.8%) abstained=2/500
+  [550/825] certified_correct=501/550 (91.1%) abstained=2/550
+  [600/825] certified_correct=549/600 (91.5%) abstained=2/600
+  [650/825] certified_correct=597/650 (91.8%) abstained=3/650
+  [700/825] certified_correct=643/700 (91.9%) abstained=4/700
+  [750/825] certified_correct=688/750 (91.7%) abstained=5/750
+  [800/825] certified_correct=735/800 (91.9%) abstained=5/800
+
+============================================================
+CERTIFICATION RESULTS (σ=0.12, mode=joint)
+============================================================
+Total samples: 825
+Correct predictions: 756/825 (91.6%)
+Abstained: 5/825 (0.6%)
+Mean certified radius: 0.2861
+
+Certified accuracy at key radii:
+  r_0.00: 0.9164 (91.6%)
+  r_0.10: 0.9079 (90.8%)
+  r_0.25: 0.8885 (88.8%)
+  r_0.50: 0.0000 (0.0%)
+  r_0.75: 0.0000 (0.0%)
+  r_1.00: 0.0000 (0.0%)
+  r_1.50: 0.0000 (0.0%)
+
+Results saved to: /kaggle/working/certav/certav_cert_0.12.json
+Time elapsed: 70.6s
+Device: cuda
+Loading test data (condition=clean)...
+Loaded 825 test samples
+
+Certifying with σ=0.25, n0=100, n=1000, α=0.001, noise_mode=joint
+  [50/825] certified_correct=44/50 (88.0%) abstained=0/50
+  [100/825] certified_correct=87/100 (87.0%) abstained=1/100
+  [150/825] certified_correct=133/150 (88.7%) abstained=1/150
+  [200/825] certified_correct=178/200 (89.0%) abstained=1/200
+  [250/825] certified_correct=225/250 (90.0%) abstained=1/250
+  [300/825] certified_correct=270/300 (90.0%) abstained=1/300
+  [350/825] certified_correct=314/350 (89.7%) abstained=1/350
+  [400/825] certified_correct=359/400 (89.8%) abstained=1/400
+  [450/825] certified_correct=408/450 (90.7%) abstained=1/450
+  [500/825] certified_correct=450/500 (90.0%) abstained=2/500
+  [550/825] certified_correct=496/550 (90.2%) abstained=2/550
+  [600/825] certified_correct=542/600 (90.3%) abstained=2/600
+  [650/825] certified_correct=590/650 (90.8%) abstained=2/650
+  [700/825] certified_correct=635/700 (90.7%) abstained=2/700
+  [750/825] certified_correct=681/750 (90.8%) abstained=2/750
+  [800/825] certified_correct=727/800 (90.9%) abstained=2/800
+
+============================================================
+CERTIFICATION RESULTS (σ=0.25, mode=joint)
+============================================================
+Total samples: 825
+Correct predictions: 748/825 (90.7%)
+Abstained: 3/825 (0.4%)
+Mean certified radius: 0.5874
+
+Certified accuracy at key radii:
+  r_0.00: 0.9067 (90.7%)
+  r_0.10: 0.9006 (90.1%)
+  r_0.25: 0.8885 (88.8%)
+  r_0.50: 0.8606 (86.1%)
+  r_0.75: 0.0000 (0.0%)
+  r_1.00: 0.0000 (0.0%)
+  r_1.50: 0.0000 (0.0%)
+
+Results saved to: /kaggle/working/certav/certav_cert_0.25.json
+Time elapsed: 66.8s
+Device: cuda
+Loading test data (condition=clean)...
+Loaded 825 test samples
+
+Certifying with σ=0.5, n0=100, n=1000, α=0.001, noise_mode=joint
+  [50/825] certified_correct=43/50 (86.0%) abstained=0/50
+  [100/825] certified_correct=84/100 (84.0%) abstained=1/100
+  [150/825] certified_correct=130/150 (86.7%) abstained=1/150
+  [200/825] certified_correct=173/200 (86.5%) abstained=1/200
+  [250/825] certified_correct=219/250 (87.6%) abstained=1/250
+  [300/825] certified_correct=267/300 (89.0%) abstained=1/300
+  [350/825] certified_correct=313/350 (89.4%) abstained=1/350
+  [400/825] certified_correct=357/400 (89.2%) abstained=1/400
+  [450/825] certified_correct=404/450 (89.8%) abstained=1/450
+  [500/825] certified_correct=446/500 (89.2%) abstained=1/500
+  [550/825] certified_correct=491/550 (89.3%) abstained=1/550
+  [600/825] certified_correct=538/600 (89.7%) abstained=1/600
+  [650/825] certified_correct=584/650 (89.8%) abstained=1/650
+  [700/825] certified_correct=630/700 (90.0%) abstained=1/700
+  [750/825] certified_correct=675/750 (90.0%) abstained=1/750
+  [800/825] certified_correct=722/800 (90.2%) abstained=1/800
+
+============================================================
+CERTIFICATION RESULTS (σ=0.5, mode=joint)
+============================================================
+Total samples: 825
+Correct predictions: 741/825 (89.8%)
+Abstained: 1/825 (0.1%)
+Mean certified radius: 1.1428
+
+Certified accuracy at key radii:
+  r_0.00: 0.8982 (89.8%)
+  r_0.10: 0.8970 (89.7%)
+  r_0.25: 0.8909 (89.1%)
+  r_0.50: 0.8703 (87.0%)
+  r_0.75: 0.8521 (85.2%)
+  r_1.00: 0.8194 (81.9%)
+  r_1.50: 0.0000 (0.0%)
+
+Results saved to: /kaggle/working/certav/certav_cert_0.50.json
+Time elapsed: 68.4s
+Device: cuda
+Loading test data (condition=clean)...
+Loaded 825 test samples
+
+Certifying with σ=1.0, n0=100, n=1000, α=0.001, noise_mode=joint
+  [50/825] certified_correct=48/50 (96.0%) abstained=0/50
+  [100/825] certified_correct=92/100 (92.0%) abstained=0/100
+  [150/825] certified_correct=138/150 (92.0%) abstained=0/150
+  [200/825] certified_correct=186/200 (93.0%) abstained=0/200
+  [250/825] certified_correct=233/250 (93.2%) abstained=1/250
+  [300/825] certified_correct=279/300 (93.0%) abstained=2/300
+  [350/825] certified_correct=325/350 (92.9%) abstained=3/350
+  [400/825] certified_correct=370/400 (92.5%) abstained=3/400
+  [450/825] certified_correct=416/450 (92.4%) abstained=5/450
+  [500/825] certified_correct=461/500 (92.2%) abstained=5/500
+  [550/825] certified_correct=509/550 (92.5%) abstained=5/550
+  [600/825] certified_correct=557/600 (92.8%) abstained=5/600
+  [650/825] certified_correct=607/650 (93.4%) abstained=5/650
+  [700/825] certified_correct=653/700 (93.3%) abstained=7/700
+  [750/825] certified_correct=698/750 (93.1%) abstained=7/750
+  [800/825] certified_correct=745/800 (93.1%) abstained=7/800
+
+============================================================
+CERTIFICATION RESULTS (σ=1.0, mode=joint)
+============================================================
+Total samples: 825
+Correct predictions: 767/825 (93.0%)
+Abstained: 7/825 (0.8%)
+Mean certified radius: 2.2066
+
+Certified accuracy at key radii:
+  r_0.00: 0.9297 (93.0%)
+  r_0.10: 0.9261 (92.6%)
+  r_0.25: 0.9212 (92.1%)
+  r_0.50: 0.9079 (90.8%)
+  r_0.75: 0.9042 (90.4%)
+  r_1.00: 0.8909 (89.1%)
+  r_1.50: 0.8545 (85.5%)
+
+Results saved to: /kaggle/working/certav/certav_cert_1.00.json
+Time elapsed: 71.3s
+/kaggle/working/crtav-intial/CMAR/cmar/models/temporal_aggregation.py:36: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(layer, num_layers=1)
+/kaggle/working/crtav-intial/CMAR/cmar/models/temporal_aggregation.py:36: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(layer, num_layers=1)
+/kaggle/working/crtav-intial/CMAR/cmar/models/temporal_aggregation.py:36: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(layer, num_layers=1)
+/kaggle/working/crtav-intial/CMAR/cmar/models/temporal_aggregation.py:36: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(layer, num_layers=1)
+%%bash
+# Certify all σ variants
+for SIGMA in 0.12 0.25 0.50 1.00; do
+    python /kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/scripts/11_certify.py \
+        --checkpoint /kaggle/working/crtav-intial/certav/sigma_${SIGMA}/best.pt \
+        --sigma 0.25 --noise-mode visual_only \
+        --cache-dir /kaggle/input/datasets/vasuaashadesai/cmar-features-clean-v1/cmar_cache \
+        --output /kaggle/working/certav/certav_cert_0.25_visual_only.json
+    
+    python /kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/scripts/11_certify.py \
+        --checkpoint /kaggle/working/crtav-intial/certav/sigma_${SIGMA}/best.pt \
+        --sigma 0.25 --noise-mode audio_only \
+        --cache-dir /kaggle/input/datasets/vasuaashadesai/cmar-features-clean-v1/cmar_cache \
+        --output /kaggle/working/certav/certav_cert_0.25_audio_only.json
+done
+Device: cuda
+Loading test data (condition=clean)...
+Loaded 825 test samples
+
+Certifying with σ=0.25, n0=100, n=1000, α=0.001, noise_mode=visual_only
+  [50/825] certified_correct=46/50 (92.0%) abstained=0/50
+  [100/825] certified_correct=92/100 (92.0%) abstained=0/100
+  [150/825] certified_correct=137/150 (91.3%) abstained=0/150
+  [200/825] certified_correct=180/200 (90.0%) abstained=0/200
+  [250/825] certified_correct=225/250 (90.0%) abstained=1/250
+  [300/825] certified_correct=271/300 (90.3%) abstained=1/300
+  [350/825] certified_correct=319/350 (91.1%) abstained=1/350
+  [400/825] certified_correct=364/400 (91.0%) abstained=1/400
+  [450/825] certified_correct=411/450 (91.3%) abstained=1/450
+  [500/825] certified_correct=455/500 (91.0%) abstained=1/500
+  [550/825] certified_correct=502/550 (91.3%) abstained=1/550
+  [600/825] certified_correct=550/600 (91.7%) abstained=1/600
+  [650/825] certified_correct=599/650 (92.2%) abstained=1/650
+  [700/825] certified_correct=646/700 (92.3%) abstained=1/700
+  [750/825] certified_correct=692/750 (92.3%) abstained=1/750
+  [800/825] certified_correct=739/800 (92.4%) abstained=1/800
+
+============================================================
+CERTIFICATION RESULTS (σ=0.25, mode=visual_only)
+============================================================
+Total samples: 825
+Correct predictions: 760/825 (92.1%)
+Abstained: 2/825 (0.2%)
+Mean certified radius: 0.5803
+
+Certified accuracy at key radii:
+  r_0.00: 0.9212 (92.1%)
+  r_0.10: 0.9079 (90.8%)
+  r_0.25: 0.8994 (89.9%)
+  r_0.50: 0.8691 (86.9%)
+  r_0.75: 0.0000 (0.0%)
+  r_1.00: 0.0000 (0.0%)
+  r_1.50: 0.0000 (0.0%)
+
+Results saved to: /kaggle/working/certav/certav_cert_0.25_visual_only.json
+Time elapsed: 67.7s
+Device: cuda
+Loading test data (condition=clean)...
+Loaded 825 test samples
+
+Certifying with σ=0.25, n0=100, n=1000, α=0.001, noise_mode=audio_only
+  [50/825] certified_correct=45/50 (90.0%) abstained=0/50
+  [100/825] certified_correct=91/100 (91.0%) abstained=0/100
+  [150/825] certified_correct=135/150 (90.0%) abstained=1/150
+  [200/825] certified_correct=177/200 (88.5%) abstained=2/200
+  [250/825] certified_correct=223/250 (89.2%) abstained=2/250
+  [300/825] certified_correct=269/300 (89.7%) abstained=2/300
+  [350/825] certified_correct=317/350 (90.6%) abstained=2/350
+  [400/825] certified_correct=362/400 (90.5%) abstained=2/400
+  [450/825] certified_correct=409/450 (90.9%) abstained=2/450
+  [500/825] certified_correct=453/500 (90.6%) abstained=2/500
+  [550/825] certified_correct=500/550 (90.9%) abstained=2/550
+  [600/825] certified_correct=548/600 (91.3%) abstained=2/600
+  [650/825] certified_correct=597/650 (91.8%) abstained=2/650
+  [700/825] certified_correct=643/700 (91.9%) abstained=2/700
+  [750/825] certified_correct=688/750 (91.7%) abstained=2/750
+  [800/825] certified_correct=735/800 (91.9%) abstained=3/800
+
+============================================================
+CERTIFICATION RESULTS (σ=0.25, mode=audio_only)
+============================================================
+Total samples: 825
+Correct predictions: 756/825 (91.6%)
+Abstained: 3/825 (0.4%)
+Mean certified radius: 0.6037
+
+Certified accuracy at key radii:
+  r_0.00: 0.9164 (91.6%)
+  r_0.10: 0.9152 (91.5%)
+  r_0.25: 0.9091 (90.9%)
+  r_0.50: 0.8970 (89.7%)
+  r_0.75: 0.0000 (0.0%)
+  r_1.00: 0.0000 (0.0%)
+  r_1.50: 0.0000 (0.0%)
+
+Results saved to: /kaggle/working/certav/certav_cert_0.25_audio_only.json
+Time elapsed: 66.6s
+Device: cuda
+Loading test data (condition=clean)...
+Loaded 825 test samples
+
+Certifying with σ=0.25, n0=100, n=1000, α=0.001, noise_mode=visual_only
+  [50/825] certified_correct=44/50 (88.0%) abstained=0/50
+  [100/825] certified_correct=87/100 (87.0%) abstained=1/100
+  [150/825] certified_correct=133/150 (88.7%) abstained=1/150
+  [200/825] certified_correct=178/200 (89.0%) abstained=1/200
+  [250/825] certified_correct=225/250 (90.0%) abstained=1/250
+  [300/825] certified_correct=270/300 (90.0%) abstained=2/300
+  [350/825] certified_correct=314/350 (89.7%) abstained=2/350
+  [400/825] certified_correct=359/400 (89.8%) abstained=2/400
+  [450/825] certified_correct=408/450 (90.7%) abstained=2/450
+  [500/825] certified_correct=450/500 (90.0%) abstained=3/500
+  [550/825] certified_correct=496/550 (90.2%) abstained=3/550
+  [600/825] certified_correct=542/600 (90.3%) abstained=3/600
+  [650/825] certified_correct=590/650 (90.8%) abstained=3/650
+  [700/825] certified_correct=635/700 (90.7%) abstained=3/700
+  [750/825] certified_correct=681/750 (90.8%) abstained=3/750
+  [800/825] certified_correct=727/800 (90.9%) abstained=3/800
+
+============================================================
+CERTIFICATION RESULTS (σ=0.25, mode=visual_only)
+============================================================
+Total samples: 825
+Correct predictions: 749/825 (90.8%)
+Abstained: 3/825 (0.4%)
+Mean certified radius: 0.5906
+
+Certified accuracy at key radii:
+  r_0.00: 0.9079 (90.8%)
+  r_0.10: 0.9018 (90.2%)
+  r_0.25: 0.8921 (89.2%)
+  r_0.50: 0.8703 (87.0%)
+  r_0.75: 0.0000 (0.0%)
+  r_1.00: 0.0000 (0.0%)
+  r_1.50: 0.0000 (0.0%)
+
+Results saved to: /kaggle/working/certav/certav_cert_0.25_visual_only.json
+Time elapsed: 67.1s
+Device: cuda
+Loading test data (condition=clean)...
+Loaded 825 test samples
+
+Certifying with σ=0.25, n0=100, n=1000, α=0.001, noise_mode=audio_only
+  [50/825] certified_correct=44/50 (88.0%) abstained=0/50
+  [100/825] certified_correct=87/100 (87.0%) abstained=0/100
+  [150/825] certified_correct=133/150 (88.7%) abstained=0/150
+  [200/825] certified_correct=178/200 (89.0%) abstained=0/200
+  [250/825] certified_correct=225/250 (90.0%) abstained=0/250
+  [300/825] certified_correct=271/300 (90.3%) abstained=0/300
+  [350/825] certified_correct=315/350 (90.0%) abstained=0/350
+  [400/825] certified_correct=360/400 (90.0%) abstained=0/400
+  [450/825] certified_correct=409/450 (90.9%) abstained=0/450
+  [500/825] certified_correct=451/500 (90.2%) abstained=0/500
+  [550/825] certified_correct=497/550 (90.4%) abstained=0/550
+  [600/825] certified_correct=543/600 (90.5%) abstained=0/600
+  [650/825] certified_correct=591/650 (90.9%) abstained=0/650
+  [700/825] certified_correct=636/700 (90.9%) abstained=0/700
+  [750/825] certified_correct=682/750 (90.9%) abstained=0/750
+  [800/825] certified_correct=728/800 (91.0%) abstained=0/800
+
+============================================================
+CERTIFICATION RESULTS (σ=0.25, mode=audio_only)
+============================================================
+Total samples: 825
+Correct predictions: 749/825 (90.8%)
+Abstained: 0/825 (0.0%)
+Mean certified radius: 0.6086
+
+Certified accuracy at key radii:
+  r_0.00: 0.9079 (90.8%)
+  r_0.10: 0.9055 (90.5%)
+  r_0.25: 0.9030 (90.3%)
+  r_0.50: 0.8970 (89.7%)
+  r_0.75: 0.0000 (0.0%)
+  r_1.00: 0.0000 (0.0%)
+  r_1.50: 0.0000 (0.0%)
+
+Results saved to: /kaggle/working/certav/certav_cert_0.25_audio_only.json
+Time elapsed: 67.7s
+Device: cuda
+Loading test data (condition=clean)...
+Loaded 825 test samples
+
+Certifying with σ=0.25, n0=100, n=1000, α=0.001, noise_mode=visual_only
+  [50/825] certified_correct=43/50 (86.0%) abstained=0/50
+  [100/825] certified_correct=84/100 (84.0%) abstained=0/100
+  [150/825] certified_correct=130/150 (86.7%) abstained=0/150
+  [200/825] certified_correct=173/200 (86.5%) abstained=0/200
+  [250/825] certified_correct=219/250 (87.6%) abstained=0/250
+  [300/825] certified_correct=267/300 (89.0%) abstained=0/300
+  [350/825] certified_correct=313/350 (89.4%) abstained=0/350
+  [400/825] certified_correct=357/400 (89.2%) abstained=0/400
+  [450/825] certified_correct=404/450 (89.8%) abstained=0/450
+  [500/825] certified_correct=447/500 (89.4%) abstained=0/500
+  [550/825] certified_correct=492/550 (89.5%) abstained=0/550
+  [600/825] certified_correct=539/600 (89.8%) abstained=0/600
+  [650/825] certified_correct=585/650 (90.0%) abstained=0/650
+  [700/825] certified_correct=631/700 (90.1%) abstained=0/700
+  [750/825] certified_correct=676/750 (90.1%) abstained=0/750
+  [800/825] certified_correct=723/800 (90.4%) abstained=0/800
+
+============================================================
+CERTIFICATION RESULTS (σ=0.25, mode=visual_only)
+============================================================
+Total samples: 825
+Correct predictions: 742/825 (89.9%)
+Abstained: 0/825 (0.0%)
+Mean certified radius: 0.5988
+
+Certified accuracy at key radii:
+  r_0.00: 0.8994 (89.9%)
+  r_0.10: 0.8958 (89.6%)
+  r_0.25: 0.8933 (89.3%)
+  r_0.50: 0.8739 (87.4%)
+  r_0.75: 0.0000 (0.0%)
+  r_1.00: 0.0000 (0.0%)
+  r_1.50: 0.0000 (0.0%)
+
+Results saved to: /kaggle/working/certav/certav_cert_0.25_visual_only.json
+Time elapsed: 68.8s
+Device: cuda
+Loading test data (condition=clean)...
+Loaded 825 test samples
+
+Certifying with σ=0.25, n0=100, n=1000, α=0.001, noise_mode=audio_only
+  [50/825] certified_correct=43/50 (86.0%) abstained=0/50
+  [100/825] certified_correct=84/100 (84.0%) abstained=0/100
+  [150/825] certified_correct=130/150 (86.7%) abstained=0/150
+  [200/825] certified_correct=173/200 (86.5%) abstained=0/200
+  [250/825] certified_correct=219/250 (87.6%) abstained=0/250
+  [300/825] certified_correct=267/300 (89.0%) abstained=0/300
+  [350/825] certified_correct=313/350 (89.4%) abstained=0/350
+  [400/825] certified_correct=357/400 (89.2%) abstained=0/400
+  [450/825] certified_correct=404/450 (89.8%) abstained=0/450
+  [500/825] certified_correct=447/500 (89.4%) abstained=0/500
+  [550/825] certified_correct=492/550 (89.5%) abstained=0/550
+  [600/825] certified_correct=539/600 (89.8%) abstained=0/600
+  [650/825] certified_correct=585/650 (90.0%) abstained=0/650
+  [700/825] certified_correct=631/700 (90.1%) abstained=0/700
+  [750/825] certified_correct=676/750 (90.1%) abstained=0/750
+  [800/825] certified_correct=723/800 (90.4%) abstained=0/800
+
+============================================================
+CERTIFICATION RESULTS (σ=0.25, mode=audio_only)
+============================================================
+Total samples: 825
+Correct predictions: 742/825 (89.9%)
+Abstained: 0/825 (0.0%)
+Mean certified radius: 0.6124
+
+Certified accuracy at key radii:
+  r_0.00: 0.8994 (89.9%)
+  r_0.10: 0.8994 (89.9%)
+  r_0.25: 0.8982 (89.8%)
+  r_0.50: 0.8933 (89.3%)
+  r_0.75: 0.0000 (0.0%)
+  r_1.00: 0.0000 (0.0%)
+  r_1.50: 0.0000 (0.0%)
+
+Results saved to: /kaggle/working/certav/certav_cert_0.25_audio_only.json
+Time elapsed: 66.0s
+Device: cuda
+Loading test data (condition=clean)...
+Loaded 825 test samples
+
+Certifying with σ=0.25, n0=100, n=1000, α=0.001, noise_mode=visual_only
+  [50/825] certified_correct=48/50 (96.0%) abstained=0/50
+  [100/825] certified_correct=92/100 (92.0%) abstained=0/100
+  [150/825] certified_correct=138/150 (92.0%) abstained=0/150
+  [200/825] certified_correct=186/200 (93.0%) abstained=0/200
+  [250/825] certified_correct=233/250 (93.2%) abstained=0/250
+  [300/825] certified_correct=279/300 (93.0%) abstained=0/300
+  [350/825] certified_correct=326/350 (93.1%) abstained=0/350
+  [400/825] certified_correct=371/400 (92.8%) abstained=0/400
+  [450/825] certified_correct=419/450 (93.1%) abstained=0/450
+  [500/825] certified_correct=463/500 (92.6%) abstained=1/500
+  [550/825] certified_correct=511/550 (92.9%) abstained=1/550
+  [600/825] certified_correct=559/600 (93.2%) abstained=1/600
+  [650/825] certified_correct=609/650 (93.7%) abstained=1/650
+  [700/825] certified_correct=656/700 (93.7%) abstained=1/700
+  [750/825] certified_correct=700/750 (93.3%) abstained=1/750
+  [800/825] certified_correct=747/800 (93.4%) abstained=1/800
+
+============================================================
+CERTIFICATION RESULTS (σ=0.25, mode=visual_only)
+============================================================
+Total samples: 825
+Correct predictions: 769/825 (93.2%)
+Abstained: 1/825 (0.1%)
+Mean certified radius: 0.6032
+
+Certified accuracy at key radii:
+  r_0.00: 0.9321 (93.2%)
+  r_0.10: 0.9297 (93.0%)
+  r_0.25: 0.9200 (92.0%)
+  r_0.50: 0.9103 (91.0%)
+  r_0.75: 0.0000 (0.0%)
+  r_1.00: 0.0000 (0.0%)
+  r_1.50: 0.0000 (0.0%)
+
+Results saved to: /kaggle/working/certav/certav_cert_0.25_visual_only.json
+Time elapsed: 65.6s
+Device: cuda
+Loading test data (condition=clean)...
+Loaded 825 test samples
+
+Certifying with σ=0.25, n0=100, n=1000, α=0.001, noise_mode=audio_only
+  [50/825] certified_correct=48/50 (96.0%) abstained=0/50
+  [100/825] certified_correct=92/100 (92.0%) abstained=0/100
+  [150/825] certified_correct=138/150 (92.0%) abstained=0/150
+  [200/825] certified_correct=186/200 (93.0%) abstained=0/200
+  [250/825] certified_correct=233/250 (93.2%) abstained=0/250
+  [300/825] certified_correct=279/300 (93.0%) abstained=0/300
+  [350/825] certified_correct=326/350 (93.1%) abstained=0/350
+  [400/825] certified_correct=371/400 (92.8%) abstained=0/400
+  [450/825] certified_correct=419/450 (93.1%) abstained=0/450
+  [500/825] certified_correct=463/500 (92.6%) abstained=0/500
+  [550/825] certified_correct=511/550 (92.9%) abstained=0/550
+  [600/825] certified_correct=559/600 (93.2%) abstained=0/600
+  [650/825] certified_correct=609/650 (93.7%) abstained=0/650
+  [700/825] certified_correct=656/700 (93.7%) abstained=0/700
+  [750/825] certified_correct=700/750 (93.3%) abstained=0/750
+  [800/825] certified_correct=747/800 (93.4%) abstained=0/800
+
+============================================================
+CERTIFICATION RESULTS (σ=0.25, mode=audio_only)
+============================================================
+Total samples: 825
+Correct predictions: 769/825 (93.2%)
+Abstained: 0/825 (0.0%)
+Mean certified radius: 0.6108
+
+Certified accuracy at key radii:
+  r_0.00: 0.9321 (93.2%)
+  r_0.10: 0.9309 (93.1%)
+  r_0.25: 0.9273 (92.7%)
+  r_0.50: 0.9212 (92.1%)
+  r_0.75: 0.0000 (0.0%)
+  r_1.00: 0.0000 (0.0%)
+  r_1.50: 0.0000 (0.0%)
+
+Results saved to: /kaggle/working/certav/certav_cert_0.25_audio_only.json
+Time elapsed: 65.8s
+/kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/cmar/models/temporal_aggregation.py:36: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(layer, num_layers=1)
+/kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/cmar/models/temporal_aggregation.py:36: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(layer, num_layers=1)
+/kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/cmar/models/temporal_aggregation.py:36: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(layer, num_layers=1)
+/kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/cmar/models/temporal_aggregation.py:36: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(layer, num_layers=1)
+/kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/cmar/models/temporal_aggregation.py:36: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(layer, num_layers=1)
+/kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/cmar/models/temporal_aggregation.py:36: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(layer, num_layers=1)
+/kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/cmar/models/temporal_aggregation.py:36: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(layer, num_layers=1)
+/kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/cmar/models/temporal_aggregation.py:36: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(layer, num_layers=1)
+%%bash
+for SIGMA in 0.12 0.25 0.50 1.00; do
+    python /kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/scripts/12_empirical_attack_comparison.py \
+        --checkpoint /kaggle/working/crtav-intial/certav/sigma_${SIGMA}/best.pt \
+        --sigma 0.25 \
+        --cache-dir /kaggle/input/datasets/vasuaashadesai/cmar-features-clean-v1/cmar_cache \
+        --output /kaggle/working/certav/empirical_comparison.json \
+        --eps-values 0.05 0.10 0.20 \
+        --max-samples 200 \
+        --n-smoothing-samples 100
+done
+Device: cuda
+Test samples: 825
+
+============================================================
+PGD attack ε=0.05
+============================================================
+
+--- Base classifier (no smoothing) ---
+  [100/200] attacked
+  [200/200] attacked
+  Clean AUC: 0.8331
+  Adv AUC:   0.1338
+
+--- Smoothed classifier (σ=0.25) ---
+  [50/200] smoothed clean_acc=0.920 adv_acc=0.440
+  [100/200] smoothed clean_acc=0.920 adv_acc=0.450
+  [150/200] smoothed clean_acc=0.913 adv_acc=0.453
+  [200/200] smoothed clean_acc=0.900 adv_acc=0.455
+  Clean acc: 0.9000
+  Adv acc:   0.4550
+
+============================================================
+PGD attack ε=0.1
+============================================================
+
+--- Base classifier (no smoothing) ---
+  [100/200] attacked
+  [200/200] attacked
+  Clean AUC: 0.8331
+  Adv AUC:   0.0108
+
+--- Smoothed classifier (σ=0.25) ---
+  [50/200] smoothed clean_acc=0.920 adv_acc=0.060
+  [100/200] smoothed clean_acc=0.920 adv_acc=0.110
+  [150/200] smoothed clean_acc=0.913 adv_acc=0.127
+  [200/200] smoothed clean_acc=0.905 adv_acc=0.150
+  Clean acc: 0.9050
+  Adv acc:   0.1500
+
+============================================================
+PGD attack ε=0.2
+============================================================
+
+--- Base classifier (no smoothing) ---
+  [100/200] attacked
+  [200/200] attacked
+  Clean AUC: 0.8331
+  Adv AUC:   0.0000
+
+--- Smoothed classifier (σ=0.25) ---
+  [50/200] smoothed clean_acc=0.920 adv_acc=0.120
+  [100/200] smoothed clean_acc=0.920 adv_acc=0.090
+  [150/200] smoothed clean_acc=0.913 adv_acc=0.100
+  [200/200] smoothed clean_acc=0.900 adv_acc=0.080
+  Clean acc: 0.9000
+  Adv acc:   0.0800
+
+Results saved to: /kaggle/working/certav/empirical_comparison.json
+Device: cuda
+Test samples: 825
+
+============================================================
+PGD attack ε=0.05
+============================================================
+
+--- Base classifier (no smoothing) ---
+  [100/200] attacked
+  [200/200] attacked
+  Clean AUC: 0.8325
+  Adv AUC:   0.1402
+
+--- Smoothed classifier (σ=0.25) ---
+  [50/200] smoothed clean_acc=0.880 adv_acc=0.520
+  [100/200] smoothed clean_acc=0.870 adv_acc=0.540
+  [150/200] smoothed clean_acc=0.887 adv_acc=0.533
+  [200/200] smoothed clean_acc=0.890 adv_acc=0.515
+  Clean acc: 0.8900
+  Adv acc:   0.5150
+
+============================================================
+PGD attack ε=0.1
+============================================================
+
+--- Base classifier (no smoothing) ---
+  [100/200] attacked
+  [200/200] attacked
+  Clean AUC: 0.8325
+  Adv AUC:   0.0023
+
+--- Smoothed classifier (σ=0.25) ---
+  [50/200] smoothed clean_acc=0.880 adv_acc=0.160
+  [100/200] smoothed clean_acc=0.880 adv_acc=0.150
+  [150/200] smoothed clean_acc=0.893 adv_acc=0.153
+  [200/200] smoothed clean_acc=0.895 adv_acc=0.160
+  Clean acc: 0.8950
+  Adv acc:   0.1600
+
+============================================================
+PGD attack ε=0.2
+============================================================
+
+--- Base classifier (no smoothing) ---
+  [100/200] attacked
+  [200/200] attacked
+  Clean AUC: 0.8325
+  Adv AUC:   0.0000
+
+--- Smoothed classifier (σ=0.25) ---
+  [50/200] smoothed clean_acc=0.880 adv_acc=0.000
+  [100/200] smoothed clean_acc=0.880 adv_acc=0.000
+  [150/200] smoothed clean_acc=0.893 adv_acc=0.013
+  [200/200] smoothed clean_acc=0.895 adv_acc=0.025
+  Clean acc: 0.8950
+  Adv acc:   0.0250
+
+Results saved to: /kaggle/working/certav/empirical_comparison.json
+Device: cuda
+Test samples: 825
+
+============================================================
+PGD attack ε=0.05
+============================================================
+
+--- Base classifier (no smoothing) ---
+  [100/200] attacked
+  [200/200] attacked
+  Clean AUC: 0.8386
+  Adv AUC:   0.1972
+
+--- Smoothed classifier (σ=0.25) ---
+  [50/200] smoothed clean_acc=0.860 adv_acc=0.500
+  [100/200] smoothed clean_acc=0.840 adv_acc=0.540
+  [150/200] smoothed clean_acc=0.867 adv_acc=0.553
+  [200/200] smoothed clean_acc=0.865 adv_acc=0.540
+  Clean acc: 0.8650
+  Adv acc:   0.5400
+
+============================================================
+PGD attack ε=0.1
+============================================================
+
+--- Base classifier (no smoothing) ---
+  [100/200] attacked
+  [200/200] attacked
+  Clean AUC: 0.8386
+  Adv AUC:   0.0055
+
+--- Smoothed classifier (σ=0.25) ---
+  [50/200] smoothed clean_acc=0.860 adv_acc=0.240
+  [100/200] smoothed clean_acc=0.840 adv_acc=0.210
+  [150/200] smoothed clean_acc=0.867 adv_acc=0.220
+  [200/200] smoothed clean_acc=0.865 adv_acc=0.235
+  Clean acc: 0.8650
+  Adv acc:   0.2350
+
+============================================================
+PGD attack ε=0.2
+============================================================
+
+--- Base classifier (no smoothing) ---
+  [100/200] attacked
+  [200/200] attacked
+  Clean AUC: 0.8386
+  Adv AUC:   0.0000
+
+--- Smoothed classifier (σ=0.25) ---
+  [50/200] smoothed clean_acc=0.860 adv_acc=0.000
+  [100/200] smoothed clean_acc=0.840 adv_acc=0.000
+  [150/200] smoothed clean_acc=0.867 adv_acc=0.000
+  [200/200] smoothed clean_acc=0.865 adv_acc=0.000
+  Clean acc: 0.8650
+  Adv acc:   0.0000
+
+Results saved to: /kaggle/working/certav/empirical_comparison.json
+Device: cuda
+Test samples: 825
+
+============================================================
+PGD attack ε=0.05
+============================================================
+
+--- Base classifier (no smoothing) ---
+  [100/200] attacked
+  [200/200] attacked
+  Clean AUC: 0.8409
+  Adv AUC:   0.1125
+
+--- Smoothed classifier (σ=0.25) ---
+  [50/200] smoothed clean_acc=0.960 adv_acc=0.560
+  [100/200] smoothed clean_acc=0.920 adv_acc=0.580
+  [150/200] smoothed clean_acc=0.920 adv_acc=0.613
+  [200/200] smoothed clean_acc=0.930 adv_acc=0.590
+  Clean acc: 0.9300
+  Adv acc:   0.5900
+
+============================================================
+PGD attack ε=0.1
+============================================================
+
+--- Base classifier (no smoothing) ---
+  [100/200] attacked
+  [200/200] attacked
+  Clean AUC: 0.8409
+  Adv AUC:   0.0000
+
+--- Smoothed classifier (σ=0.25) ---
+  [50/200] smoothed clean_acc=0.960 adv_acc=0.220
+  [100/200] smoothed clean_acc=0.920 adv_acc=0.230
+  [150/200] smoothed clean_acc=0.920 adv_acc=0.207
+  [200/200] smoothed clean_acc=0.930 adv_acc=0.205
+  Clean acc: 0.9300
+  Adv acc:   0.2050
+
+============================================================
+PGD attack ε=0.2
+============================================================
+
+--- Base classifier (no smoothing) ---
+  [100/200] attacked
+  [200/200] attacked
+  Clean AUC: 0.8409
+  Adv AUC:   0.0000
+
+--- Smoothed classifier (σ=0.25) ---
+  [50/200] smoothed clean_acc=0.960 adv_acc=0.020
+  [100/200] smoothed clean_acc=0.920 adv_acc=0.010
+  [150/200] smoothed clean_acc=0.920 adv_acc=0.007
+  [200/200] smoothed clean_acc=0.930 adv_acc=0.005
+  Clean acc: 0.9300
+  Adv acc:   0.0050
+
+Results saved to: /kaggle/working/certav/empirical_comparison.json
+/kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/cmar/models/temporal_aggregation.py:36: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(layer, num_layers=1)
+/kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/cmar/models/temporal_aggregation.py:36: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(layer, num_layers=1)
+/kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/cmar/models/temporal_aggregation.py:36: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(layer, num_layers=1)
+/kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/cmar/models/temporal_aggregation.py:36: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(layer, num_layers=1)
+!python /kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/scripts/13_certav_figures.py \
+    --results-dir /kaggle/working/certav/ \
+    --output-dir /kaggle/working/certav/figures/
+Generating CertAV paper figures...
+Results dir: /kaggle/working/certav
+Output dir:  /kaggle/working/certav/figures
+
+  ✓ fig1_certified_accuracy_curves
+  ✓ fig2_multimodal_vs_unimodal
+  ✓ fig3_accuracy_radius_tradeoff
+  ✓ fig4_empirical_attack_comparison
+  ✓ table_certified_accuracy (4 rows)
+
+  σ      | Clean Acc | Abstain | Mean R | Cert@0.00 | Cert@0.25 | Cert@0.50 | Cert@1.00
+  ------------------------------------------------------------------------------------------
+  0.12   | 0.916     | 0.006   | 0.286  | 0.916     | 0.888     | 0.000     | 0.000
+  0.25   | 0.907     | 0.004   | 0.587  | 0.907     | 0.888     | 0.861     | 0.000
+  0.50   | 0.898     | 0.001   | 1.143  | 0.898     | 0.891     | 0.870     | 0.819
+  1.00   | 0.930     | 0.008   | 2.207  | 0.930     | 0.921     | 0.908     | 0.891
+
+All figures saved to: /kaggle/working/certav/figures
+%%bash
+for SIGMA in 0.12 0.25 0.50 1.00; do
+    # Run certification on degraded test conditions
+    for COND in d12_social d11_h264_crf28 d1_jpeg75; do
+        python /kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/scripts/11_certify.py \
+            --checkpoint /kaggle/working/crtav-intial/certav/sigma_${SIGMA}/best.pt \
+            --sigma 0.25 \
+            --cache-dir /kaggle/input/datasets/vasuaashadesai/cmar-features-clean-v1/cmar_cache \
+            --condition $COND \
+            --output /kaggle/working/certav/certav_cert_0.25_${COND}.json
+    done
+done
+Device: cuda
+Loading test data (condition=d12_social)...
+Loaded 825 test samples
+
+Certifying with σ=0.25, n0=100, n=1000, α=0.001, noise_mode=joint
+  [50/825] certified_correct=46/50 (92.0%) abstained=1/50
+  [100/825] certified_correct=92/100 (92.0%) abstained=1/100
+  [150/825] certified_correct=138/150 (92.0%) abstained=1/150
+  [200/825] certified_correct=183/200 (91.5%) abstained=1/200
+  [250/825] certified_correct=230/250 (92.0%) abstained=1/250
+  [300/825] certified_correct=276/300 (92.0%) abstained=1/300
+  [350/825] certified_correct=321/350 (91.7%) abstained=1/350
+  [400/825] certified_correct=364/400 (91.0%) abstained=1/400
+  [450/825] certified_correct=412/450 (91.6%) abstained=1/450
+  [500/825] certified_correct=457/500 (91.4%) abstained=1/500
+  [550/825] certified_correct=504/550 (91.6%) abstained=1/550
+  [600/825] certified_correct=552/600 (92.0%) abstained=1/600
+  [650/825] certified_correct=600/650 (92.3%) abstained=1/650
+  [700/825] certified_correct=645/700 (92.1%) abstained=1/700
+  [750/825] certified_correct=689/750 (91.9%) abstained=1/750
+  [800/825] certified_correct=733/800 (91.6%) abstained=1/800
+
+============================================================
+CERTIFICATION RESULTS (σ=0.25, mode=joint)
+============================================================
+Total samples: 825
+Correct predictions: 756/825 (91.6%)
+Abstained: 1/825 (0.1%)
+Mean certified radius: 0.5964
+
+Certified accuracy at key radii:
+  r_0.00: 0.9164 (91.6%)
+  r_0.10: 0.9115 (91.2%)
+  r_0.25: 0.9018 (90.2%)
+  r_0.50: 0.8848 (88.5%)
+  r_0.75: 0.0000 (0.0%)
+  r_1.00: 0.0000 (0.0%)
+  r_1.50: 0.0000 (0.0%)
+
+Results saved to: /kaggle/working/certav/certav_cert_0.25_d12_social.json
+Time elapsed: 64.5s
+Device: cuda
+Loading test data (condition=d11_h264_crf28)...
+Loaded 825 test samples
+
+Certifying with σ=0.25, n0=100, n=1000, α=0.001, noise_mode=joint
+  [50/825] certified_correct=44/50 (88.0%) abstained=0/50
+  [100/825] certified_correct=89/100 (89.0%) abstained=0/100
+  [150/825] certified_correct=135/150 (90.0%) abstained=0/150
+  [200/825] certified_correct=179/200 (89.5%) abstained=0/200
+  [250/825] certified_correct=226/250 (90.4%) abstained=0/250
+  [300/825] certified_correct=271/300 (90.3%) abstained=0/300
+  [350/825] certified_correct=315/350 (90.0%) abstained=0/350
+  [400/825] certified_correct=358/400 (89.5%) abstained=0/400
+  [450/825] certified_correct=407/450 (90.4%) abstained=0/450
+  [500/825] certified_correct=452/500 (90.4%) abstained=1/500
+  [550/825] certified_correct=499/550 (90.7%) abstained=1/550
+  [600/825] certified_correct=545/600 (90.8%) abstained=1/600
+  [650/825] certified_correct=594/650 (91.4%) abstained=1/650
+  [700/825] certified_correct=639/700 (91.3%) abstained=1/700
+  [750/825] certified_correct=682/750 (90.9%) abstained=1/750
+  [800/825] certified_correct=725/800 (90.6%) abstained=2/800
+
+============================================================
+CERTIFICATION RESULTS (σ=0.25, mode=joint)
+============================================================
+Total samples: 825
+Correct predictions: 748/825 (90.7%)
+Abstained: 2/825 (0.2%)
+Mean certified radius: 0.5991
+
+Certified accuracy at key radii:
+  r_0.00: 0.9067 (90.7%)
+  r_0.10: 0.8958 (89.6%)
+  r_0.25: 0.8885 (88.8%)
+  r_0.50: 0.8752 (87.5%)
+  r_0.75: 0.0000 (0.0%)
+  r_1.00: 0.0000 (0.0%)
+  r_1.50: 0.0000 (0.0%)
+
+Results saved to: /kaggle/working/certav/certav_cert_0.25_d11_h264_crf28.json
+Time elapsed: 65.7s
+Device: cuda
+Loading test data (condition=d1_jpeg75)...
+Loaded 825 test samples
+
+Certifying with σ=0.25, n0=100, n=1000, α=0.001, noise_mode=joint
+  [50/825] certified_correct=47/50 (94.0%) abstained=0/50
+  [100/825] certified_correct=93/100 (93.0%) abstained=0/100
+  [150/825] certified_correct=138/150 (92.0%) abstained=0/150
+  [200/825] certified_correct=183/200 (91.5%) abstained=0/200
+  [250/825] certified_correct=230/250 (92.0%) abstained=0/250
+  [300/825] certified_correct=277/300 (92.3%) abstained=1/300
+  [350/825] certified_correct=324/350 (92.6%) abstained=1/350
+  [400/825] certified_correct=366/400 (91.5%) abstained=1/400
+  [450/825] certified_correct=414/450 (92.0%) abstained=2/450
+  [500/825] certified_correct=459/500 (91.8%) abstained=2/500
+  [550/825] certified_correct=506/550 (92.0%) abstained=2/550
+  [600/825] certified_correct=554/600 (92.3%) abstained=2/600
+  [650/825] certified_correct=602/650 (92.6%) abstained=2/650
+  [700/825] certified_correct=647/700 (92.4%) abstained=3/700
+  [750/825] certified_correct=691/750 (92.1%) abstained=3/750
+  [800/825] certified_correct=736/800 (92.0%) abstained=3/800
+
+============================================================
+CERTIFICATION RESULTS (σ=0.25, mode=joint)
+============================================================
+Total samples: 825
+Correct predictions: 759/825 (92.0%)
+Abstained: 3/825 (0.4%)
+Mean certified radius: 0.5958
+
+Certified accuracy at key radii:
+  r_0.00: 0.9200 (92.0%)
+  r_0.10: 0.9152 (91.5%)
+  r_0.25: 0.9042 (90.4%)
+  r_0.50: 0.8873 (88.7%)
+  r_0.75: 0.0000 (0.0%)
+  r_1.00: 0.0000 (0.0%)
+  r_1.50: 0.0000 (0.0%)
+
+Results saved to: /kaggle/working/certav/certav_cert_0.25_d1_jpeg75.json
+Time elapsed: 64.3s
+Device: cuda
+Loading test data (condition=d12_social)...
+Loaded 825 test samples
+
+Certifying with σ=0.25, n0=100, n=1000, α=0.001, noise_mode=joint
+  [50/825] certified_correct=46/50 (92.0%) abstained=0/50
+  [100/825] certified_correct=92/100 (92.0%) abstained=0/100
+  [150/825] certified_correct=137/150 (91.3%) abstained=0/150
+  [200/825] certified_correct=181/200 (90.5%) abstained=1/200
+  [250/825] certified_correct=228/250 (91.2%) abstained=2/250
+  [300/825] certified_correct=274/300 (91.3%) abstained=2/300
+  [350/825] certified_correct=318/350 (90.9%) abstained=2/350
+  [400/825] certified_correct=362/400 (90.5%) abstained=2/400
+  [450/825] certified_correct=411/450 (91.3%) abstained=2/450
+  [500/825] certified_correct=452/500 (90.4%) abstained=3/500
+  [550/825] certified_correct=499/550 (90.7%) abstained=3/550
+  [600/825] certified_correct=544/600 (90.7%) abstained=3/600
+  [650/825] certified_correct=593/650 (91.2%) abstained=4/650
+  [700/825] certified_correct=638/700 (91.1%) abstained=4/700
+  [750/825] certified_correct=682/750 (90.9%) abstained=4/750
+  [800/825] certified_correct=725/800 (90.6%) abstained=4/800
+
+============================================================
+CERTIFICATION RESULTS (σ=0.25, mode=joint)
+============================================================
+Total samples: 825
+Correct predictions: 747/825 (90.5%)
+Abstained: 4/825 (0.5%)
+Mean certified radius: 0.5993
+
+Certified accuracy at key radii:
+  r_0.00: 0.9055 (90.5%)
+  r_0.10: 0.9030 (90.3%)
+  r_0.25: 0.8909 (89.1%)
+  r_0.50: 0.8788 (87.9%)
+  r_0.75: 0.0000 (0.0%)
+  r_1.00: 0.0000 (0.0%)
+  r_1.50: 0.0000 (0.0%)
+
+Results saved to: /kaggle/working/certav/certav_cert_0.25_d12_social.json
+Time elapsed: 69.6s
+Device: cuda
+Loading test data (condition=d11_h264_crf28)...
+Loaded 825 test samples
+
+Certifying with σ=0.25, n0=100, n=1000, α=0.001, noise_mode=joint
+  [50/825] certified_correct=43/50 (86.0%) abstained=0/50
+  [100/825] certified_correct=88/100 (88.0%) abstained=0/100
+  [150/825] certified_correct=134/150 (89.3%) abstained=0/150
+  [200/825] certified_correct=179/200 (89.5%) abstained=0/200
+  [250/825] certified_correct=225/250 (90.0%) abstained=0/250
+  [300/825] certified_correct=269/300 (89.7%) abstained=1/300
+  [350/825] certified_correct=311/350 (88.9%) abstained=2/350
+  [400/825] certified_correct=355/400 (88.8%) abstained=2/400
+  [450/825] certified_correct=404/450 (89.8%) abstained=2/450
+  [500/825] certified_correct=445/500 (89.0%) abstained=2/500
+  [550/825] certified_correct=492/550 (89.5%) abstained=2/550
+  [600/825] certified_correct=537/600 (89.5%) abstained=2/600
+  [650/825] certified_correct=586/650 (90.2%) abstained=2/650
+  [700/825] certified_correct=629/700 (89.9%) abstained=2/700
+  [750/825] certified_correct=672/750 (89.6%) abstained=2/750
+  [800/825] certified_correct=715/800 (89.4%) abstained=2/800
+
+============================================================
+CERTIFICATION RESULTS (σ=0.25, mode=joint)
+============================================================
+Total samples: 825
+Correct predictions: 737/825 (89.3%)
+Abstained: 2/825 (0.2%)
+Mean certified radius: 0.6019
+
+Certified accuracy at key radii:
+  r_0.00: 0.8933 (89.3%)
+  r_0.10: 0.8933 (89.3%)
+  r_0.25: 0.8897 (89.0%)
+  r_0.50: 0.8752 (87.5%)
+  r_0.75: 0.0000 (0.0%)
+  r_1.00: 0.0000 (0.0%)
+  r_1.50: 0.0000 (0.0%)
+
+Results saved to: /kaggle/working/certav/certav_cert_0.25_d11_h264_crf28.json
+Time elapsed: 67.2s
+Device: cuda
+Loading test data (condition=d1_jpeg75)...
+Loaded 825 test samples
+
+Certifying with σ=0.25, n0=100, n=1000, α=0.001, noise_mode=joint
+  [50/825] certified_correct=45/50 (90.0%) abstained=1/50
+  [100/825] certified_correct=91/100 (91.0%) abstained=1/100
+  [150/825] certified_correct=136/150 (90.7%) abstained=1/150
+  [200/825] certified_correct=180/200 (90.0%) abstained=3/200
+  [250/825] certified_correct=227/250 (90.8%) abstained=3/250
+  [300/825] certified_correct=274/300 (91.3%) abstained=3/300
+  [350/825] certified_correct=317/350 (90.6%) abstained=4/350
+  [400/825] certified_correct=361/400 (90.2%) abstained=4/400
+  [450/825] certified_correct=410/450 (91.1%) abstained=4/450
+  [500/825] certified_correct=452/500 (90.4%) abstained=4/500
+  [550/825] certified_correct=499/550 (90.7%) abstained=4/550
+  [600/825] certified_correct=544/600 (90.7%) abstained=4/600
+  [650/825] certified_correct=594/650 (91.4%) abstained=4/650
+  [700/825] certified_correct=639/700 (91.3%) abstained=4/700
+  [750/825] certified_correct=683/750 (91.1%) abstained=4/750
+  [800/825] certified_correct=726/800 (90.8%) abstained=4/800
+
+============================================================
+CERTIFICATION RESULTS (σ=0.25, mode=joint)
+============================================================
+Total samples: 825
+Correct predictions: 748/825 (90.7%)
+Abstained: 4/825 (0.5%)
+Mean certified radius: 0.5988
+
+Certified accuracy at key radii:
+  r_0.00: 0.9067 (90.7%)
+  r_0.10: 0.9018 (90.2%)
+  r_0.25: 0.8921 (89.2%)
+  r_0.50: 0.8764 (87.6%)
+  r_0.75: 0.0000 (0.0%)
+  r_1.00: 0.0000 (0.0%)
+  r_1.50: 0.0000 (0.0%)
+
+Results saved to: /kaggle/working/certav/certav_cert_0.25_d1_jpeg75.json
+Time elapsed: 65.5s
+Device: cuda
+Loading test data (condition=d12_social)...
+Loaded 825 test samples
+
+Certifying with σ=0.25, n0=100, n=1000, α=0.001, noise_mode=joint
+  [50/825] certified_correct=44/50 (88.0%) abstained=1/50
+  [100/825] certified_correct=89/100 (89.0%) abstained=1/100
+  [150/825] certified_correct=136/150 (90.7%) abstained=1/150
+  [200/825] certified_correct=180/200 (90.0%) abstained=1/200
+  [250/825] certified_correct=227/250 (90.8%) abstained=1/250
+  [300/825] certified_correct=274/300 (91.3%) abstained=1/300
+  [350/825] certified_correct=319/350 (91.1%) abstained=1/350
+  [400/825] certified_correct=362/400 (90.5%) abstained=1/400
+  [450/825] certified_correct=410/450 (91.1%) abstained=1/450
+  [500/825] certified_correct=453/500 (90.6%) abstained=1/500
+  [550/825] certified_correct=499/550 (90.7%) abstained=1/550
+  [600/825] certified_correct=546/600 (91.0%) abstained=1/600
+  [650/825] certified_correct=594/650 (91.4%) abstained=1/650
+  [700/825] certified_correct=639/700 (91.3%) abstained=1/700
+  [750/825] certified_correct=681/750 (90.8%) abstained=1/750
+  [800/825] certified_correct=727/800 (90.9%) abstained=1/800
+
+============================================================
+CERTIFICATION RESULTS (σ=0.25, mode=joint)
+============================================================
+Total samples: 825
+Correct predictions: 749/825 (90.8%)
+Abstained: 1/825 (0.1%)
+Mean certified radius: 0.6017
+
+Certified accuracy at key radii:
+  r_0.00: 0.9079 (90.8%)
+  r_0.10: 0.9055 (90.5%)
+  r_0.25: 0.8982 (89.8%)
+  r_0.50: 0.8873 (88.7%)
+  r_0.75: 0.0000 (0.0%)
+  r_1.00: 0.0000 (0.0%)
+  r_1.50: 0.0000 (0.0%)
+
+Results saved to: /kaggle/working/certav/certav_cert_0.25_d12_social.json
+Time elapsed: 66.5s
+Device: cuda
+Loading test data (condition=d11_h264_crf28)...
+Loaded 825 test samples
+
+Certifying with σ=0.25, n0=100, n=1000, α=0.001, noise_mode=joint
+  [50/825] certified_correct=42/50 (84.0%) abstained=1/50
+  [100/825] certified_correct=87/100 (87.0%) abstained=1/100
+  [150/825] certified_correct=133/150 (88.7%) abstained=1/150
+  [200/825] certified_correct=177/200 (88.5%) abstained=1/200
+  [250/825] certified_correct=223/250 (89.2%) abstained=2/250
+  [300/825] certified_correct=268/300 (89.3%) abstained=3/300
+  [350/825] certified_correct=310/350 (88.6%) abstained=3/350
+  [400/825] certified_correct=353/400 (88.2%) abstained=3/400
+  [450/825] certified_correct=401/450 (89.1%) abstained=3/450
+  [500/825] certified_correct=443/500 (88.6%) abstained=3/500
+  [550/825] certified_correct=490/550 (89.1%) abstained=3/550
+  [600/825] certified_correct=537/600 (89.5%) abstained=3/600
+  [650/825] certified_correct=585/650 (90.0%) abstained=3/650
+  [700/825] certified_correct=628/700 (89.7%) abstained=3/700
+  [750/825] certified_correct=669/750 (89.2%) abstained=5/750
+  [800/825] certified_correct=715/800 (89.4%) abstained=5/800
+
+============================================================
+CERTIFICATION RESULTS (σ=0.25, mode=joint)
+============================================================
+Total samples: 825
+Correct predictions: 737/825 (89.3%)
+Abstained: 6/825 (0.7%)
+Mean certified radius: 0.5979
+
+Certified accuracy at key radii:
+  r_0.00: 0.8933 (89.3%)
+  r_0.10: 0.8897 (89.0%)
+  r_0.25: 0.8812 (88.1%)
+  r_0.50: 0.8642 (86.4%)
+  r_0.75: 0.0000 (0.0%)
+  r_1.00: 0.0000 (0.0%)
+  r_1.50: 0.0000 (0.0%)
+
+Results saved to: /kaggle/working/certav/certav_cert_0.25_d11_h264_crf28.json
+Time elapsed: 65.4s
+Device: cuda
+Loading test data (condition=d1_jpeg75)...
+Loaded 825 test samples
+
+Certifying with σ=0.25, n0=100, n=1000, α=0.001, noise_mode=joint
+  [50/825] certified_correct=44/50 (88.0%) abstained=0/50
+  [100/825] certified_correct=89/100 (89.0%) abstained=0/100
+  [150/825] certified_correct=136/150 (90.7%) abstained=0/150
+  [200/825] certified_correct=180/200 (90.0%) abstained=0/200
+  [250/825] certified_correct=227/250 (90.8%) abstained=0/250
+  [300/825] certified_correct=274/300 (91.3%) abstained=1/300
+  [350/825] certified_correct=320/350 (91.4%) abstained=1/350
+  [400/825] certified_correct=363/400 (90.8%) abstained=1/400
+  [450/825] certified_correct=411/450 (91.3%) abstained=1/450
+  [500/825] certified_correct=454/500 (90.8%) abstained=1/500
+  [550/825] certified_correct=500/550 (90.9%) abstained=1/550
+  [600/825] certified_correct=547/600 (91.2%) abstained=1/600
+  [650/825] certified_correct=594/650 (91.4%) abstained=1/650
+  [700/825] certified_correct=639/700 (91.3%) abstained=1/700
+  [750/825] certified_correct=681/750 (90.8%) abstained=1/750
+  [800/825] certified_correct=727/800 (90.9%) abstained=1/800
+
+============================================================
+CERTIFICATION RESULTS (σ=0.25, mode=joint)
+============================================================
+Total samples: 825
+Correct predictions: 749/825 (90.8%)
+Abstained: 1/825 (0.1%)
+Mean certified radius: 0.5994
+
+Certified accuracy at key radii:
+  r_0.00: 0.9079 (90.8%)
+  r_0.10: 0.9030 (90.3%)
+  r_0.25: 0.8994 (89.9%)
+  r_0.50: 0.8824 (88.2%)
+  r_0.75: 0.0000 (0.0%)
+  r_1.00: 0.0000 (0.0%)
+  r_1.50: 0.0000 (0.0%)
+
+Results saved to: /kaggle/working/certav/certav_cert_0.25_d1_jpeg75.json
+Time elapsed: 64.9s
+Device: cuda
+Loading test data (condition=d12_social)...
+Loaded 825 test samples
+
+Certifying with σ=0.25, n0=100, n=1000, α=0.001, noise_mode=joint
+  [50/825] certified_correct=45/50 (90.0%) abstained=0/50
+  [100/825] certified_correct=89/100 (89.0%) abstained=0/100
+  [150/825] certified_correct=135/150 (90.0%) abstained=0/150
+  [200/825] certified_correct=181/200 (90.5%) abstained=0/200
+  [250/825] certified_correct=229/250 (91.6%) abstained=0/250
+  [300/825] certified_correct=274/300 (91.3%) abstained=0/300
+  [350/825] certified_correct=321/350 (91.7%) abstained=0/350
+  [400/825] certified_correct=366/400 (91.5%) abstained=0/400
+  [450/825] certified_correct=415/450 (92.2%) abstained=0/450
+  [500/825] certified_correct=460/500 (92.0%) abstained=0/500
+  [550/825] certified_correct=507/550 (92.2%) abstained=0/550
+  [600/825] certified_correct=554/600 (92.3%) abstained=0/600
+  [650/825] certified_correct=603/650 (92.8%) abstained=0/650
+  [700/825] certified_correct=648/700 (92.6%) abstained=1/700
+  [750/825] certified_correct=692/750 (92.3%) abstained=1/750
+  [800/825] certified_correct=736/800 (92.0%) abstained=1/800
+
+============================================================
+CERTIFICATION RESULTS (σ=0.25, mode=joint)
+============================================================
+Total samples: 825
+Correct predictions: 758/825 (91.9%)
+Abstained: 1/825 (0.1%)
+Mean certified radius: 0.6073
+
+Certified accuracy at key radii:
+  r_0.00: 0.9188 (91.9%)
+  r_0.10: 0.9176 (91.8%)
+  r_0.25: 0.9103 (91.0%)
+  r_0.50: 0.9042 (90.4%)
+  r_0.75: 0.0000 (0.0%)
+  r_1.00: 0.0000 (0.0%)
+  r_1.50: 0.0000 (0.0%)
+
+Results saved to: /kaggle/working/certav/certav_cert_0.25_d12_social.json
+Time elapsed: 63.7s
+Device: cuda
+Loading test data (condition=d11_h264_crf28)...
+Loaded 825 test samples
+
+Certifying with σ=0.25, n0=100, n=1000, α=0.001, noise_mode=joint
+  [50/825] certified_correct=44/50 (88.0%) abstained=0/50
+  [100/825] certified_correct=88/100 (88.0%) abstained=0/100
+  [150/825] certified_correct=134/150 (89.3%) abstained=0/150
+  [200/825] certified_correct=180/200 (90.0%) abstained=0/200
+  [250/825] certified_correct=227/250 (90.8%) abstained=0/250
+  [300/825] certified_correct=272/300 (90.7%) abstained=0/300
+  [350/825] certified_correct=317/350 (90.6%) abstained=0/350
+  [400/825] certified_correct=361/400 (90.2%) abstained=0/400
+  [450/825] certified_correct=410/450 (91.1%) abstained=0/450
+  [500/825] certified_correct=454/500 (90.8%) abstained=0/500
+  [550/825] certified_correct=501/550 (91.1%) abstained=0/550
+  [600/825] certified_correct=547/600 (91.2%) abstained=0/600
+  [650/825] certified_correct=596/650 (91.7%) abstained=0/650
+  [700/825] certified_correct=641/700 (91.6%) abstained=0/700
+  [750/825] certified_correct=684/750 (91.2%) abstained=0/750
+  [800/825] certified_correct=727/800 (90.9%) abstained=0/800
+
+============================================================
+CERTIFICATION RESULTS (σ=0.25, mode=joint)
+============================================================
+Total samples: 825
+Correct predictions: 749/825 (90.8%)
+Abstained: 1/825 (0.1%)
+Mean certified radius: 0.6086
+
+Certified accuracy at key radii:
+  r_0.00: 0.9079 (90.8%)
+  r_0.10: 0.9067 (90.7%)
+  r_0.25: 0.9042 (90.4%)
+  r_0.50: 0.8958 (89.6%)
+  r_0.75: 0.0000 (0.0%)
+  r_1.00: 0.0000 (0.0%)
+  r_1.50: 0.0000 (0.0%)
+
+Results saved to: /kaggle/working/certav/certav_cert_0.25_d11_h264_crf28.json
+Time elapsed: 66.5s
+Device: cuda
+Loading test data (condition=d1_jpeg75)...
+Loaded 825 test samples
+
+Certifying with σ=0.25, n0=100, n=1000, α=0.001, noise_mode=joint
+  [50/825] certified_correct=45/50 (90.0%) abstained=0/50
+  [100/825] certified_correct=89/100 (89.0%) abstained=0/100
+  [150/825] certified_correct=135/150 (90.0%) abstained=0/150
+  [200/825] certified_correct=181/200 (90.5%) abstained=0/200
+  [250/825] certified_correct=229/250 (91.6%) abstained=0/250
+  [300/825] certified_correct=275/300 (91.7%) abstained=0/300
+  [350/825] certified_correct=322/350 (92.0%) abstained=0/350
+  [400/825] certified_correct=366/400 (91.5%) abstained=1/400
+  [450/825] certified_correct=415/450 (92.2%) abstained=1/450
+  [500/825] certified_correct=459/500 (91.8%) abstained=1/500
+  [550/825] certified_correct=506/550 (92.0%) abstained=1/550
+  [600/825] certified_correct=553/600 (92.2%) abstained=1/600
+  [650/825] certified_correct=602/650 (92.6%) abstained=1/650
+  [700/825] certified_correct=648/700 (92.6%) abstained=1/700
+  [750/825] certified_correct=692/750 (92.3%) abstained=1/750
+  [800/825] certified_correct=737/800 (92.1%) abstained=1/800
+
+============================================================
+CERTIFICATION RESULTS (σ=0.25, mode=joint)
+============================================================
+Total samples: 825
+Correct predictions: 759/825 (92.0%)
+Abstained: 1/825 (0.1%)
+Mean certified radius: 0.6072
+
+Certified accuracy at key radii:
+  r_0.00: 0.9200 (92.0%)
+  r_0.10: 0.9188 (91.9%)
+  r_0.25: 0.9127 (91.3%)
+  r_0.50: 0.9067 (90.7%)
+  r_0.75: 0.0000 (0.0%)
+  r_1.00: 0.0000 (0.0%)
+  r_1.50: 0.0000 (0.0%)
+
+Results saved to: /kaggle/working/certav/certav_cert_0.25_d1_jpeg75.json
+Time elapsed: 66.6s
+/kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/cmar/models/temporal_aggregation.py:36: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(layer, num_layers=1)
+/kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/cmar/models/temporal_aggregation.py:36: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(layer, num_layers=1)
+/kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/cmar/models/temporal_aggregation.py:36: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(layer, num_layers=1)
+/kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/cmar/models/temporal_aggregation.py:36: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(layer, num_layers=1)
+/kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/cmar/models/temporal_aggregation.py:36: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(layer, num_layers=1)
+/kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/cmar/models/temporal_aggregation.py:36: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(layer, num_layers=1)
+/kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/cmar/models/temporal_aggregation.py:36: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(layer, num_layers=1)
+/kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/cmar/models/temporal_aggregation.py:36: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(layer, num_layers=1)
+/kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/cmar/models/temporal_aggregation.py:36: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(layer, num_layers=1)
+/kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/cmar/models/temporal_aggregation.py:36: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(layer, num_layers=1)
+/kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/cmar/models/temporal_aggregation.py:36: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(layer, num_layers=1)
+/kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR/cmar/models/temporal_aggregation.py:36: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(layer, num_layers=1)
