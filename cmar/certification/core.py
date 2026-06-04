@@ -7,8 +7,8 @@ via Randomized Smoothing".
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional
+from dataclasses import dataclass, field
+from typing import Any, Optional
 
 import numpy as np
 from scipy.stats import norm, binom
@@ -25,6 +25,11 @@ class CertificationResult:
     counts_top: int  # number of times top class was predicted
     counts_total: int  # total samples
     abstained: bool  # True if classifier abstained
+    certified_radius_l2: float | None = None
+    certified_radius_onmanifold: float | None = None
+    certified_ellipsoid_log_volume: float | None = None
+    certified_ellipsoid_volume: float | None = None
+    metadata: dict[str, Any] = field(default_factory=dict)
 
     @property
     def certified_correct(self) -> bool:
@@ -120,3 +125,34 @@ def certified_accuracy_curve(
         radii = [round(r * 0.05, 3) for r in range(41)]  # 0.0 to 2.0
     accs = [certified_accuracy_at_radius(results, r) for r in radii]
     return {"radii": radii, "certified_accuracy": accs}
+
+
+def certified_accuracy_at_radius_onmanifold(
+    results: list[CertificationResult],
+    radius: float,
+) -> float:
+    """Fraction of samples correctly classified AND on-manifold certified at radius r.
+
+    Uses ``certified_radius_onmanifold`` instead of worst-case L2 radius,
+    which is the meaningful metric for anisotropic smoothing where the
+    certified ellipsoid is large on-manifold but tiny off-manifold.
+    """
+    if len(results) == 0:
+        return 0.0
+    n_certified_correct = sum(
+        1 for r in results
+        if r.correct and not r.abstained
+        and (r.certified_radius_onmanifold or r.certified_radius) >= radius
+    )
+    return n_certified_correct / len(results)
+
+
+def certified_accuracy_curve_onmanifold(
+    results: list[CertificationResult],
+    radii: Optional[list[float]] = None,
+) -> dict[str, list[float]]:
+    """On-manifold certified accuracy at multiple radii."""
+    if radii is None:
+        radii = [round(r * 0.05, 3) for r in range(41)]
+    accs = [certified_accuracy_at_radius_onmanifold(results, r) for r in radii]
+    return {"radii": radii, "certified_accuracy_onmanifold": accs}

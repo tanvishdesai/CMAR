@@ -43,3 +43,49 @@ class WhisperTinyFeatureExtractor(nn.Module):
     ) -> torch.Tensor:
         outputs = self.encoder(input_features=input_features, attention_mask=attention_mask)
         return outputs.last_hidden_state
+
+
+class HFAudioFeatureExtractor(nn.Module):
+    """Generic waveform encoder for HuBERT/WavLM-style models."""
+
+    def __init__(self, model_name: str) -> None:
+        super().__init__()
+        from transformers import AutoModel
+
+        self.model_name = model_name
+        self.model = AutoModel.from_pretrained(model_name)
+        for param in self.model.parameters():
+            param.requires_grad = False
+
+    @torch.inference_mode()
+    def extract_waveform(
+        self,
+        processor,
+        waveform,
+        sample_rate: int,
+        device: torch.device,
+    ) -> torch.Tensor:
+        inputs = processor(
+            waveform,
+            sampling_rate=sample_rate,
+            return_tensors="pt",
+            padding=True,
+        ).to(device)
+        outputs = self.model(**inputs)
+        return outputs.last_hidden_state.squeeze(0).detach().cpu()
+
+
+def build_audio_feature_extractor(model_name: str = "openai/whisper-tiny") -> tuple[nn.Module, object]:
+    """Build an audio encoder and its processor by public model name."""
+
+    if "whisper" in model_name.lower():
+        from transformers import WhisperFeatureExtractor
+
+        return (
+            WhisperTinyFeatureExtractor(model_name=model_name, tune_layernorm=False),
+            WhisperFeatureExtractor.from_pretrained(model_name),
+        )
+
+    from transformers import AutoFeatureExtractor
+
+    return HFAudioFeatureExtractor(model_name), AutoFeatureExtractor.from_pretrained(model_name)

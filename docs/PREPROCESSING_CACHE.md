@@ -149,22 +149,11 @@ Repeat with the remaining conditions. H.264 is implemented as sampled-frame
 roundtrip compression rather than full-video re-encoding to avoid the previous
 ffmpeg crash pattern.
 
-For Google Colab, copy `docs/COLAB_PREPROCESS_CELL.py` into one notebook cell.
-That driver wraps the same crash-safe preprocessing logic, mirrors progress to
-Google Drive, and uploads the completed cache with the Kaggle API.
-
 Clean features are sufficient for model training. Degraded features are only
 needed for robustness evaluation, degraded-condition metrics, and TTDA-style
 test-time ensembles.
 
-For degraded preprocessing specifically, use
-`docs/COLAB_PREPROCESS_DEGRADED_CELL.py`. It reuses the same `cmar_cache`
-created by clean preprocessing and appends degraded features under
-`features/degraded_test/<condition>/...`. It defaults to one degradation
-condition per Colab run and prints per-condition done/remaining counters.
-
-For parallel multi-account preprocessing, use
-`docs/COLAB_PARALLEL_DEGRADED_WORKER.py`. Each notebook/account should set a
-different `CONDITION_TO_PROCESS`. The worker copies only manifests from Drive,
-not the full clean feature cache, then syncs only its condition output back to
-`cmar_cache/features/degraded_test/<condition>`.
+Historical Colab helpers were moved out of `docs/` to keep the paper-facing
+documentation readable. If the cache must be rebuilt through Colab, see
+`notebooks/COLAB_UPLOAD_CLEAN_CACHE.py` and
+`notebooks/colab_degrade_preprocess_worker.py`.

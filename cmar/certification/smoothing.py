@@ -13,6 +13,7 @@ Usage:
 
 from __future__ import annotations
 
+from pathlib import Path
 from typing import Optional
 
 import torch
@@ -25,6 +26,7 @@ from cmar.certification.core import (
     lower_confidence_bound_exact,
     certified_radius,
 )
+from cmar.phase2.pca_noise import ANISOTROPIC_NOISE_MODES, PCANoise
 
 
 class SmoothedClassifier:
@@ -48,6 +50,11 @@ class SmoothedClassifier:
         sigma: float,
         device: torch.device | str = "cuda",
         noise_mode: str = "joint",
+        pca_noise: PCANoise | None = None,
+        pca_noise_path: str | Path | None = None,
+        pca_top_k: int | None = None,
+        pca_off_sigma: float = 1e-3,
+        pca_equalize_budget: bool = True,
     ) -> None:
         """
         Args:
@@ -60,8 +67,25 @@ class SmoothedClassifier:
         self.sigma = sigma
         self.device = torch.device(device)
         self.noise_mode = noise_mode
-        assert noise_mode in ("joint", "visual_only", "audio_only"), \
-            f"Invalid noise_mode: {noise_mode}"
+        valid_modes = ("joint", "visual_only", "audio_only", *ANISOTROPIC_NOISE_MODES.keys())
+        assert noise_mode in valid_modes, f"Invalid noise_mode: {noise_mode}"
+        self.pca_noise = pca_noise
+        if self.noise_mode in ANISOTROPIC_NOISE_MODES and self.pca_noise is None:
+            if pca_noise_path is None:
+                raise ValueError(
+                    f"{noise_mode} requires --pca-noise-path or a PCANoise instance."
+                )
+            self.pca_noise = PCANoise.from_file(
+                pca_noise_path,
+                sigma=sigma,
+                strategy=noise_mode,
+                device=self.device,
+                top_k=pca_top_k,
+                off_sigma=pca_off_sigma,
+                equalize_budget=pca_equalize_budget,
+            )
+        elif self.pca_noise is not None:
+            self.pca_noise = self.pca_noise.to(self.device)
         self.base_model.to(self.device)
         self.base_model.eval()
 
@@ -71,6 +95,8 @@ class SmoothedClassifier:
         audio: torch.Tensor,
     ) -> tuple[torch.Tensor, torch.Tensor]:
         """Add Gaussian noise according to noise_mode."""
+        if self.pca_noise is not None:
+            return self.pca_noise.add_noise(visual, audio)
         if self.noise_mode in ("joint", "visual_only"):
             visual = visual + torch.randn_like(visual) * self.sigma
         if self.noise_mode in ("joint", "audio_only"):
@@ -118,6 +144,29 @@ class SmoothedClassifier:
             counts[1] += int(np.sum(preds == 1))
 
         return counts
+
+    @torch.no_grad()
+    def estimate_probabilities(
+        self,
+        visual: torch.Tensor,
+        audio: torch.Tensor,
+        n_samples: int = 1000,
+        batch_size: int = 64,
+    ) -> dict[str, object]:
+        """Estimate smoothed binary probabilities for conformal prediction."""
+
+        visual = visual.unsqueeze(0) if visual.dim() == 2 else visual
+        audio = audio.unsqueeze(0) if audio.dim() == 2 else audio
+        visual = visual.to(self.device)
+        audio = audio.to(self.device)
+
+        counts = self._sample_predictions(visual, audio, n_samples, batch_size)
+        probs = counts.astype(np.float64) / max(1, int(n_samples))
+        return {
+            "counts": counts.tolist(),
+            "probabilities": probs.tolist(),
+            "n_samples": int(n_samples),
+        }
 
     def predict(
         self,
@@ -191,7 +240,22 @@ class SmoothedClassifier:
 
         # Compute certified radius
         if pA_lower > 0.5:
-            radius = certified_radius(self.sigma, pA_lower)
+            if self.pca_noise is not None:
+                geom = self.pca_noise.certificate_metrics(pA_lower)
+                # For anisotropic smoothing, use on-manifold radius as
+                # primary certified_radius.  The worst-case L2 radius is
+                # near-zero (dominated by vanishing off-manifold eigenvalues)
+                # and is stored separately in certified_radius_l2.
+                radius = float(geom["certified_radius_onmanifold"])
+            else:
+                radius = certified_radius(self.sigma, pA_lower)
+                geom = {
+                    "certified_radius_l2": radius,
+                    "certified_radius_onmanifold": radius,
+                    "certified_ellipsoid_log_volume": None,
+                    "certified_ellipsoid_volume": None,
+                    "anisotropic_strategy": None,
+                }
             return CertificationResult(
                 predicted_class=cA,
                 certified_radius=radius,
@@ -200,9 +264,24 @@ class SmoothedClassifier:
                 counts_top=nA,
                 counts_total=n,
                 abstained=False,
+                certified_radius_l2=geom["certified_radius_l2"],
+                certified_radius_onmanifold=geom["certified_radius_onmanifold"],
+                certified_ellipsoid_log_volume=geom["certified_ellipsoid_log_volume"],
+                certified_ellipsoid_volume=geom["certified_ellipsoid_volume"],
+                metadata=geom,
             )
         else:
             # ABSTAIN: not confident enough
+            geom = (
+                self.pca_noise.certificate_metrics(pA_lower)
+                if self.pca_noise is not None
+                else {
+                    "certified_radius_l2": 0.0,
+                    "certified_radius_onmanifold": 0.0,
+                    "certified_ellipsoid_log_volume": None,
+                    "certified_ellipsoid_volume": None,
+                }
+            )
             return CertificationResult(
                 predicted_class=-1,
                 certified_radius=0.0,
@@ -211,6 +290,11 @@ class SmoothedClassifier:
                 counts_top=nA,
                 counts_total=n,
                 abstained=True,
+                certified_radius_l2=geom["certified_radius_l2"],
+                certified_radius_onmanifold=geom["certified_radius_onmanifold"],
+                certified_ellipsoid_log_volume=geom["certified_ellipsoid_log_volume"],
+                certified_ellipsoid_volume=geom["certified_ellipsoid_volume"],
+                metadata=geom,
             )
 
     def certify_dataset(

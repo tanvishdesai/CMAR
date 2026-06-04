@@ -1,0 +1,105 @@
+\begin{thebibliography}{10}
+
+\bibitem{cohen2019certified}
+Jeremy~M. Cohen, Elan Rosenfeld, and J.~Zico Kolter,
+\newblock ``Certified adversarial robustness via randomized smoothing,''
+\newblock in {\em Proceedings of the 36th International Conference on Machine
+  Learning}, 2019, vol.~97 of {\em Proceedings of Machine Learning Research},
+  pp. 1310--1320.
+
+\bibitem{oquab2024dinov2}
+Maxime Oquab, Timothee Darcet, Theo Moutakanni, Huy~V. Vo, Marc Szafraniec,
+  Vasil Khalidov, Pierre Fernandez, Daniel Haziza, Francisco Massa, Alaaeldin
+  El-Nouby, et~al.,
+\newblock ``Dinov2: Learning robust visual features without supervision,''
+\newblock {\em Transactions on Machine Learning Research}, 2024.
+
+\bibitem{radford2023whisper}
+Alec Radford, Jong~Wook Kim, Tao Xu, Greg Brockman, Christine McLeavey, and
+  Ilya Sutskever,
+\newblock ``Robust speech recognition via large-scale weak supervision,''
+\newblock in {\em Proceedings of the 40th International Conference on Machine
+  Learning}, 2023, vol. 202 of {\em Proceedings of Machine Learning Research},
+  pp. 28492--28518.
+
+\bibitem{khalid2021fakeavceleb}
+Hasam Khalid, Shahroz Tariq, Minha Kim, and Simon~S. Woo,
+\newblock ``Fakeavceleb: A novel audio-video multimodal deepfake dataset,''
+\newblock in {\em Advances in Neural Information Processing Systems Datasets
+  and Benchmarks Track}, 2021.
+
+\bibitem{mittal2020emotions}
+Trisha Mittal, Uttaran Bhattacharya, Rohan Chandra, Aniket Bera, and Dinesh
+  Manocha,
+\newblock ``Emotions don't lie: An audio-visual deepfake detection method using
+  affective cues,''
+\newblock in {\em Proceedings of the 28th ACM International Conference on
+  Multimedia}, 2020, pp. 2823--2832.
+
+\bibitem{chugh2020not}
+Komal Chugh, Parul Gupta, Abhinav Dhall, and Ramanathan Subramanian,
+\newblock ``Not made for each other: Audio-visual dissonance-based deepfake
+  detection and localization,''
+\newblock in {\em Proceedings of the 28th ACM International Conference on
+  Multimedia}, 2020, pp. 439--447.
+
+\bibitem{feng2023self}
+Chao Feng, Ziyang Chen, and Andrew Owens,
+\newblock ``Self-supervised video forensics by audio-visual anomaly
+  detection,''
+\newblock in {\em Proceedings of the IEEE/CVF Conference on Computer Vision and
+  Pattern Recognition}, 2023, pp. 10491--10503.
+
+\bibitem{yang2023avoid}
+Wanyi Yang, Xiaotian Zhou, Zhikai Chen, Biao Guo, Zhongjie Ba, Zhihua Xia,
+  Xiaochun Cao, and Kui Ren,
+\newblock ``Avoid-df: Audio-visual joint learning for detecting deepfake,''
+\newblock {\em IEEE Transactions on Information Forensics and Security}, vol.
+  18, pp. 2015--2029, 2023.
+
+\bibitem{astrid2025local}
+Marcella Astrid, Enjie Ghorbel, and Djamila Aouada,
+\newblock ``Audio-visual deepfake detection with local temporal
+  inconsistencies,''
+\newblock in {\em IEEE International Conference on Acoustics, Speech and Signal
+  Processing}, 2025, pp. 1--5.
+
+\bibitem{cai2022lavdf}
+Zhixi Cai, Shreya Ghosh, Kalin Stefanov, Abhinav Dhall, Jianfei Cai, Hamid
+  Rezatofighi, Gholamreza Haffari, and Munawar Hayat,
+\newblock ``Do you really mean that? content driven audio-visual deepfake
+  dataset and multimodal method for temporal forgery localization,''
+\newblock in {\em International Conference on Digital Image Computing:
+  Techniques and Applications}, 2022.
+
+\bibitem{lecuyer2019certified}
+Mathias Lecuyer, Vaggelis Atlidakis, Roxana Geambasu, Daniel Hsu, and Suman
+  Jana,
+\newblock ``Certified robustness to adversarial examples with differential
+  privacy,''
+\newblock in {\em IEEE Symposium on Security and Privacy}, 2019, pp. 656--672.
+
+\bibitem{salman2019provably}
+Hadi Salman, Jerry Li, Ilya Razenshteyn, Pengchuan Zhang, Huan Zhang, Sebastien
+  Bubeck, and Greg Yang,
+\newblock ``Provably robust deep learning via adversarially trained smoothed
+  classifiers,''
+\newblock in {\em Advances in Neural Information Processing Systems}, 2019,
+  vol.~32, pp. 11289--11300.
+
+\bibitem{yang2020randomized}
+Greg Yang, Tony Duan, Edward~J. Hu, Hadi Salman, Ilya Razenshteyn, and Jerry
+  Li,
+\newblock ``Randomized smoothing of all shapes and sizes,''
+\newblock in {\em Proceedings of the 37th International Conference on Machine
+  Learning}, 2020, vol. 119 of {\em Proceedings of Machine Learning Research},
+  pp. 10693--10705.
+
+\bibitem{croce2021robustbench}
+Francesco Croce, Maksym Andriushchenko, Vikash Sehwag, Edoardo Debenedetti,
+  Nicolas Flammarion, Mung Chiang, Prateek Mittal, and Matthias Hein,
+\newblock ``Robustbench: A standardized adversarial robustness benchmark,''
+\newblock in {\em Advances in Neural Information Processing Systems Datasets
+  and Benchmarks Track}, 2021.
+
+\end{thebibliography}

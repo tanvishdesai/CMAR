@@ -1,72 +1,24 @@
 # Kaggle Runbook
 
-This is the Kaggle execution sequence for the current CMAR state.
+This runbook describes the current CertAV / CertAV-Bench execution path. It is
+script-first; notebook cell wrappers live in `notebooks/`.
 
-## Current State
+## Inputs
 
-As of May 29, 2026, preprocessing is complete. The Kaggle feature-cache dataset
-shown as **CMAR Clean Features V1** now contains:
+Attach these Kaggle datasets as needed:
 
-- clean visual features: `cmar_cache/features/visual/{train,val,test}/*.pt`
-- clean audio features: `cmar_cache/features/audio/{train,val,test}/*.pt`
-- all 12 degraded test conditions under `cmar_cache/features/degraded_test/`
-- manifests and cache reports under `cmar_cache/manifests/` and `*.json`
+- CMAR/CertAV code snapshot.
+- FakeAVCeleb feature cache, usually mounted as `cmar_cache`.
+- Existing CertAV seed-run checkpoints for certification and elevation analysis.
+- LAV-DF raw data only when rebuilding the LAV-DF cache.
 
-The dataset slug used earlier was:
+The primary aggregate results already live in this repository under
+`agg-results-cmvrta/`; do not rerun experiments unless you need fresh numbers.
 
-```text
-vasuaashadesai/cmar-features-clean-v1
-```
-
-In a Kaggle notebook, the mounted path is usually:
-
-```text
-/kaggle/input/cmar-features-clean-v1/cmar_cache
-```
-
-If Kaggle mounts it with a different folder name, find it with:
-
-```bash
-find /kaggle/input -maxdepth 5 -type d -name cmar_cache
-```
-
-Do not rerun preprocessing for the main experiments unless you intentionally
-want to rebuild the cache.
-
-The v1 results changed the research posture slightly: clean/degraded robustness
-looks promising, but cached feature-space attacks are not valid final evidence
-for the original "inherent adversarial robustness" claim. The current workflow
-therefore runs a claim audit after evaluation. The audit decides whether the
-paper should keep the strong adversarial claim, soften it, or pivot toward a
-robustness-characterization paper.
-
-## Session Setup
-
-Attach these Kaggle inputs:
-
-- the CMAR code dataset or uploaded project zip
-- the completed feature-cache dataset, **CMAR Clean Features V1**
-
-Raw FakeAVCeleb and LAV-DF are no longer required for training or clean/degraded
-evaluation because the feature cache already contains the extracted tensors.
-
-Copy the code into the writable area. If the input contains a `CMAR/` folder:
+## Setup
 
 ```bash
 cp -r /kaggle/input/<your-cmar-code-dataset>/CMAR /kaggle/working/CMAR
-cd /kaggle/working/CMAR
-pip install -q -r requirements.txt
-```
-
-The default requirements intentionally do not install `torchattacks`, because
-the current PyPI release downgrades `requests` on Kaggle. CMAR's adversarial
-script uses the manual feature-space PGD/FGSM implementation in
-`cmar/evaluation/attacks.py`.
-
-If the input contains `CMAR.zip` instead:
-
-```bash
-unzip -q /kaggle/input/<your-cmar-code-dataset>/CMAR.zip -d /kaggle/working
 cd /kaggle/working/CMAR
 pip install -q -r requirements.txt
 ```
@@ -79,209 +31,163 @@ python scripts/00_environment_check.py \
   --output /kaggle/working/cmar_environment.json
 ```
 
-## Step 1: Verify The Feature Cache
-
-Run this before training:
+## Verify Feature Cache
 
 ```bash
-cd /kaggle/working/CMAR
-python scripts/02_train_cmar.py \
-  --config configs/train_cmar.json \
-  --cache-dir /kaggle/input/cmar-features-clean-v1/cmar_cache \
+python scripts/10_train_certav.py \
+  --sigma 1.00 \
+  --cache-dir /kaggle/input/<feature-cache-dataset>/cmar_cache \
+  --output-dir /kaggle/working/cache_probe \
   --cache-report-only
 ```
 
-Expected result:
+## Train CertAV
 
-- train clean cache complete
-- val clean cache complete
-- no missing visual/audio features
-
-The degraded folders are not needed for training, but they are needed for
-`scripts/03_evaluate_clean_degraded.py`.
-
-## Step 2: Train CMAR
-
-Use a fresh output directory if an older run produced `inf` or `nan` losses.
-The current config disables AMP, uses a lower learning rate, clips gradients,
-and sanitizes cached tensors.
+Run one seed per Kaggle session if you are reproducing the five-seed aggregate.
 
 ```bash
-cd /kaggle/working/CMAR
-python scripts/02_train_cmar.py \
-  --config configs/train_cmar.json \
-  --cache-dir /kaggle/input/cmar-features-clean-v1/cmar_cache \
-  --output-dir /kaggle/working/cmar_runs/full_final \
-  --no-amp \
-  --lr 0.0002
+python scripts/10_train_certav.py \
+  --sigma 1.00 \
+  --noise-mode joint \
+  --cache-dir /kaggle/input/<feature-cache-dataset>/cmar_cache \
+  --output-dir /kaggle/working/certav_seed_2026/sigma_1.00 \
+  --epochs 30 \
+  --batch-size 8 \
+  --grad-accum 4 \
+  --patience 7 \
+  --seed 2026
 ```
 
-Training outputs:
+For the full original grid, run sigma values `0.12`, `0.25`, `0.50`, and
+`1.00`, plus the visual-only and audio-only ablations at `0.25` and `1.00`.
+The ready-to-copy version is `notebooks/certav_experiment_notebook.md`.
 
-```text
-/kaggle/working/cmar_runs/full_final/best.pt
-/kaggle/working/cmar_runs/full_final/training_log.csv
-/kaggle/working/cmar_runs/full_final/train_config.json
-/kaggle/working/cmar_runs/full_final/best_metrics.json
-```
-
-Upload this folder as a Kaggle dataset after training, for example:
-
-```text
-cmar-checkpoint-v1
-```
-
-## Step 3: Evaluate Clean And Degraded Conditions
-
-If evaluation is in the same notebook immediately after training:
+## Certify CertAV
 
 ```bash
-cd /kaggle/working/CMAR
-python scripts/03_evaluate_clean_degraded.py \
-  --cache-dir /kaggle/input/cmar-features-clean-v1/cmar_cache \
-  --checkpoint /kaggle/working/cmar_runs/full_final/best.pt \
-  --output /kaggle/working/cmar-results-clean-degraded.json \
-  --include-cached-ensemble \
-  --include-modality-masking \
-  --skip-lavdf
+python scripts/11_certify.py \
+  --checkpoint /kaggle/working/certav_seed_2026/sigma_1.00/best.pt \
+  --sigma 1.00 \
+  --noise-mode joint \
+  --cache-dir /kaggle/input/<feature-cache-dataset>/cmar_cache \
+  --output /kaggle/working/certav_seed_2026/cert_sigma_1.00.json \
+  --n0 100 \
+  --n 1000 \
+  --alpha 0.001 \
+  --seed 2026
 ```
 
-If evaluation is in a new notebook, attach the uploaded checkpoint dataset and
-use its `best.pt` path instead:
+## Empirical Attacks
 
 ```bash
-cd /kaggle/working/CMAR
-python scripts/03_evaluate_clean_degraded.py \
-  --cache-dir /kaggle/input/cmar-features-clean-v1/cmar_cache \
-  --checkpoint /kaggle/input/cmar-checkpoint-v1/best.pt \
-  --output /kaggle/working/cmar-results-clean-degraded.json \
-  --include-cached-ensemble \
-  --include-modality-masking \
-  --skip-lavdf
+python scripts/12_empirical_attack_comparison.py \
+  --checkpoint /kaggle/working/certav_seed_2026/sigma_1.00/best.pt \
+  --sigma 1.00 \
+  --noise-mode joint \
+  --cache-dir /kaggle/input/<feature-cache-dataset>/cmar_cache \
+  --output /kaggle/working/certav_seed_2026/empirical_attacks_1.00.json \
+  --eps-values 0.05 0.10 0.20 \
+  --max-samples 200
 ```
 
-Use `--skip-lavdf` with the current cache because `lavdf_test.csv` may exist
-without precomputed LAV-DF feature tensors. Remove that flag only after creating
-and attaching a cache that contains LAV-DF features.
+## Elevation Experiments
 
-The old `--include-ttda` flag is still accepted as a deprecated alias, but the
-cached-feature path cannot implement true runtime TTDA. The output is now named
-`clean_cached_ensemble` and should be treated as an audit-only ensemble probe.
+These are the current v2 experiments that support the draft narrative.
 
-By default, evaluation now checks that the required degraded cache files exist
-for each condition. Use `--allow-clean-fallback` only for a smoke test.
-
-Expected output:
-
-```text
-/kaggle/working/cmar-results-clean-degraded.json
-```
-
-Upload this JSON and the training folder as a results/checkpoint dataset.
-
-## Step 4: Baselines
-
-External baseline repositories and checkpoints are not bundled here, and
-`scripts/04_evaluate_baselines.py` does not run baseline inference. Generate a
-score CSV first with:
-
-```text
-model,condition,clip_id,label,score
-```
-
-Then run:
+No-noise baseline:
 
 ```bash
-python scripts/04_evaluate_baselines.py \
-  --scores /kaggle/working/baseline_scores.csv \
-  --output /kaggle/working/baseline-results.json
+python scripts/14_train_baseline_no_noise.py \
+  --cache-dir /kaggle/input/<feature-cache-dataset>/cmar_cache \
+  --output-dir /kaggle/working/elevation_experiments/baseline_no_noise \
+  --seed 2026
 ```
 
-## Step 5: Adversarial Evaluation
-
-The implemented adversarial script attacks cached features as a fast proxy. This
-is useful for debugging and ablations, and its JSON is explicitly marked
-`valid_for_final_adversarial_claim=false`. Lower-level raw visual/audio PGD
-helpers exist in `cmar/evaluation/attacks.py`, but the final paper should still
-validate true waveform/input-space attacks on at least the main conditions.
+PGD adversarial-training baseline:
 
 ```bash
-python scripts/05_adversarial_evaluation.py \
-  --cache-dir /kaggle/input/cmar-features-clean-v1/cmar_cache \
-  --checkpoint /kaggle/input/cmar-checkpoint-v1/best.pt \
-  --output /kaggle/working/adversarial-results.json
+python scripts/15_train_pgd_at.py \
+  --cache-dir /kaggle/input/<feature-cache-dataset>/cmar_cache \
+  --output-dir /kaggle/working/elevation_experiments/baseline_pgd_at \
+  --at-eps 0.1 \
+  --at-steps 7 \
+  --seed 2026
 ```
 
-## Step 6: Ablations
+LAV-DF preprocessing:
 
 ```bash
-python scripts/06_ablations.py \
-  --base-config configs/train_cmar.json \
-  --cache-dir /kaggle/input/cmar-features-clean-v1/cmar_cache \
-  --output-root /kaggle/working/cmar_runs/ablations
+python scripts/19_preprocess_lavdf.py \
+  --lavdf-root /kaggle/input/<lavdf-dataset>/LAV-DF \
+  --output-dir /kaggle/working/lavdf_cache \
+  --max-samples 500
 ```
 
-Then evaluate those ablation checkpoints on the same test conditions:
+Cross-dataset certification:
 
 ```bash
-python scripts/09_evaluate_ablations.py \
-  --cache-dir /kaggle/input/cmar-features-clean-v1/cmar_cache \
-  --full-checkpoint /kaggle/working/cmar_runs/full_final/best.pt \
-  --ablation-root /kaggle/working/cmar_runs/ablations \
-  --conditions clean d12_social d11_h264_crf28 \
-  --include-modality-masking \
-  --output /kaggle/working/ablation-results.json \
-  --summary-csv /kaggle/working/ablation-results.csv
+python scripts/16_certify_cross_dataset.py \
+  --checkpoint /path/to/certav_sigma_1.00/best.pt \
+  --sigma 1.00 \
+  --lavdf-cache-dir /kaggle/working/lavdf_cache \
+  --output /kaggle/working/elevation_experiments/cert_lavdf_1.00.json
 ```
 
-## Step 7: Claim Audit
-
-Run this before deciding what the paper should claim:
+Input-space attack pilot:
 
 ```bash
-python scripts/08_claim_audit.py \
-  --cmar-results /kaggle/working/cmar-results-clean-degraded.json \
-  --adversarial-results /kaggle/working/adversarial-results.json \
-  --ablation-summary /kaggle/working/cmar_runs/ablations/ablation_training_summary.json \
-  --full-best-metrics /kaggle/working/cmar_runs/full_final/best_metrics.json \
-  --output-json /kaggle/working/claim-audit.json \
-  --output-md /kaggle/working/claim-audit.md
+python scripts/17_input_space_attack.py \
+  --checkpoint /path/to/certav_sigma_1.00/best.pt \
+  --sigma 1.00 \
+  --cache-dir /kaggle/input/<feature-cache-dataset>/cmar_cache \
+  --output /kaggle/working/elevation_experiments/input_space_attack.json \
+  --max-samples 100
 ```
 
-Read `claim-audit.md`. If it recommends `pivot_to_robustness_characterization`,
-do not write the paper as if cross-modal fusion has already solved adversarial
-robustness. Write the paper around real-world degradation robustness, modality
-diagnostics, and a rigorous adversarial protocol instead.
-
-## Step 8: Figures
+Manifold analysis:
 
 ```bash
-python scripts/07_analysis_figures.py \
-  --cmar-results /kaggle/working/cmar-results-clean-degraded.json \
-  --adversarial-results /kaggle/working/adversarial-results.json \
-  --ablation-csv /kaggle/working/ablation-results.csv \
-  --training-log /kaggle/working/cmar_runs/full_final/training_log.csv \
-  --output-dir /kaggle/working/cmar_figures
+python scripts/18_manifold_analysis.py \
+  --cache-dir /kaggle/input/<feature-cache-dataset>/cmar_cache \
+  --checkpoint /path/to/certav_sigma_1.00/best.pt \
+  --output /kaggle/working/elevation_experiments/manifold_analysis.json
+```
+
+The ready-to-copy version is `notebooks/elevation_experiment_notebook.md`.
+
+## Phase 2 Experiments
+
+The Phase 2 implementation adds:
+
+- A+D: encoder-family PCA scaling-law runs and PCA-guided anisotropic smoothing.
+- C: conformal calibration/evaluation on top of smoothed CertAV probabilities.
+
+Start from `docs/PHASE2_KAGGLE_RUNBOOK.md`. The notebook cell wrapper is
+`notebooks/phase2_final_kaggle_cells.md` for the complete start-to-finish
+sequence. `notebooks/phase2_experiment_notebook.md` is the shorter legacy
+wrapper.
+
+## Aggregate And Plot
+
+Use `notebooks/certav_aggregation_notebook.md` to aggregate the five seed runs.
+For local figure regeneration from an already aggregated folder:
+
+```bash
+python scripts/13_certav_figures.py \
+  --results-dir /kaggle/working/certav_aggregated \
+  --output-dir /kaggle/working/certav_aggregated/figures
 ```
 
 ## Recommended Upload Artifacts
 
-After each major run, create or version Kaggle datasets from the important
-outputs:
+After each major run, publish or version these Kaggle datasets:
 
-- `cmar-features-clean-v1`: completed `cmar_cache/` with clean and degraded features
-- `cmar-checkpoint-v1`: `best.pt`, `training_log.csv`, `train_config.json`, `best_metrics.json`
-- `cmar-results-v1`: JSON result files and generated figures
+- `certav-seed-<seed>`: checkpoint folders, certification JSON, attack JSON, seed summary.
+- `certav-aggregated`: master JSON, tables, and figures.
+- `certav-bench-v2-results`: elevation experiment JSONs and trained baseline metrics.
+- `lavdf-features-v1`: LAV-DF cache if you rebuild cross-dataset features.
 
-## Historical Preprocessing Fallback
+## Notes
 
-The Colab and sliced-preprocessing scripts remain available only if the feature
-cache must be rebuilt:
-
-- `docs/COLAB_PREPROCESS_CELL.py`: clean/all-in-one preprocessing with Drive mirror
-- `docs/COLAB_UPLOAD_CLEAN_CACHE.py`: upload clean cache
-- `docs/COLAB_PREPROCESS_DEGRADED_CELL.py`: sequential degraded preprocessing
-- `docs/COLAB_PARALLEL_DEGRADED_WORKER.py`: parallel one-condition degraded worker
-
-For the current experiment path, skip these and train directly from the
-completed Kaggle cache.
+Historical Colab helpers were moved to `notebooks/`. They are fallback tools for
+cache rebuilding, not part of the current paper-facing workflow.

@@ -1,165 +1,165 @@
-# CertAV: Certified Adversarial Robustness for Audio-Visual Deepfake Detection
+# CertAV / CertAV-Bench
 
-**Multimodal Randomized Smoothing for Provable Robustness Guarantees**
+CertAV is a research codebase for certifiably robust audio-visual deepfake
+detection. The current paper story is no longer the original CMAR-only project:
+the active work is CertAV, the elevation experiments, and the companion
+community benchmark package `av-robustbench`.
 
-## Overview
+## Current State
 
-CertAV extends randomized smoothing (Cohen et al., 2019) to the joint audio-visual feature space for deepfake detection. By wrapping a cross-modal attention-based detector (CMAR architecture) inside a smoothed classifier, we provide **provable ℓ₂ robustness certificates** — mathematical guarantees that the detection remains correct under bounded adversarial perturbations.
+The strongest current claim is that frozen DINOv2 and Whisper feature spaces are
+surprisingly certifiable under randomized smoothing. Noise-augmented CertAV
+models still provide the main protocol, but the elevation results show that the
+feature geometry itself is a major source of certifiability.
 
-### Key Contributions
+Key evidence lives in:
 
-1. **First certified AV deepfake detector**: Extends randomized smoothing to joint visual + audio feature spaces
-2. **Multimodal noise augmented training**: Gaussian noise in the joint feature space exploits cross-modal redundancy
-3. **Certified accuracy benchmarks**: Systematic measurement on FakeAVCeleb at multiple ℓ₂ radii
-4. **Empirical + certified comparison**: Certified defense vs empirical attacks on the same architecture
+- `agg-results-cmvrta/certav_aggregated/certav_master_results.json`
+- `agg-results-cmvrta/certav_aggregated/figures/`
+- `agg-results-cmvrta/certav-bench-v2-results/elevation_experiments/`
+- `docs/certavbench-v2-mentor review.md`
+- `docs/certav-elevt-v2-plan.md`
+- `docs/writing_notes_related_work.md`
 
-## Architecture
+## Repository Map
 
-```
-Input: Cached DINOv2 visual features + Whisper audio features
-         │
-    ┌────┴─────┐
-    │  Add N(0,σ²I) noise  │  × N Monte Carlo samples
-    └────┬─────┘
-         │
-    ┌────┴─────┐
-    │  Base CMAR Classifier  │
-    │  (VisualTempAgg + AudioTempAgg + CMCM + Head)  │
-    └────┬─────┘
-         │
-    ┌────┴─────┐
-    │  Majority Vote → Certified Radius R = σ · Φ⁻¹(pA)  │
-    └──────────┘
-```
-
-## Project Structure
-
-```
+```text
 CMAR/
-├── cmar/                           # Core package
-│   ├── certification/              # 🆕 Randomized smoothing
-│   │   ├── core.py                 # Statistical utilities, Clopper-Pearson bounds
-│   │   └── smoothing.py            # SmoothedClassifier wrapper
-│   ├── models/                     # CMAR architecture (base classifier)
-│   │   ├── cmar.py                 # Full CMAR model
-│   │   ├── cmcm.py                 # Cross-Modal Consistency Module
-│   │   ├── temporal_aggregation.py # Visual/Audio temporal aggregators
-│   │   └── classifier.py          # Classification head
-│   ├── training/
-│   │   ├── dataset.py              # CachedAVDataset
-│   │   ├── noise_augmented_trainer.py  # 🆕 Gaussian noise training loop
-│   │   ├── trainer.py              # Original CMAR trainer
-│   │   └── losses.py               # Loss functions
-│   ├── evaluation/                 # Metrics and attacks
-│   │   ├── metrics.py              # AUC, EER, AP, certification metrics
-│   │   └── attacks.py              # Feature-space PGD/FGSM
-│   └── utils/                      # I/O, caching, visualization
-├── scripts/
-│   ├── 00_environment_check.py     # Hardware and dependency check
-│   ├── 01_preprocess_features.py   # DINOv2/Whisper feature extraction
-│   ├── 02_train_cmar.py            # Original CMAR training
-│   ├── 03_evaluate_clean_degraded.py
-│   ├── 05_adversarial_evaluation.py
-│   ├── 10_train_certav.py          # 🆕 Train with Gaussian noise augmentation
-│   ├── 11_certify.py               # 🆕 Run certification procedure
-│   ├── 12_empirical_attack_comparison.py  # 🆕 Smoothed vs base under PGD
-│   └── 13_certav_figures.py        # 🆕 Generate all paper figures
-├── configs/                        # YAML configurations
-├── docs/                           # Documentation
-├── paper/                          # LaTeX paper files
-└── archive/                        # Old CMAR-specific files
+  cmar/                     Core CertAV model, training, evaluation, certification
+  scripts/                  Reproducible preprocessing, training, certification, analysis
+  configs/                  Dataset and training configuration
+  agg-results-cmvrta/       Aggregated paper results and elevation experiment outputs
+  av-robustbench/           Standalone benchmark package for AV robustness evaluation
+  docs/                     Paper-facing notes, runbooks, dataset/cache documentation
+  notebooks/                Kaggle/Colab cell wrappers and historical notebook drivers
 ```
 
-## Quick Start
+The previous `archive/` folder and copied Colab cell files in `docs/` are legacy
+artifacts. Notebook-style execution helpers now live under `notebooks/`.
 
-### Prerequisites
-
-- Python 3.10+
-- CUDA GPU (T4 16GB or better)
-- Cached DINOv2 + Whisper features (from preprocessing step)
-
-### Installation
+## Setup
 
 ```bash
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 
-### Execution Sequence
+For the benchmark package:
 
-#### Step 1: Feature Preprocessing (if not already done)
+```bash
+python -m pip install -e av-robustbench
+```
+
+Optional dependencies for model-zoo and degradation tooling:
+
+```bash
+python -m pip install -e "av-robustbench[all]"
+```
+
+## Main CertAV Workflow
+
+Preprocess FakeAVCeleb features:
+
 ```bash
 python scripts/01_preprocess_features.py \
-    --dataset-root /path/to/FakeAVCeleb \
-    --output-dir /path/to/cmar_cache
+  --config configs/preprocess_fakeavceleb.json \
+  --dataset-root /path/to/FakeAVCeleb \
+  --output-dir /path/to/cmar_cache
 ```
 
-#### Step 2: Train Noise-Augmented Models
+Train a CertAV model:
+
 ```bash
-# Train at multiple noise levels
-for SIGMA in 0.12 0.25 0.50 1.00; do
-    python scripts/10_train_certav.py \
-        --sigma $SIGMA \
-        --cache-dir /path/to/cmar_cache \
-        --output-dir ./certav_runs/sigma_${SIGMA}
-done
-
-# Train ablation models (visual-only and audio-only noise)
-python scripts/10_train_certav.py --sigma 0.25 --noise-mode visual_only \
-    --output-dir ./certav_runs/visonly_0.25
-python scripts/10_train_certav.py --sigma 0.25 --noise-mode audio_only \
-    --output-dir ./certav_runs/audonly_0.25
+python scripts/10_train_certav.py \
+  --sigma 1.00 \
+  --noise-mode joint \
+  --cache-dir /path/to/cmar_cache \
+  --output-dir runs/certav_sigma100 \
+  --seed 2026
 ```
 
-#### Step 3: Certify Each Model
+Certify it:
+
 ```bash
-for SIGMA in 0.12 0.25 0.50 1.00; do
-    python scripts/11_certify.py \
-        --checkpoint ./certav_runs/sigma_${SIGMA}/best.pt \
-        --sigma $SIGMA \
-        --cache-dir /path/to/cmar_cache \
-        --output ./certav_runs/certav_cert_${SIGMA}.json
-done
+python scripts/11_certify.py \
+  --checkpoint runs/certav_sigma100/best.pt \
+  --sigma 1.00 \
+  --cache-dir /path/to/cmar_cache \
+  --output runs/certav_sigma100/certification.json
 ```
 
-#### Step 4: Empirical Attack Comparison
+Run empirical feature-space attacks:
+
 ```bash
 python scripts/12_empirical_attack_comparison.py \
-    --checkpoint ./certav_runs/sigma_0.25/best.pt \
-    --sigma 0.25 \
-    --cache-dir /path/to/cmar_cache \
-    --output ./certav_runs/empirical_comparison.json
+  --checkpoint runs/certav_sigma100/best.pt \
+  --sigma 1.00 \
+  --cache-dir /path/to/cmar_cache \
+  --output runs/certav_sigma100/empirical_attacks.json
 ```
 
-#### Step 5: Generate Figures
+Generate paper figures from a results folder:
+
 ```bash
 python scripts/13_certav_figures.py \
-    --results-dir ./certav_runs/
+  --results-dir agg-results-cmvrta/certav_aggregated
 ```
 
-## Key Concepts
+## Elevation Experiments
 
-### Randomized Smoothing
-Given a base classifier f and noise level σ:
-- **Smoothed classifier**: g(x) = argmax_c P[f(x + ε) = c], ε ~ N(0, σ²I)
-- **Certified radius**: R = σ · Φ⁻¹(pA) where pA is the lower confidence bound on the top-class probability
-- **Guarantee**: g(x + δ) = g(x) for all ‖δ‖₂ ≤ R
+The v2 elevation scripts add the baselines and validation experiments used in
+the current paper narrative:
 
-### Multimodal Extension
-We add independent Gaussian noise to both visual and audio features:
-- Visual: x_v' = x_v + ε_v, ε_v ~ N(0, σ²I)
-- Audio: x_a' = x_a + ε_a, ε_a ~ N(0, σ²I)
-
-The certified radius applies to the concatenated feature space.
-
-## Citation
-
-```bibtex
-@article{certav2026,
-    title={CertAV: Certified Adversarial Robustness for Audio-Visual Deepfake Detection via Multimodal Randomized Smoothing},
-    year={2026}
-}
+```bash
+python scripts/14_train_baseline_no_noise.py --cache-dir /path/to/cmar_cache --output-dir runs/baseline_no_noise
+python scripts/15_train_pgd_at.py --cache-dir /path/to/cmar_cache --output-dir runs/baseline_pgd_at
+python scripts/16_certify_cross_dataset.py --checkpoint runs/certav_sigma100/best.pt --sigma 1.00 --lavdf-cache-dir /path/to/lavdf_cache --output runs/lavdf_cert.json
+python scripts/17_input_space_attack.py --checkpoint runs/certav_sigma100/best.pt --sigma 1.00 --cache-dir /path/to/cmar_cache --output runs/input_space_attack.json
+python scripts/18_manifold_analysis.py --cache-dir /path/to/cmar_cache --checkpoint runs/certav_sigma100/best.pt --output runs/manifold_analysis.json
+python scripts/19_preprocess_lavdf.py --lavdf-root /path/to/LAV-DF --output-dir /path/to/lavdf_cache
 ```
 
-## License
+For Kaggle-ready cells, use `notebooks/elevation_experiment_notebook.md`.
 
-Research use only.
+## av-robustbench
+
+`av-robustbench` is the companion benchmark contribution. It provides:
+
+- model adapters for feature-space audio-visual detectors
+- PGD-Linf, joint PGD-L2, Square Attack, and AutoAttack-style ensembles
+- randomized smoothing certification
+- degradation battery evaluation
+- robustness cards and leaderboard JSON helpers
+
+Example:
+
+```bash
+av-robustbench evaluate \
+  --model certav_sigma100 \
+  --checkpoint /path/to/best.pt \
+  --dataset feature_cache \
+  --cache-dir /path/to/cmar_cache \
+  --attacks pgd_linf pgd_l2 autoattack_av \
+  --certify \
+  --sigma 0.25 1.00 \
+  --output results/robustness_card
+```
+
+Run benchmark tests:
+
+```bash
+cd av-robustbench
+pytest
+```
+
+## Paper Drafting Notes
+
+Start with `docs/README.md`, then read:
+
+1. `docs/certavbench-v2-mentor review.md`
+2. `docs/writing_notes_related_work.md`
+3. `agg-results-cmvrta/certav_aggregated/certav_master_results.json`
+4. `agg-results-cmvrta/certav-bench-v2-results/elevation_experiments/elevation_summary.json`
+
+The paper should emphasize the validated results: strong certified radii,
+input-space certificate hold rates, cross-dataset LAV-DF transfer, PGD-AT
+comparison, and the manifold/intrinsic-dimensionality explanation.

@@ -6,7 +6,7 @@ the cached feature space during training. The resulting model is designed
 to be used inside a SmoothedClassifier for certified robustness.
 
 Usage:
-    # Train with joint noise σ=0.25
+    # Train with joint noise sigma=0.25
     python scripts/10_train_certav.py \
         --sigma 0.25 \
         --cache-dir /kaggle/input/cmar-features-clean-v1/cmar_cache \
@@ -35,6 +35,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from cmar.config import ModelConfig, TrainConfig
 from cmar.models.cmar import CMAR, count_parameters
+from cmar.phase2.pca_noise import ANISOTROPIC_NOISE_MODES, PCANoise
 from cmar.training.dataset import CachedAVDataset, collate_av_batch
 from cmar.training.noise_augmented_trainer import fit_certav
 from cmar.utils.seed import seed_everything
@@ -45,8 +46,16 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--sigma", type=float, required=True,
                         help="Gaussian noise std dev for training")
     parser.add_argument("--noise-mode", type=str, default="joint",
-                        choices=["joint", "visual_only", "audio_only"],
+                        choices=["joint", "visual_only", "audio_only", *ANISOTROPIC_NOISE_MODES.keys()],
                         help="Which modalities receive noise")
+    parser.add_argument("--pca-noise-path", type=str, default=None,
+                        help="PCA artifact from scripts/20_fit_pca_noise.py for anisotropic modes")
+    parser.add_argument("--pca-top-k", type=int, default=None,
+                        help="Top-k PCA components for anisotropic strategies 2/3")
+    parser.add_argument("--pca-off-sigma", type=float, default=1e-3,
+                        help="Small off-subspace sigma for anisotropic strategies 2/3")
+    parser.add_argument("--no-pca-equalize-budget", action="store_true",
+                        help="Do not normalize anisotropic trace to D*sigma^2")
     parser.add_argument("--cache-dir", type=str,
                         default="/kaggle/input/cmar-features-clean-v1/cmar_cache",
                         help="Path to cached features")
@@ -62,6 +71,10 @@ def parse_args() -> argparse.Namespace:
                         help="Disable automatic mixed precision")
     parser.add_argument("--num-workers", type=int, default=2)
     parser.add_argument("--cmcm-layers", type=int, default=2)
+    parser.add_argument("--visual-dim", type=int, default=None,
+                        help="Override cached visual feature dimension")
+    parser.add_argument("--audio-dim", type=int, default=None,
+                        help="Override cached audio feature dimension")
     parser.add_argument("--allow-partial-cache", action="store_true")
     parser.add_argument("--cache-report-only", action="store_true",
                         help="Only print cache coverage, don't train")
@@ -92,8 +105,25 @@ def main() -> None:
         print("Cache report complete. Exiting (--cache-report-only was set).")
         return
 
-    # Setup config
-    model_config = ModelConfig(cmcm_layers=args.cmcm_layers)
+    # Create datasets
+    train_ds = CachedAVDataset(
+        cache_dir, manifest_dir / "train.csv",
+        condition="clean",
+        return_degraded=False,
+        allow_partial_cache=args.allow_partial_cache,
+    )
+
+    first_item = train_ds[0]
+    inferred_visual_dim = int(first_item["visual"].shape[-1])
+    inferred_audio_dim = int(first_item["audio"].shape[-1])
+
+    # Setup config after inspecting cache dimensions so encoder-family caches
+    # can be trained without editing Python code.
+    model_config = ModelConfig(
+        visual_dim=args.visual_dim or inferred_visual_dim,
+        audio_dim=args.audio_dim or inferred_audio_dim,
+        cmcm_layers=args.cmcm_layers,
+    )
     train_config = TrainConfig(
         cache_dir=str(cache_dir),
         output_dir=args.output_dir,
@@ -111,14 +141,6 @@ def main() -> None:
         feature_augmentation=False,  # Noise is handled by trainer
         amp=not args.no_amp,
         model=model_config,
-    )
-
-    # Create datasets
-    train_ds = CachedAVDataset(
-        cache_dir, manifest_dir / "train.csv",
-        condition="clean",
-        return_degraded=False,
-        allow_partial_cache=args.allow_partial_cache,
     )
     val_ds = CachedAVDataset(
         cache_dir, manifest_dir / "val.csv",
@@ -143,14 +165,32 @@ def main() -> None:
     model = CMAR(model_config).to(device)
     params = count_parameters(model)
     print(f"Model parameters: {params['trainable']:,} trainable / {params['total']:,} total")
-    print(f"Training with σ={args.sigma}, noise_mode={args.noise_mode}")
+    print(f"Training with sigma={args.sigma}, noise_mode={args.noise_mode}")
+    print(f"Feature dims: visual={model_config.visual_dim}, audio={model_config.audio_dim}")
     print(f"Device: {device}")
+
+    pca_noise = None
+    if args.noise_mode in ANISOTROPIC_NOISE_MODES:
+        if args.pca_noise_path is None:
+            raise SystemExit(f"--noise-mode {args.noise_mode} requires --pca-noise-path")
+        pca_noise = PCANoise.from_file(
+            args.pca_noise_path,
+            sigma=args.sigma,
+            strategy=args.noise_mode,
+            device=device,
+            top_k=args.pca_top_k,
+            off_sigma=args.pca_off_sigma,
+            equalize_budget=not args.no_pca_equalize_budget,
+        )
+        print("PCA noise metadata:", pca_noise.metadata())
 
     # Train
     best_metrics = fit_certav(
         model, train_loader, val_loader, train_config, device,
         sigma=args.sigma,
         noise_mode=args.noise_mode,
+        pca_noise=pca_noise,
+        pca_noise_path=args.pca_noise_path,
     )
 
     print("\n=== Training Complete ===")

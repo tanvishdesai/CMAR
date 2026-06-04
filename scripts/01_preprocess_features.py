@@ -13,7 +13,7 @@ from cmar.config import DataSplitConfig
 from cmar.evaluation.degradations import DEGRADATION_SPECS
 from cmar.utils.cache import (
     ExtractionBudget,
-    build_extractors,
+    build_extractors_for_models,
     extract_clean_manifest,
     extract_degraded_test_manifest,
     verify_cache_shapes,
@@ -39,6 +39,12 @@ def main() -> None:
     parser.add_argument("--max-runtime-seconds", type=float, default=0.0)
     parser.add_argument("--chunk-size", type=int, default=100)
     parser.add_argument("--max-audio-tokens", type=int, default=None)
+    parser.add_argument("--visual-model-name", type=str, default=None,
+                        help="Override visual encoder for Phase 2 encoder studies")
+    parser.add_argument("--audio-model-name", type=str, default=None,
+                        help="Override audio encoder for Phase 2 encoder studies")
+    parser.add_argument("--visual-micro-batch", type=int, default=None,
+                        help="Micro-batch size for visual frames (reduces VRAM for large ViTs)")
     args = parser.parse_args()
 
     config = load_cache_config(args.config)
@@ -56,6 +62,12 @@ def main() -> None:
         config.overwrite = True
     if args.max_audio_tokens is not None:
         config.max_audio_tokens = args.max_audio_tokens
+    if args.visual_model_name is not None:
+        config.visual_model_name = args.visual_model_name
+    if args.audio_model_name is not None:
+        config.audio_model_name = args.audio_model_name
+    if args.visual_micro_batch is not None:
+        config.visual_micro_batch = args.visual_micro_batch
     if not config.dataset_root and not args.degraded_only:
         raise ValueError("Set --dataset-root or dataset_root in the preprocess config.")
 
@@ -92,11 +104,13 @@ def main() -> None:
         print(f"[extractors] degraded-only need_visual={need_visual} need_audio={need_audio}")
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    visual_encoder, audio_encoder, whisper_processor = build_extractors(
+    visual_encoder, audio_encoder, whisper_processor = build_extractors_for_models(
         device,
         image_size=config.image_size,
         load_visual=need_visual,
         load_audio=need_audio,
+        visual_model_name=config.visual_model_name,
+        audio_model_name=config.audio_model_name,
     )
 
     budget = ExtractionBudget(

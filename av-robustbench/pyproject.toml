@@ -1,0 +1,107 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "av-robustbench"
+version = "0.1.0"
+description = "Standardized adversarial and certified robustness evaluation for audio-visual deepfake detectors."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [
+  { name = "CertAV Research Team" }
+]
+keywords = [
+  "adversarial-robustness",
+  "audio-visual",
+  "deepfake-detection",
+  "randomized-smoothing",
+  "benchmark"
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence"
+]
+dependencies = [
+  "torch>=2.0",
+  "numpy>=1.24",
+  "scipy>=1.10",
+  "scikit-learn>=1.2",
+  "pandas>=2.0",
+  "matplotlib>=3.7",
+  "tqdm>=4.0",
+  "Pillow>=9.0"
+]
+
+[project.optional-dependencies]
+models = [
+  "huggingface_hub>=0.20",
+  "transformers>=4.35",
+  "timm>=0.9"
+]
+degradations = [
+  "opencv-python>=4.8",
+  "librosa>=0.10",
+  "soundfile>=0.12",
+  "ffmpeg-python>=0.2"
+]
+docs = [
+  "mkdocs>=1.5",
+  "mkdocs-material>=9.5"
+]
+dev = [
+  "pytest>=7.4",
+  "ruff>=0.4",
+  "mypy>=1.8"
+]
+all = [
+  "huggingface_hub>=0.20",
+  "transformers>=4.35",
+  "timm>=0.9",
+  "opencv-python>=4.8",
+  "librosa>=0.10",
+  "soundfile>=0.12",
+  "ffmpeg-python>=0.2"
+]
+
+[project.urls]
+Homepage = "https://github.com/certav/av-robustbench"
+Repository = "https://github.com/certav/av-robustbench"
+Issues = "https://github.com/certav/av-robustbench/issues"
+
+[project.scripts]
+av-robustbench = "av_robustbench.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["av_robustbench*"]
+
+[tool.setuptools.package-data]
+av_robustbench = ["py.typed", "leaderboard/data/*.json"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.10"
+packages = ["av_robustbench"]
+ignore_missing_imports = true
+warn_unused_ignores = true
+warn_redundant_casts = true

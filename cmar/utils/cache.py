@@ -24,8 +24,11 @@ from cmar.evaluation.degradations import (
     degrade_frames,
     h264_roundtrip_frames,
 )
-from cmar.models.audio_encoder import WhisperTinyFeatureExtractor
-from cmar.models.visual_encoder import DINOv2FeatureExtractor
+from cmar.models.audio_encoder import (
+    WhisperTinyFeatureExtractor,
+    build_audio_feature_extractor,
+)
+from cmar.models.visual_encoder import DINOv2FeatureExtractor, build_visual_feature_extractor
 from cmar.utils.io import ensure_dir, save_tensor, write_json
 
 
@@ -194,26 +197,53 @@ def load_audio(
 
 @torch.inference_mode()
 def extract_visual_features(
-    visual_encoder: DINOv2FeatureExtractor,
+    visual_encoder: torch.nn.Module,
     frames: List[np.ndarray],
     device: torch.device,
     image_size: int = 224,
+    micro_batch: int = 0,
 ) -> torch.Tensor:
+    """Extract per-frame visual features.
+
+    Args:
+        micro_batch: If >0, process frames in chunks of this size to reduce
+            peak GPU memory.  Useful for ViT-Base and larger backbones on
+            memory-constrained GPUs (e.g. Colab T4 with 15 GB).
+            Set to 0 (default) to process all frames in one forward pass.
+    """
     visual_encoder.eval()
-    batch = frames_to_tensor(frames, image_size=image_size).to(device)
-    features = visual_encoder(batch)
+    if hasattr(visual_encoder, "extract_frames"):
+        return visual_encoder.extract_frames(frames, device=device, image_size=image_size)
+    batch = frames_to_tensor(frames, image_size=image_size)
+    if micro_batch > 0 and batch.shape[0] > micro_batch:
+        parts: List[torch.Tensor] = []
+        for i in range(0, batch.shape[0], micro_batch):
+            chunk = batch[i : i + micro_batch].to(device)
+            parts.append(visual_encoder(chunk).detach().cpu())
+            del chunk
+            if device.type == "cuda":
+                torch.cuda.empty_cache()
+        return torch.cat(parts, dim=0)
+    features = visual_encoder(batch.to(device))
     return features.detach().cpu()
 
 
 @torch.inference_mode()
 def extract_audio_features(
-    audio_encoder: WhisperTinyFeatureExtractor,
+    audio_encoder: torch.nn.Module,
     whisper_processor,
     waveform: np.ndarray,
     sample_rate: int,
     device: torch.device,
 ) -> torch.Tensor:
     audio_encoder.eval()
+    if hasattr(audio_encoder, "extract_waveform"):
+        return audio_encoder.extract_waveform(
+            whisper_processor,
+            waveform,
+            sample_rate=sample_rate,
+            device=device,
+        )
     inputs = whisper_processor(
         waveform,
         sampling_rate=sample_rate,
@@ -229,21 +259,36 @@ def build_extractors(
     image_size: int = 224,
     load_visual: bool = True,
     load_audio: bool = True,
-) -> Tuple[Optional[DINOv2FeatureExtractor], Optional[WhisperTinyFeatureExtractor], object | None]:
-    from transformers import WhisperFeatureExtractor
+) -> Tuple[Optional[torch.nn.Module], Optional[torch.nn.Module], object | None]:
+    return build_extractors_for_models(
+        device,
+        image_size=image_size,
+        load_visual=load_visual,
+        load_audio=load_audio,
+        visual_model_name="facebook/dinov2-small",
+        audio_model_name="openai/whisper-tiny",
+    )
 
+
+def build_extractors_for_models(
+    device: torch.device,
+    image_size: int = 224,
+    load_visual: bool = True,
+    load_audio: bool = True,
+    visual_model_name: str = "facebook/dinov2-small",
+    audio_model_name: str = "openai/whisper-tiny",
+) -> Tuple[Optional[torch.nn.Module], Optional[torch.nn.Module], object | None]:
     visual_encoder = None
     if load_visual:
-        visual_encoder = DINOv2FeatureExtractor(
-            pretrained=True,
-            tune_layernorm=False,
+        visual_encoder = build_visual_feature_extractor(
+            visual_model_name,
             image_size=image_size,
         ).to(device)
     audio_encoder = None
     whisper_processor = None
     if load_audio:
-        audio_encoder = WhisperTinyFeatureExtractor(tune_layernorm=False).to(device)
-        whisper_processor = WhisperFeatureExtractor.from_pretrained("openai/whisper-tiny")
+        audio_encoder, whisper_processor = build_audio_feature_extractor(audio_model_name)
+        audio_encoder = audio_encoder.to(device)
     return visual_encoder, audio_encoder, whisper_processor
 
 
@@ -283,6 +328,7 @@ def _save_visual(
         frames,
         device=device,
         image_size=config.image_size,
+        micro_batch=getattr(config, "visual_micro_batch", 0),
     )
     save_tensor(features, out_path, dtype=config.feature_dtype)
     del frames, features
@@ -464,10 +510,13 @@ def write_cache_metadata(
         "project": "CMAR",
         "cache_version": "v1",
         "feature_contract": {
-            "visual": "(16, 384) DINOv2-Small CLS features per sampled frame",
+            "visual": (
+                f"({config.n_frames}, D_v) per-frame features from "
+                f"{config.visual_model_name}"
+            ),
             "audio": (
-                f"(<= {config.max_audio_tokens}, 384) pooled Whisper-Tiny encoder "
-                "temporal features, float16 by default"
+                f"(<= {config.max_audio_tokens}, D_a) pooled temporal features from "
+                f"{config.audio_model_name}, {config.feature_dtype} by default"
             ),
             "training_note": (
                 "Default training consumes cached features; DINOv2/Whisper LN tuning "

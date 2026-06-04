@@ -1,6 +1,6 @@
 {
-  "dataset_root": "/kaggle/input/fakeavceleb/FakeAVCeleb_v1.2",
-  "lavdf_root": "/kaggle/input/lav-df/LAV-DF",
+  "dataset_root": "/kaggle/input/datasets/shreyaty08/fakeavceleb/FakeAVCeleb_v1.2/FakeAVCeleb_v1.2",
+  "lavdf_root": "/kaggle/input/datasets/elin75/localized-audio-visual-deepfake-dataset-lav-df/LAV-DF",
   "output_dir": "/kaggle/working/cmar_cache",
   "n_frames": 16,
   "image_size": 224,

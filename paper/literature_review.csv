@@ -1,0 +1,16 @@
+key,paper,venue_year,used_for,draft_role
+cohen2019certified,"Certified Adversarial Robustness via Randomized Smoothing","ICML 2019","smoothing theorem and radius","Method and related work"
+lecuyer2019certified,"Certified Robustness to Adversarial Examples with Differential Privacy","IEEE S&P 2019","early randomized certification","Related work"
+salman2019provably,"Provably Robust Deep Learning via Adversarially Trained Smoothed Classifiers","NeurIPS 2019","adversarial training plus smoothing","Related work and baselines"
+yang2020randomized,"Randomized Smoothing of All Shapes and Sizes","ICML 2020","general smoothing context","Related work"
+khalid2021fakeavceleb,"FakeAVCeleb: A Novel Audio-Video Multimodal Deepfake Dataset","NeurIPS D&B 2021","primary dataset","Experiments"
+cai2022lavdf,"LAV-DF: A Large-Scale Audio-Visual Deepfake Dataset","DICTA 2022","cross-dataset transfer","Experiments"
+chugh2020not,"Not Made for Each Other: Audio-Visual Dissonance-Based Deepfake Detection and Localization","ACM MM 2020","audio-visual inconsistency detection","Related work"
+mittal2020emotions,"Emotions Don't Lie: An Audio-Visual Deepfake Detection Method Using Affective Cues","ACM MM Workshops 2020","audio-visual affective cues","Related work"
+feng2023self,"Self-Supervised Video Forensics by Audio-Visual Anomaly Detection","CVPR 2023","self-supervised AV anomaly detection","Related work"
+yang2023avoid,"AVoiD-DF: Audio-Visual Joint Learning for Detecting Deepfake","IEEE TIFS 2023","modern AV joint-learning detector","Related work"
+astrid2025local,"Audio-Visual Deepfake Detection with Local Temporal Inconsistencies","ICASSP 2025","recent venue-adjacent AV detector","Related work"
+oquab2024dinov2,"DINOv2: Learning Robust Visual Features without Supervision","TMLR 2024","visual backbone","Method"
+radford2023whisper,"Robust Speech Recognition via Large-Scale Weak Supervision","ICML 2023","audio backbone","Method"
+croce2021robustbench,"RobustBench: A Standardized Adversarial Robustness Benchmark","NeurIPS D&B 2021","benchmarking precedent","Benchmark discussion"
+

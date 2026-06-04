@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import csv
 import math
+import shutil
 from pathlib import Path
 from typing import Dict, Optional
 
@@ -26,6 +27,7 @@ from tqdm.auto import tqdm
 from cmar.config import TrainConfig, to_dict
 from cmar.evaluation.metrics import binary_metrics
 from cmar.models.cmar import count_parameters
+from cmar.phase2.pca_noise import ANISOTROPIC_NOISE_MODES, PCANoise
 from cmar.utils.io import ensure_dir, write_json
 
 
@@ -56,6 +58,7 @@ def save_checkpoint(
     config: TrainConfig,
     sigma: float,
     noise_mode: str,
+    pca_noise_metadata: dict | None = None,
 ) -> None:
     """Save checkpoint with smoothing metadata."""
     path = Path(path)
@@ -70,6 +73,7 @@ def save_checkpoint(
             "parameter_count": count_parameters(model),
             "sigma": sigma,
             "noise_mode": noise_mode,
+            "pca_noise": pca_noise_metadata,
         },
         path,
     )
@@ -90,6 +94,7 @@ def add_gaussian_noise(
     audio: torch.Tensor,
     sigma: float,
     noise_mode: str = "joint",
+    pca_noise: PCANoise | None = None,
 ) -> tuple[torch.Tensor, torch.Tensor]:
     """Add Gaussian noise to features according to noise_mode.
 
@@ -102,6 +107,8 @@ def add_gaussian_noise(
     Returns:
         Tuple of (noisy_visual, noisy_audio)
     """
+    if pca_noise is not None:
+        return pca_noise.add_noise(visual, audio)
     if noise_mode in ("joint", "visual_only"):
         visual = visual + torch.randn_like(visual) * sigma
     if noise_mode in ("joint", "audio_only"):
@@ -117,6 +124,7 @@ def train_one_epoch_certav(
     device: torch.device,
     sigma: float,
     noise_mode: str = "joint",
+    pca_noise: PCANoise | None = None,
     grad_accum_steps: int = 1,
     max_grad_norm: float = 1.0,
     scaler: Optional[torch.amp.GradScaler] = None,
@@ -136,7 +144,7 @@ def train_one_epoch_certav(
 
         # Add Gaussian noise
         visual_noisy, audio_noisy = add_gaussian_noise(
-            visual, audio, sigma, noise_mode
+            visual, audio, sigma, noise_mode, pca_noise=pca_noise
         )
 
         with torch.amp.autocast(device_type=device.type, enabled=use_amp):
@@ -178,6 +186,7 @@ def evaluate_epoch_certav(
     device: torch.device,
     sigma: float,
     noise_mode: str = "joint",
+    pca_noise: PCANoise | None = None,
     n_noise_samples: int = 10,
 ) -> Dict[str, float]:
     """Evaluate with noise-averaged predictions.
@@ -202,7 +211,7 @@ def evaluate_epoch_certav(
         prob_sum = torch.zeros(bs, device=device)
         for _ in range(n_noise_samples):
             vis_noisy, aud_noisy = add_gaussian_noise(
-                visual, audio, sigma, noise_mode
+                visual, audio, sigma, noise_mode, pca_noise=pca_noise
             )
             out = model(vis_noisy, aud_noisy)
             logits = out["logits"].view(-1)
@@ -232,6 +241,8 @@ def fit_certav(
     device: torch.device,
     sigma: float,
     noise_mode: str = "joint",
+    pca_noise: PCANoise | None = None,
+    pca_noise_path: str | Path | None = None,
 ) -> Dict[str, float]:
     """Full training loop for CertAV noise-augmented model.
 
@@ -248,8 +259,23 @@ def fit_certav(
         Best validation metrics dict
     """
     output_dir = ensure_dir(config.output_dir)
+    if noise_mode in ANISOTROPIC_NOISE_MODES and pca_noise is None:
+        raise ValueError(f"{noise_mode} requires a PCANoise instance.")
+
+    pca_noise_metadata = pca_noise.metadata() if pca_noise is not None else None
+    if pca_noise_path is not None and pca_noise is not None:
+        copied = output_dir / "pca_noise.pt"
+        if Path(pca_noise_path).resolve() != copied.resolve():
+            shutil.copy2(pca_noise_path, copied)
+        pca_noise_metadata = {**(pca_noise_metadata or {}), "checkpoint_artifact": str(copied)}
+
     write_json(
-        {**to_dict(config), "sigma": sigma, "noise_mode": noise_mode},
+        {
+            **to_dict(config),
+            "sigma": sigma,
+            "noise_mode": noise_mode,
+            "pca_noise": pca_noise_metadata,
+        },
         output_dir / "train_config.json",
     )
     write_json(count_parameters(model), output_dir / "parameter_count.json")
@@ -284,6 +310,7 @@ def fit_certav(
                 model, train_loader, optimizer, criterion, device,
                 sigma=sigma,
                 noise_mode=noise_mode,
+                pca_noise=pca_noise,
                 grad_accum_steps=config.grad_accum_steps,
                 max_grad_norm=config.max_grad_norm,
                 scaler=scaler if scaler is not None and scaler.is_enabled() else None,
@@ -293,6 +320,7 @@ def fit_certav(
                 model, val_loader, device,
                 sigma=sigma,
                 noise_mode=noise_mode,
+                pca_noise=pca_noise,
                 n_noise_samples=10,
             )
 
@@ -324,6 +352,7 @@ def fit_certav(
                 save_checkpoint(
                     output_dir / "best.pt", model, optimizer,
                     epoch, row, config, sigma, noise_mode,
+                    pca_noise_metadata=pca_noise_metadata,
                 )
             else:
                 patience += 1
@@ -332,10 +361,11 @@ def fit_certav(
                 save_checkpoint(
                     output_dir / f"epoch_{epoch:03d}.pt", model, optimizer,
                     epoch, row, config, sigma, noise_mode,
+                    pca_noise_metadata=pca_noise_metadata,
                 )
 
             print(
-                f"epoch={epoch:03d} σ={sigma:.2f} mode={noise_mode} "
+                f"epoch={epoch:03d} sigma={sigma:.2f} mode={noise_mode} "
                 f"train_loss={row['train_loss']:.4f} "
                 f"val_auc={row['val_auc']:.4f} val_eer={row['val_eer']:.4f}"
             )

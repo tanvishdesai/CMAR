@@ -27,10 +27,11 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from cmar.config import ModelConfig
 from cmar.models.cmar import CMAR
 from cmar.certification.smoothing import SmoothedClassifier
 from cmar.evaluation.metrics import binary_metrics
+from cmar.phase2.model_loading import model_config_from_checkpoint
+from cmar.phase2.pca_noise import ANISOTROPIC_NOISE_MODES, load_pca_artifact
 from cmar.training.dataset import CachedAVDataset, collate_av_batch
 from cmar.utils.seed import seed_everything
 
@@ -73,6 +74,7 @@ def pgd_attack_features(
         audio_adv.requires_grad_(True)
 
     for _ in range(n_steps):
+        model.zero_grad(set_to_none=True)
         out = model(visual_adv, audio_adv)
         loss = criterion(out["logits"].view(-1), label.float())
         loss.backward()
@@ -99,12 +101,15 @@ def evaluate_base_under_attack(
     eps: float,
     attack_target: str = "both",
     max_samples: int | None = None,
+    pca_artifact=None,
+    pca_top_k: int | None = None,
 ) -> dict:
     """Evaluate the base (non-smoothed) model under PGD attack."""
     model.eval()
     all_logits_clean = []
     all_logits_adv = []
     all_labels = []
+    alignments = []
 
     n = len(dataset) if max_samples is None else min(len(dataset), max_samples)
     for i in range(n):
@@ -119,11 +124,20 @@ def evaluate_base_under_attack(
             all_logits_clean.append(out_clean["logits"].view(-1).cpu())
 
         # Adversarial prediction
-        model.train()  # Enable gradients
+        model.eval()
         vis_adv, aud_adv = pgd_attack_features(
             model, visual, audio, label, eps=eps,
             attack_target=attack_target,
         )
+        if pca_artifact is not None:
+            alignments.append(
+                attack_manifold_alignment(
+                    vis_adv - visual,
+                    aud_adv - audio,
+                    pca_artifact,
+                    top_k=pca_top_k,
+                )
+            )
         model.eval()
         with torch.no_grad():
             out_adv = model(vis_adv, aud_adv)
@@ -141,12 +155,53 @@ def evaluate_base_under_attack(
     metrics_clean = binary_metrics(labels, logits_clean)
     metrics_adv = binary_metrics(labels, logits_adv)
 
-    return {
+    output = {
         "clean": metrics_clean,
         "adversarial": metrics_adv,
         "eps": eps,
         "attack_target": attack_target,
     }
+    if alignments:
+        keys = sorted({key for row in alignments for key in row})
+        output["attack_manifold_alignment"] = {
+            key: float(np.nanmean([row.get(key, np.nan) for row in alignments]))
+            for key in keys
+        }
+        output["attack_manifold_alignment_per_sample"] = alignments
+    return output
+
+
+def attack_manifold_alignment(
+    visual_delta: torch.Tensor,
+    audio_delta: torch.Tensor,
+    pca_artifact,
+    top_k: int | None = None,
+) -> dict[str, float]:
+    """Cosine-squared alignment between a PGD direction and a PCA subspace."""
+
+    with torch.no_grad():
+        space = pca_artifact.feature_space
+        if space == "joint":
+            delta = torch.cat(
+                [
+                    visual_delta.float().mean(dim=1).view(-1),
+                    audio_delta.float().mean(dim=1).view(-1),
+                ],
+                dim=0,
+            )
+        elif space == "visual":
+            delta = visual_delta.float().mean(dim=1).view(-1)
+        else:
+            delta = audio_delta.float().mean(dim=1).view(-1)
+
+        components = pca_artifact.components[: int(top_k or pca_artifact.dim_at_90pct)].to(delta.device)
+        denom = torch.sum(delta * delta).clamp_min(1e-12)
+        projection = components @ delta
+        cos2 = torch.sum(projection * projection) / denom
+        return {
+            f"{space}_pca_cos2": float(cos2.detach().cpu()),
+            f"{space}_pca_top_k": float(components.shape[0]),
+        }
 
 
 def evaluate_smoothed_under_attack(
@@ -157,6 +212,10 @@ def evaluate_smoothed_under_attack(
     eps: float,
     attack_target: str = "both",
     noise_mode: str = "joint",
+    pca_noise_path: str | None = None,
+    pca_top_k: int | None = None,
+    pca_off_sigma: float = 1e-3,
+    pca_equalize_budget: bool = True,
     n_samples: int = 100,
     max_samples: int | None = None,
 ) -> dict:
@@ -170,6 +229,10 @@ def evaluate_smoothed_under_attack(
     smoothed = SmoothedClassifier(
         base_model, sigma=sigma, device=device,
         noise_mode=noise_mode,
+        pca_noise_path=pca_noise_path,
+        pca_top_k=pca_top_k,
+        pca_off_sigma=pca_off_sigma,
+        pca_equalize_budget=pca_equalize_budget,
     )
 
     n_total = len(dataset) if max_samples is None else min(len(dataset), max_samples)
@@ -189,7 +252,7 @@ def evaluate_smoothed_under_attack(
             correct_clean += 1
 
         # Attack base features
-        base_model.train()
+        base_model.eval()
         vis_adv, aud_adv = pgd_attack_features(
             base_model, visual, audio, label_t, eps=eps,
             attack_target=attack_target,
@@ -221,6 +284,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--checkpoint", type=str, required=True)
     parser.add_argument("--sigma", type=float, required=True)
     parser.add_argument("--noise-mode", type=str, default="joint")
+    parser.add_argument("--pca-noise-path", type=str, default=None)
+    parser.add_argument("--pca-top-k", type=int, default=None)
+    parser.add_argument("--pca-off-sigma", type=float, default=1e-3)
+    parser.add_argument("--no-pca-equalize-budget", action="store_true")
     parser.add_argument("--cache-dir", type=str,
                         default="/kaggle/input/cmar-features-clean-v1/cmar_cache")
     parser.add_argument("--output", type=str, required=True)
@@ -230,7 +297,9 @@ def parse_args() -> argparse.Namespace:
                         help="Limit samples for speed")
     parser.add_argument("--n-smoothing-samples", type=int, default=100)
     parser.add_argument("--seed", type=int, default=2026)
-    parser.add_argument("--cmcm-layers", type=int, default=2)
+    parser.add_argument("--cmcm-layers", type=int, default=None)
+    parser.add_argument("--visual-dim", type=int, default=None)
+    parser.add_argument("--audio-dim", type=int, default=None)
     return parser.parse_args()
 
 
@@ -243,7 +312,7 @@ def main() -> None:
 
     # Load model
     ckpt = torch.load(args.checkpoint, map_location=device, weights_only=False)
-    model_config = ModelConfig(cmcm_layers=args.cmcm_layers)
+    model_config = model_config_from_checkpoint(ckpt, args)
     model = CMAR(model_config)
     model.load_state_dict(ckpt["model_state"])
     model.to(device)
@@ -256,11 +325,20 @@ def main() -> None:
     )
     print(f"Test samples: {len(test_ds)}")
 
-    results = {"sigma": args.sigma, "noise_mode": args.noise_mode, "attacks": {}}
+    pca_artifact = None
+    if args.pca_noise_path:
+        pca_artifact = load_pca_artifact(args.pca_noise_path, device=device)
+
+    results = {
+        "sigma": args.sigma,
+        "noise_mode": args.noise_mode,
+        "pca_noise_path": args.pca_noise_path,
+        "attacks": {},
+    }
 
     for eps in args.eps_values:
         print(f"\n{'='*60}")
-        print(f"PGD attack ε={eps}")
+        print(f"PGD attack eps={eps}")
         print(f"{'='*60}")
 
         # Base model under attack
@@ -268,16 +346,22 @@ def main() -> None:
         base_results = evaluate_base_under_attack(
             model, test_ds, device, eps=eps,
             attack_target="both", max_samples=args.max_samples,
+            pca_artifact=pca_artifact,
+            pca_top_k=args.pca_top_k,
         )
         print(f"  Clean AUC: {base_results['clean']['auc']:.4f}")
         print(f"  Adv AUC:   {base_results['adversarial']['auc']:.4f}")
 
         # Smoothed model under attack
-        print(f"\n--- Smoothed classifier (σ={args.sigma}) ---")
+        print(f"\n--- Smoothed classifier (sigma={args.sigma}) ---")
         smooth_results = evaluate_smoothed_under_attack(
             model, test_ds, device,
             sigma=args.sigma, eps=eps,
             noise_mode=args.noise_mode,
+            pca_noise_path=args.pca_noise_path,
+            pca_top_k=args.pca_top_k,
+            pca_off_sigma=args.pca_off_sigma,
+            pca_equalize_budget=not args.no_pca_equalize_budget,
             n_samples=args.n_smoothing_samples,
             max_samples=args.max_samples,
         )

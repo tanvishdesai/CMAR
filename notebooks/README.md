@@ -1,14 +1,14 @@
 # Notebook Wrappers
 
-The project is script-first so it works the same in every Kaggle notebook. In a notebook cell, run the commands from `docs/KAGGLE_RUNBOOK.md` with `!`.
+The project is script-first. Use these files only when Kaggle or Colab needs a
+copy-paste cell sequence around the tested scripts.
 
-Example:
+- `certav_experiment_notebook.md`: five-seed CertAV training/certification cells.
+- `certav_aggregation_notebook.md`: aggregation cells for the five seed runs.
+- `elevation_experiment_notebook.md`: v2 baseline, cross-dataset, input-space attack, and manifold-analysis cells.
+- `phase2_final_kaggle_cells.md`: final start-to-finish Phase 2 A+D/B/C Kaggle cell sequence.
+- `phase2_experiment_notebook.md`: Phase 2 A+D and C Kaggle cell sequence.
+- `COLAB_UPLOAD_CLEAN_CACHE.py`: historical clean-cache upload helper.
+- `colab_degrade_preprocess_worker.py`: historical one-condition degraded preprocessing worker.
 
-```python
-!cp -r /kaggle/input/<your-cmar-project-dataset>/CMAR /kaggle/working/cmar
-%cd /kaggle/working/cmar
-!pip install -r requirements.txt
-!python scripts/00_environment_check.py --load-models --output /kaggle/working/cmar_environment.json
-```
-
-This avoids maintaining separate `.ipynb` files that can drift from the tested scripts.
+For the current runbook, start from `../docs/KAGGLE_RUNBOOK.md`.

@@ -25,6 +25,8 @@ class CacheConfig:
     dataset_root: Optional[str] = None
     lavdf_root: Optional[str] = None
     output_dir: str = "/kaggle/working/cmar_cache"
+    visual_model_name: str = "facebook/dinov2-small"
+    audio_model_name: str = "openai/whisper-tiny"
     n_frames: int = 16
     image_size: int = 224
     audio_sr: int = 16000
@@ -34,6 +36,7 @@ class CacheConfig:
     overwrite: bool = False
     extract_degraded_test: bool = True
     include_train_degraded: bool = False
+    visual_micro_batch: int = 0  # >0 to micro-batch visual frames (reduces VRAM for large ViTs)
 
 
 @dataclass
