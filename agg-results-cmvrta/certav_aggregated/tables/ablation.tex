@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\caption{Multimodal vs unimodal noise certification comparison.}
+\label{tab:ablation}
+\begin{tabular}{cc|ccc}
+\toprule
+$\sigma$ & Noise Mode & Clean Acc & Mean $R$ & Cert@0.25 \\
+\midrule
+0.25 & Joint & 0.912\tiny{$\pm$0.011} & 0.588\tiny{$\pm$0.012} & 0.894\tiny{$\pm$0.019} \\
+0.25 & Visual & 0.910\tiny{$\pm$0.011} & 0.589\tiny{$\pm$0.006} & 0.893\tiny{$\pm$0.009} \\
+0.25 & Audio & 0.909\tiny{$\pm$0.003} & 0.607\tiny{$\pm$0.002} & 0.903\tiny{$\pm$0.004} \\
+\midrule
+1.00 & Joint & 0.925\tiny{$\pm$0.006} & 2.215\tiny{$\pm$0.032} & 0.918\tiny{$\pm$0.006} \\
+1.00 & Visual & 0.923\tiny{$\pm$0.003} & 2.273\tiny{$\pm$0.029} & 0.916\tiny{$\pm$0.004} \\
+1.00 & Audio & 0.919\tiny{$\pm$0.005} & 2.404\tiny{$\pm$0.034} & 0.917\tiny{$\pm$0.005} \\
+\bottomrule
+\end{tabular}
+\end{table}

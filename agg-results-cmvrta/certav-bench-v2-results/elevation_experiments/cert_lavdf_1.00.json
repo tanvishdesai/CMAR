@@ -1,0 +1,4621 @@
+{
+  "config": {
+    "sigma": 1.0,
+    "noise_mode": "joint",
+    "n0": 100,
+    "n": 1000,
+    "alpha": 0.001,
+    "checkpoint": "/kaggle/input/datasets/vasuaashadesai/cvrta-2026-data/certav_seed_2026/sigma_1.00/best.pt",
+    "dataset": "LAV-DF",
+    "cross_dataset": true
+  },
+  "summary": {
+    "total_samples": 500,
+    "correct_predictions": 373,
+    "abstained": 13,
+    "accuracy": 0.746,
+    "abstain_rate": 0.026,
+    "mean_certified_radius": 1.6263096846204548,
+    "median_certified_radius": 1.811326195141366,
+    "elapsed_seconds": 36.4
+  },
+  "certified_accuracy_at_radii": {
+    "r_0.00": 0.746,
+    "r_0.10": 0.74,
+    "r_0.25": 0.722,
+    "r_0.50": 0.692,
+    "r_0.75": 0.648,
+    "r_1.00": 0.614,
+    "r_1.50": 0.532
+  },
+  "certified_accuracy_curve": {
+    "radii": [
+      0.0,
+      0.05,
+      0.1,
+      0.15,
+      0.2,
+      0.25,
+      0.3,
+      0.35,
+      0.4,
+      0.45,
+      0.5,
+      0.55,
+      0.6,
+      0.65,
+      0.7,
+      0.75,
+      0.8,
+      0.85,
+      0.9,
+      0.95,
+      1.0,
+      1.05,
+      1.1,
+      1.15,
+      1.2,
+      1.25,
+      1.3,
+      1.35,
+      1.4,
+      1.45,
+      1.5,
+      1.55,
+      1.6,
+      1.65,
+      1.7,
+      1.75,
+      1.8,
+      1.85,
+      1.9,
+      1.95,
+      2.0
+    ],
+    "certified_accuracy": [
+      0.746,
+      0.744,
+      0.74,
+      0.732,
+      0.728,
+      0.722,
+      0.72,
+      0.714,
+      0.712,
+      0.704,
+      0.692,
+      0.682,
+      0.666,
+      0.662,
+      0.656,
+      0.648,
+      0.642,
+      0.634,
+      0.624,
+      0.618,
+      0.614,
+      0.608,
+      0.6,
+      0.588,
+      0.58,
+      0.578,
+      0.566,
+      0.56,
+      0.552,
+      0.54,
+      0.532,
+      0.518,
+      0.508,
+      0.486,
+      0.478,
+      0.47,
+      0.464,
+      0.452,
+      0.448,
+      0.44,
+      0.43
+    ]
+  },
+  "per_sample_results": [
+    {
+      "clip_id": "LAVDF_FF_000002_1d792f14e8",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000006_38d9fc43d9",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.107938,
+      "pA_lower": 0.542978
+    },
+    {
+      "clip_id": "LAVDF_FF_000009_b77ecd1ef1",
+      "true_label": 1,
+      "predicted_class": -1,
+      "correct": false,
+      "abstained": true,
+      "certified_radius": 0.0,
+      "pA_lower": 0.485653
+    },
+    {
+      "clip_id": "LAVDF_FF_000013_74d966c04c",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.746579,
+      "pA_lower": 0.772341
+    },
+    {
+      "clip_id": "LAVDF_FF_000017_a321eb95af",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.004598,
+      "pA_lower": 0.977497
+    },
+    {
+      "clip_id": "LAVDF_FF_000021_93c76df6d0",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.625042,
+      "pA_lower": 0.734028
+    },
+    {
+      "clip_id": "LAVDF_FF_000025_786c1dfeda",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.504414,
+      "pA_lower": 0.693015
+    },
+    {
+      "clip_id": "LAVDF_FF_000029_25f4772f1d",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.651077,
+      "pA_lower": 0.742502
+    },
+    {
+      "clip_id": "LAVDF_FF_000033_a50228aaa3",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.907516,
+      "pA_lower": 0.971773
+    },
+    {
+      "clip_id": "LAVDF_FF_000037_12cb8bbeb4",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.284292,
+      "pA_lower": 0.988823
+    },
+    {
+      "clip_id": "LAVDF_FF_000041_631ff4a488",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.277499,
+      "pA_lower": 0.899287
+    },
+    {
+      "clip_id": "LAVDF_FF_000045_03710f21e7",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.383575,
+      "pA_lower": 0.916756
+    },
+    {
+      "clip_id": "LAVDF_FF_000049_1ac92df823",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.355781,
+      "pA_lower": 0.638998
+    },
+    {
+      "clip_id": "LAVDF_FF_000053_a079239d59",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.454531,
+      "pA_lower": 0.675277
+    },
+    {
+      "clip_id": "LAVDF_FF_000058_4711abf187",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000062_1ef8969af1",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000066_e46b204323",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.483555,
+      "pA_lower": 0.931036
+    },
+    {
+      "clip_id": "LAVDF_FF_000070_bc22759b7e",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.910856,
+      "pA_lower": 0.818814
+    },
+    {
+      "clip_id": "LAVDF_FF_000073_c92f904c3a",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.854499,
+      "pA_lower": 0.803586
+    },
+    {
+      "clip_id": "LAVDF_FF_000078_f297f6e753",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.801072,
+      "pA_lower": 0.788455
+    },
+    {
+      "clip_id": "LAVDF_FF_000082_c89a648b7b",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.177691,
+      "pA_lower": 0.985285
+    },
+    {
+      "clip_id": "LAVDF_FF_000085_9c2d63e19a",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.568171,
+      "pA_lower": 0.715041
+    },
+    {
+      "clip_id": "LAVDF_FF_000089_132125c1e4",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.929678,
+      "pA_lower": 0.973177
+    },
+    {
+      "clip_id": "LAVDF_FF_000093_4957c2ad54",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000098_7d9dfe8c05",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000103_520713b076",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000107_e0fe39c61e",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000113_36b96938d5",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000117_066f8e2400",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000123_dc2a907487",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000127_3ce526f220",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.97801,
+      "pA_lower": 0.976036
+    },
+    {
+      "clip_id": "LAVDF_FF_000131_437b385faa",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.177691,
+      "pA_lower": 0.985285
+    },
+    {
+      "clip_id": "LAVDF_FF_000135_2167640ab6",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000140_a5c52507a0",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.60457,
+      "pA_lower": 0.945706
+    },
+    {
+      "clip_id": "LAVDF_FF_000144_efd4e3fa97",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.561986,
+      "pA_lower": 0.712937
+    },
+    {
+      "clip_id": "LAVDF_FF_000148_df7b01376d",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.405967,
+      "pA_lower": 0.657617
+    },
+    {
+      "clip_id": "LAVDF_FF_000152_7f6a88f5a5",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.627657,
+      "pA_lower": 0.948201
+    },
+    {
+      "clip_id": "LAVDF_FF_000157_3df79abbd0",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.593396,
+      "pA_lower": 0.944464
+    },
+    {
+      "clip_id": "LAVDF_FF_000161_3df64b6c27",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.083678,
+      "pA_lower": 0.860746
+    },
+    {
+      "clip_id": "LAVDF_FF_000165_02e6af4509",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 2.357651,
+      "pA_lower": 0.990805
+    },
+    {
+      "clip_id": "LAVDF_FF_000168_dfba323ac4",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000172_9bae3cf27f",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.847285,
+      "pA_lower": 0.967647
+    },
+    {
+      "clip_id": "LAVDF_FF_000175_01178ca8c5",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.835107,
+      "pA_lower": 0.798171
+    },
+    {
+      "clip_id": "LAVDF_FF_000179_15aebe01d4",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.593171,
+      "pA_lower": 0.723467
+    },
+    {
+      "clip_id": "LAVDF_FF_000183_48e10719ff",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.197298,
+      "pA_lower": 0.884405
+    },
+    {
+      "clip_id": "LAVDF_FF_000188_ec43a28ab4",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.511437,
+      "pA_lower": 0.934661
+    },
+    {
+      "clip_id": "LAVDF_FF_000191_63a21769f2",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.746985,
+      "pA_lower": 0.95968
+    },
+    {
+      "clip_id": "LAVDF_FF_000196_db325a5ace",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000200_d3b88efdf1",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.177691,
+      "pA_lower": 0.985285
+    },
+    {
+      "clip_id": "LAVDF_FF_000204_50711e47a2",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.886476,
+      "pA_lower": 0.970385
+    },
+    {
+      "clip_id": "LAVDF_FF_000209_d713a4b69b",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000213_57716dc4a0",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000217_3febbf7b62",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.357651,
+      "pA_lower": 0.990805
+    },
+    {
+      "clip_id": "LAVDF_FF_000221_62b14bc407",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.521043,
+      "pA_lower": 0.935875
+    },
+    {
+      "clip_id": "LAVDF_FF_000225_c896c87cda",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000229_551b10b511",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.540762,
+      "pA_lower": 0.938313
+    },
+    {
+      "clip_id": "LAVDF_FF_000233_60e0a53afa",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.495506,
+      "pA_lower": 0.689879
+    },
+    {
+      "clip_id": "LAVDF_FF_000238_7f05b7012c",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.098933,
+      "pA_lower": 0.864101
+    },
+    {
+      "clip_id": "LAVDF_FF_000242_ddeff28134",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.593171,
+      "pA_lower": 0.723467
+    },
+    {
+      "clip_id": "LAVDF_FF_000247_392696ac68",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.161786,
+      "pA_lower": 0.564263
+    },
+    {
+      "clip_id": "LAVDF_FF_000251_f073506531",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.886311,
+      "pA_lower": 0.812275
+    },
+    {
+      "clip_id": "LAVDF_FF_000255_d85b4308dd",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.143767,
+      "pA_lower": 0.557158
+    },
+    {
+      "clip_id": "LAVDF_FF_000259_e9046c0142",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.657666,
+      "pA_lower": 0.744624
+    },
+    {
+      "clip_id": "LAVDF_FF_000263_274b4d75e6",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.161786,
+      "pA_lower": 0.564263
+    },
+    {
+      "clip_id": "LAVDF_FF_000266_181b556eec",
+      "true_label": 1,
+      "predicted_class": -1,
+      "correct": false,
+      "abstained": true,
+      "certified_radius": 0.0,
+      "pA_lower": 0.484653
+    },
+    {
+      "clip_id": "LAVDF_FF_000271_b9683051f1",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000274_619e7ab05d",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000281_a6fe0b941e",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000285_f871ce00ce",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000289_39ab3b1890",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000294_e10d31e9cd",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.09799,
+      "pA_lower": 0.982047
+    },
+    {
+      "clip_id": "LAVDF_FF_000298_bb2a9ea9ef",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.778958,
+      "pA_lower": 0.781998
+    },
+    {
+      "clip_id": "LAVDF_FF_000302_aba899bf67",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.135484,
+      "pA_lower": 0.983639
+    },
+    {
+      "clip_id": "LAVDF_FF_000306_3e48d6ee55",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000311_3e6e854181",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.97801,
+      "pA_lower": 0.976036
+    },
+    {
+      "clip_id": "LAVDF_FF_000315_2ff09015c7",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000319_6bcd8d660a",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000324_10d10a8516",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000328_b487db1ba8",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.09799,
+      "pA_lower": 0.982047
+    },
+    {
+      "clip_id": "LAVDF_FF_000332_695709f17c",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.953114,
+      "pA_lower": 0.974597
+    },
+    {
+      "clip_id": "LAVDF_FF_000336_fa0d01c347",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.357651,
+      "pA_lower": 0.990805
+    },
+    {
+      "clip_id": "LAVDF_FF_000340_68c060e70a",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.239993,
+      "pA_lower": 0.594832
+    },
+    {
+      "clip_id": "LAVDF_FF_000343_08309c514c",
+      "true_label": 1,
+      "predicted_class": -1,
+      "correct": false,
+      "abstained": true,
+      "certified_radius": 0.0,
+      "pA_lower": 0.49867
+    },
+    {
+      "clip_id": "LAVDF_FF_000347_6aefd487dd",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000351_4e50d30929",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000356_09feb3b89f",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.571726,
+      "pA_lower": 0.941993
+    },
+    {
+      "clip_id": "LAVDF_FF_000360_cb74d7d3cb",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000365_9cc4aa649d",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000369_56a334521d",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.431496,
+      "pA_lower": 0.923856
+    },
+    {
+      "clip_id": "LAVDF_FF_000373_2b6a6847fb",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000378_184587b671",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000382_04dcde3e6e",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.284292,
+      "pA_lower": 0.988823
+    },
+    {
+      "clip_id": "LAVDF_FF_000386_6a7a2541b1",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.794376,
+      "pA_lower": 0.963623
+    },
+    {
+      "clip_id": "LAVDF_FF_000390_07a3d55f58",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.831271,
+      "pA_lower": 0.79709
+    },
+    {
+      "clip_id": "LAVDF_FF_000394_a43d0a13f6",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.953114,
+      "pA_lower": 0.974597
+    },
+    {
+      "clip_id": "LAVDF_FF_000398_c799fa75a0",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.004598,
+      "pA_lower": 0.977497
+    },
+    {
+      "clip_id": "LAVDF_FF_000401_ed60b62938",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.746985,
+      "pA_lower": 0.95968
+    },
+    {
+      "clip_id": "LAVDF_FF_000405_f7e574c96a",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000409_41e961ad42",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.078656,
+      "pA_lower": 0.85963
+    },
+    {
+      "clip_id": "LAVDF_FF_000413_3e7583be67",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.031905,
+      "pA_lower": 0.512726
+    },
+    {
+      "clip_id": "LAVDF_FF_000416_43eed37d21",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.261164,
+      "pA_lower": 0.603017
+    },
+    {
+      "clip_id": "LAVDF_FF_000420_b87c092d5e",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.431496,
+      "pA_lower": 0.923856
+    },
+    {
+      "clip_id": "LAVDF_FF_000423_6172d31a3b",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.599489,
+      "pA_lower": 0.725576
+    },
+    {
+      "clip_id": "LAVDF_FF_000427_b05239c060",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000431_0af1f4b128",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.200674,
+      "pA_lower": 0.579523
+    },
+    {
+      "clip_id": "LAVDF_FF_000435_3f63b3a40a",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.163081,
+      "pA_lower": 0.877602
+    },
+    {
+      "clip_id": "LAVDF_FF_000439_9cf1952145",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.816065,
+      "pA_lower": 0.792769
+    },
+    {
+      "clip_id": "LAVDF_FF_000443_24d4edd2ce",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.534456,
+      "pA_lower": 0.703487
+    },
+    {
+      "clip_id": "LAVDF_FF_000446_808fc81596",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.571726,
+      "pA_lower": 0.941993
+    },
+    {
+      "clip_id": "LAVDF_FF_000450_6c82e98427",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.97801,
+      "pA_lower": 0.976036
+    },
+    {
+      "clip_id": "LAVDF_FF_000453_bb18ce0471",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.866434,
+      "pA_lower": 0.96901
+    },
+    {
+      "clip_id": "LAVDF_FF_000457_edb086ef04",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.130346,
+      "pA_lower": 0.870835
+    },
+    {
+      "clip_id": "LAVDF_FF_000462_c95c1625e4",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.28249,
+      "pA_lower": 0.611216
+    },
+    {
+      "clip_id": "LAVDF_FF_000466_1f3103c7b0",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.357651,
+      "pA_lower": 0.990805
+    },
+    {
+      "clip_id": "LAVDF_FF_000884_ca55e1a3ff",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.439862,
+      "pA_lower": 0.925047
+    },
+    {
+      "clip_id": "LAVDF_FF_000888_0d9b7738b1",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_000892_2ba631d8f6",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.357651,
+      "pA_lower": 0.990805
+    },
+    {
+      "clip_id": "LAVDF_FF_000897_218eb86ea4",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.030046,
+      "pA_lower": 0.848506
+    },
+    {
+      "clip_id": "LAVDF_FF_000901_79fcee4389",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.835107,
+      "pA_lower": 0.798171
+    },
+    {
+      "clip_id": "LAVDF_FF_000905_9ec4dca694",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.828941,
+      "pA_lower": 0.966296
+    },
+    {
+      "clip_id": "LAVDF_FF_000909_5f2b8b4f10",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.456953,
+      "pA_lower": 0.927435
+    },
+    {
+      "clip_id": "LAVDF_FF_000913_68a8b944f7",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.093816,
+      "pA_lower": 0.862982
+    },
+    {
+      "clip_id": "LAVDF_FF_000917_f4c9a4a315",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.258509,
+      "pA_lower": 0.601993
+    },
+    {
+      "clip_id": "LAVDF_FF_000921_c70c4b2ae0",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.234723,
+      "pA_lower": 0.592788
+    },
+    {
+      "clip_id": "LAVDF_FF_000925_3a98174aca",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.828941,
+      "pA_lower": 0.966296
+    },
+    {
+      "clip_id": "LAVDF_FF_000929_d27b5629a7",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.128379,
+      "pA_lower": 0.551075
+    },
+    {
+      "clip_id": "LAVDF_FF_000933_6ffb5e0b96",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.261164,
+      "pA_lower": 0.603017
+    },
+    {
+      "clip_id": "LAVDF_FF_000939_763faa079a",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.718531,
+      "pA_lower": 0.763785
+    },
+    {
+      "clip_id": "LAVDF_FF_000943_f1d11b5570",
+      "true_label": 1,
+      "predicted_class": -1,
+      "correct": false,
+      "abstained": true,
+      "certified_radius": 0.0,
+      "pA_lower": 0.484653
+    },
+    {
+      "clip_id": "LAVDF_FF_000948_35c3df267c",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.399139,
+      "pA_lower": 0.919114
+    },
+    {
+      "clip_id": "LAVDF_FF_000952_5d6228cb64",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.639597,
+      "pA_lower": 0.949456
+    },
+    {
+      "clip_id": "LAVDF_FF_000956_a6256ea86e",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.948887,
+      "pA_lower": 0.828661
+    },
+    {
+      "clip_id": "LAVDF_FF_000960_b28cb551c6",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.177691,
+      "pA_lower": 0.985285
+    },
+    {
+      "clip_id": "LAVDF_FF_000964_97103e8779",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.211114,
+      "pA_lower": 0.583601
+    },
+    {
+      "clip_id": "LAVDF_FF_000968_13ac034eb5",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.445871,
+      "pA_lower": 0.672155
+    },
+    {
+      "clip_id": "LAVDF_FF_000972_69e18b2c8b",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.339059,
+      "pA_lower": 0.909724
+    },
+    {
+      "clip_id": "LAVDF_FF_000976_0b586f2250",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.044521,
+      "pA_lower": 0.517755
+    },
+    {
+      "clip_id": "LAVDF_FF_000980_c0d275e45c",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.041996,
+      "pA_lower": 0.516749
+    },
+    {
+      "clip_id": "LAVDF_FF_000984_eccb3bfc17",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.521043,
+      "pA_lower": 0.935875
+    },
+    {
+      "clip_id": "LAVDF_FF_000988_c7aa8d7f18",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.708179,
+      "pA_lower": 0.760583
+    },
+    {
+      "clip_id": "LAVDF_FF_000992_7c1f5e6e58",
+      "true_label": 1,
+      "predicted_class": -1,
+      "correct": false,
+      "abstained": true,
+      "certified_radius": 0.0,
+      "pA_lower": 0.408242
+    },
+    {
+      "clip_id": "LAVDF_FF_000996_6eb3ad4ff3",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.030046,
+      "pA_lower": 0.848506
+    },
+    {
+      "clip_id": "LAVDF_FF_001000_ce19eaf6f6",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.317509,
+      "pA_lower": 0.624571
+    },
+    {
+      "clip_id": "LAVDF_FF_001004_f93fe8d1cf",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.358539,
+      "pA_lower": 0.64003
+    },
+    {
+      "clip_id": "LAVDF_FF_001007_66bb2ae9b0",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.768063,
+      "pA_lower": 0.778775
+    },
+    {
+      "clip_id": "LAVDF_FF_001011_51ef09fa73",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.970704,
+      "pA_lower": 0.834152
+    },
+    {
+      "clip_id": "LAVDF_FF_001014_eb0e872e22",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.277499,
+      "pA_lower": 0.899287
+    },
+    {
+      "clip_id": "LAVDF_FF_001018_133a60c812",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.357651,
+      "pA_lower": 0.990805
+    },
+    {
+      "clip_id": "LAVDF_FF_001022_c9242e2828",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.135706,
+      "pA_lower": 0.87196
+    },
+    {
+      "clip_id": "LAVDF_FF_001026_b6e413f4d0",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.044335,
+      "pA_lower": 0.851835
+    },
+    {
+      "clip_id": "LAVDF_FF_001030_599acde7e3",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.460327,
+      "pA_lower": 0.677359
+    },
+    {
+      "clip_id": "LAVDF_FF_001034_4c35c836ad",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.907516,
+      "pA_lower": 0.971773
+    },
+    {
+      "clip_id": "LAVDF_FF_001039_d369b0624f",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.953114,
+      "pA_lower": 0.974597
+    },
+    {
+      "clip_id": "LAVDF_FF_001043_34020c10c1",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001048_41e05edaa4",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.495506,
+      "pA_lower": 0.689879
+    },
+    {
+      "clip_id": "LAVDF_FF_001052_784089dc71",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.593396,
+      "pA_lower": 0.944464
+    },
+    {
+      "clip_id": "LAVDF_FF_001056_5f1a8f1330",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.540762,
+      "pA_lower": 0.938313
+    },
+    {
+      "clip_id": "LAVDF_FF_001060_e616572d49",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.750132,
+      "pA_lower": 0.773412
+    },
+    {
+      "clip_id": "LAVDF_FF_001064_75bca058e8",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.403147,
+      "pA_lower": 0.65658
+    },
+    {
+      "clip_id": "LAVDF_FF_001068_c5697f6ceb",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.40879,
+      "pA_lower": 0.658653
+    },
+    {
+      "clip_id": "LAVDF_FF_001072_47f29ecd07",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.454531,
+      "pA_lower": 0.675277
+    },
+    {
+      "clip_id": "LAVDF_FF_001077_6c1380d871",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.732473,
+      "pA_lower": 0.76806
+    },
+    {
+      "clip_id": "LAVDF_FF_001081_3c4a6ba32b",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001085_866e7d66b1",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.778958,
+      "pA_lower": 0.781998
+    },
+    {
+      "clip_id": "LAVDF_FF_001089_92bfb86f5e",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.651821,
+      "pA_lower": 0.950714
+    },
+    {
+      "clip_id": "LAVDF_FF_001093_920f5332c9",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.586881,
+      "pA_lower": 0.721358
+    },
+    {
+      "clip_id": "LAVDF_FF_001097_c79059631f",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.98405,
+      "pA_lower": 0.837455
+    },
+    {
+      "clip_id": "LAVDF_FF_001101_45f59fba8f",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.625042,
+      "pA_lower": 0.734028
+    },
+    {
+      "clip_id": "LAVDF_FF_001105_c78c760ecb",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.492547,
+      "pA_lower": 0.688834
+    },
+    {
+      "clip_id": "LAVDF_FF_001111_c169a69078",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.866312,
+      "pA_lower": 0.80684
+    },
+    {
+      "clip_id": "LAVDF_FF_001115_8c6ef69d5c",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.615986,
+      "pA_lower": 0.946951
+    },
+    {
+      "clip_id": "LAVDF_FF_001118_b9a80ce1dd",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.006746,
+      "pA_lower": 0.842972
+    },
+    {
+      "clip_id": "LAVDF_FF_001122_30477c6cb7",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.540532,
+      "pA_lower": 0.705585
+    },
+    {
+      "clip_id": "LAVDF_FF_001127_a897a266c6",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001131_c686441685",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.762252,
+      "pA_lower": 0.960987
+    },
+    {
+      "clip_id": "LAVDF_FF_001135_dea86a5e62",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.375936,
+      "pA_lower": 0.915579
+    },
+    {
+      "clip_id": "LAVDF_FF_001139_afe3917432",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.044335,
+      "pA_lower": 0.851835
+    },
+    {
+      "clip_id": "LAVDF_FF_001145_4a7d8695b7",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.269142,
+      "pA_lower": 0.60609
+    },
+    {
+      "clip_id": "LAVDF_FF_001148_368a065f3b",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.543579,
+      "pA_lower": 0.706634
+    },
+    {
+      "clip_id": "LAVDF_FF_001152_f5e19b78c8",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.910856,
+      "pA_lower": 0.818814
+    },
+    {
+      "clip_id": "LAVDF_FF_001155_c68efde792",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.639597,
+      "pA_lower": 0.949456
+    },
+    {
+      "clip_id": "LAVDF_FF_001159_5e9fe51235",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001163_02d066c21d",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.357651,
+      "pA_lower": 0.990805
+    },
+    {
+      "clip_id": "LAVDF_FF_001167_725db12b39",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.571273,
+      "pA_lower": 0.716093
+    },
+    {
+      "clip_id": "LAVDF_FF_001170_0f9191aa92",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.083678,
+      "pA_lower": 0.860746
+    },
+    {
+      "clip_id": "LAVDF_FF_001174_f5a1bbd6af",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.571273,
+      "pA_lower": 0.716093
+    },
+    {
+      "clip_id": "LAVDF_FF_001178_cea29e3c12",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.353557,
+      "pA_lower": 0.912061
+    },
+    {
+      "clip_id": "LAVDF_FF_001183_c527b6db3a",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001187_c2780411f8",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001191_bdb552d3da",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001195_025accb1e3",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001199_7b8f9c9a4c",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.135484,
+      "pA_lower": 0.983639
+    },
+    {
+      "clip_id": "LAVDF_FF_001202_ba538ee232",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.465687,
+      "pA_lower": 0.928633
+    },
+    {
+      "clip_id": "LAVDF_FF_001206_84f280f428",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.064132,
+      "pA_lower": 0.980497
+    },
+    {
+      "clip_id": "LAVDF_FF_001209_bec2f1fe9a",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.651821,
+      "pA_lower": 0.950714
+    },
+    {
+      "clip_id": "LAVDF_FF_001213_59c7190a56",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001216_8962e9a576",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001220_d49bb33030",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001224_c96084ba05",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001228_b7591d1474",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001231_c73c59ed01",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.177691,
+      "pA_lower": 0.985285
+    },
+    {
+      "clip_id": "LAVDF_FF_001237_d897afd3ac",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001243_d5aa1ddbcc",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001247_5ec655d673",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.033176,
+      "pA_lower": 0.978983
+    },
+    {
+      "clip_id": "LAVDF_FF_001251_da5617e1b2",
+      "true_label": 1,
+      "predicted_class": -1,
+      "correct": false,
+      "abstained": true,
+      "certified_radius": 0.0,
+      "pA_lower": 0.463699
+    },
+    {
+      "clip_id": "LAVDF_FF_001255_12ece164fa",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.894425,
+      "pA_lower": 0.814453
+    },
+    {
+      "clip_id": "LAVDF_FF_001259_d206dbe1ae",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.004598,
+      "pA_lower": 0.977497
+    },
+    {
+      "clip_id": "LAVDF_FF_001263_7a37270f87",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.615986,
+      "pA_lower": 0.946951
+    },
+    {
+      "clip_id": "LAVDF_FF_001267_1b3b3d15a7",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.36093,
+      "pA_lower": 0.913232
+    },
+    {
+      "clip_id": "LAVDF_FF_001270_d1192d77c7",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.639597,
+      "pA_lower": 0.949456
+    },
+    {
+      "clip_id": "LAVDF_FF_001274_24dbbf26fb",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.064132,
+      "pA_lower": 0.980497
+    },
+    {
+      "clip_id": "LAVDF_FF_001278_add3fe0acf",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.114483,
+      "pA_lower": 0.867464
+    },
+    {
+      "clip_id": "LAVDF_FF_001282_f16ecdb431",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.664346,
+      "pA_lower": 0.951978
+    },
+    {
+      "clip_id": "LAVDF_FF_001287_d604b575db",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.513369,
+      "pA_lower": 0.696153
+    },
+    {
+      "clip_id": "LAVDF_FF_001290_05e1c07431",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.258509,
+      "pA_lower": 0.601993
+    },
+    {
+      "clip_id": "LAVDF_FF_001294_9fc75e1755",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.383516,
+      "pA_lower": 0.649332
+    },
+    {
+      "clip_id": "LAVDF_FF_001297_1b134fe56f",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.940302,
+      "pA_lower": 0.826469
+    },
+    {
+      "clip_id": "LAVDF_FF_001301_41561ef87e",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.631505,
+      "pA_lower": 0.736145
+    },
+    {
+      "clip_id": "LAVDF_FF_001304_43375dbb27",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.062217,
+      "pA_lower": 0.524805
+    },
+    {
+      "clip_id": "LAVDF_FF_001308_f425e268c1",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.342041,
+      "pA_lower": 0.63384
+    },
+    {
+      "clip_id": "LAVDF_FF_001312_206adf0384",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.596326,
+      "pA_lower": 0.724521
+    },
+    {
+      "clip_id": "LAVDF_FF_001316_738d424b33",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.530815,
+      "pA_lower": 0.937092
+    },
+    {
+      "clip_id": "LAVDF_FF_001320_ffb2e82f1e",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.058871,
+      "pA_lower": 0.855171
+    },
+    {
+      "clip_id": "LAVDF_FF_001324_4a7ba424de",
+      "true_label": 1,
+      "predicted_class": -1,
+      "correct": false,
+      "abstained": true,
+      "certified_radius": 0.0,
+      "pA_lower": 0.402337
+    },
+    {
+      "clip_id": "LAVDF_FF_001327_a950060a30",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.034427,
+      "pA_lower": 0.513732
+    },
+    {
+      "clip_id": "LAVDF_FF_001332_2885683c49",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.357651,
+      "pA_lower": 0.990805
+    },
+    {
+      "clip_id": "LAVDF_FF_001335_9e1d7eb988",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.284292,
+      "pA_lower": 0.988823
+    },
+    {
+      "clip_id": "LAVDF_FF_001339_e4bdac897c",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001343_f3e68702a8",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001347_592a7541e1",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.284292,
+      "pA_lower": 0.988823
+    },
+    {
+      "clip_id": "LAVDF_FF_001350_35c1cc2c2b",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.177691,
+      "pA_lower": 0.985285
+    },
+    {
+      "clip_id": "LAVDF_FF_001354_614c5d366f",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001358_ec3afc04ac",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001362_545368150e",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001366_ed4aaa5f99",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.270994,
+      "pA_lower": 0.898135
+    },
+    {
+      "clip_id": "LAVDF_FF_001370_32bb61d7fb",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001375_45c8547a1d",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001378_3347c962ca",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.357651,
+      "pA_lower": 0.990805
+    },
+    {
+      "clip_id": "LAVDF_FF_001382_d89c25b63d",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001386_96959bc349",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001390_9b54683177",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001394_c42b179a38",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001397_2c6246dcf9",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.357651,
+      "pA_lower": 0.990805
+    },
+    {
+      "clip_id": "LAVDF_FF_001401_c3c9c6f5a6",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.639597,
+      "pA_lower": 0.949456
+    },
+    {
+      "clip_id": "LAVDF_FF_001404_085d1a77fe",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.582451,
+      "pA_lower": 0.943227
+    },
+    {
+      "clip_id": "LAVDF_FF_001408_ab23da81ef",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001412_8dd199b587",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.22631,
+      "pA_lower": 0.987003
+    },
+    {
+      "clip_id": "LAVDF_FF_001416_3f0ae50136",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.284292,
+      "pA_lower": 0.988823
+    },
+    {
+      "clip_id": "LAVDF_FF_001420_0d39825cb8",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.322939,
+      "pA_lower": 0.626629
+    },
+    {
+      "clip_id": "LAVDF_FF_001424_1f22c36e47",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001429_42be983af7",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001433_9c4cdfd38f",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001437_b3c6798b9c",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001441_7c110516e1",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001446_ee79e23125",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.415104,
+      "pA_lower": 0.921481
+    },
+    {
+      "clip_id": "LAVDF_FF_001451_f04ec7226d",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001455_a205f7352a",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.047047,
+      "pA_lower": 0.518762
+    },
+    {
+      "clip_id": "LAVDF_FF_001459_8ea69d2cd9",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.722001,
+      "pA_lower": 0.764853
+    },
+    {
+      "clip_id": "LAVDF_FF_001463_50c7d2fae2",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.561208,
+      "pA_lower": 0.940763
+    },
+    {
+      "clip_id": "LAVDF_FF_001467_5722e7e073",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001471_96f84b5f88",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.125819,
+      "pA_lower": 0.550063
+    },
+    {
+      "clip_id": "LAVDF_FF_001475_cf4a823f08",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.561208,
+      "pA_lower": 0.940763
+    },
+    {
+      "clip_id": "LAVDF_FF_001479_6381f5973d",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001483_00822da0af",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.886476,
+      "pA_lower": 0.970385
+    },
+    {
+      "clip_id": "LAVDF_FF_001487_2e833e5e94",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.746985,
+      "pA_lower": 0.95968
+    },
+    {
+      "clip_id": "LAVDF_FF_001491_a05e0b650f",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001495_0786dc29c8",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001499_95b620cc4d",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.357651,
+      "pA_lower": 0.990805
+    },
+    {
+      "clip_id": "LAVDF_FF_001503_7e1e3159a9",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001507_274b39eed6",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.064132,
+      "pA_lower": 0.980497
+    },
+    {
+      "clip_id": "LAVDF_FF_001510_754fcfe5d6",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.357651,
+      "pA_lower": 0.990805
+    },
+    {
+      "clip_id": "LAVDF_FF_001514_b315c78f40",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001518_8d33e85a9f",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.357651,
+      "pA_lower": 0.990805
+    },
+    {
+      "clip_id": "LAVDF_FF_001522_6cad0956f4",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001526_3aff4b137a",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001530_b33309e1a1",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.70392,
+      "pA_lower": 0.955802
+    },
+    {
+      "clip_id": "LAVDF_FF_001534_c88ed22674",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.704748,
+      "pA_lower": 0.759517
+    },
+    {
+      "clip_id": "LAVDF_FF_001538_3f82f5bac6",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001542_734df43b9b",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.135706,
+      "pA_lower": 0.87196
+    },
+    {
+      "clip_id": "LAVDF_FF_001546_6fa50a4036",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001550_46985e2a8a",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.113041,
+      "pA_lower": 0.545001
+    },
+    {
+      "clip_id": "LAVDF_FF_001553_91a7c4d656",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.279815,
+      "pA_lower": 0.61019
+    },
+    {
+      "clip_id": "LAVDF_FF_001557_3ce7899db4",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.357651,
+      "pA_lower": 0.990805
+    },
+    {
+      "clip_id": "LAVDF_FF_001561_8985c30191",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.593396,
+      "pA_lower": 0.944464
+    },
+    {
+      "clip_id": "LAVDF_FF_001564_c76a566b3b",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.561208,
+      "pA_lower": 0.940763
+    },
+    {
+      "clip_id": "LAVDF_FF_001568_da6dd94761",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.141103,
+      "pA_lower": 0.873087
+    },
+    {
+      "clip_id": "LAVDF_FF_001571_864704f7e8",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.457427,
+      "pA_lower": 0.676318
+    },
+    {
+      "clip_id": "LAVDF_FF_001575_51f40907a7",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.357651,
+      "pA_lower": 0.990805
+    },
+    {
+      "clip_id": "LAVDF_FF_001584_345b99925a",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.828941,
+      "pA_lower": 0.966296
+    },
+    {
+      "clip_id": "LAVDF_FF_001588_a94a318630",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001592_9049d86b34",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.60457,
+      "pA_lower": 0.945706
+    },
+    {
+      "clip_id": "LAVDF_FF_001595_246b674ec1",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.064132,
+      "pA_lower": 0.980497
+    },
+    {
+      "clip_id": "LAVDF_FF_001599_f6e04d83f1",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.651821,
+      "pA_lower": 0.950714
+    },
+    {
+      "clip_id": "LAVDF_FF_001602_8112802390",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.639597,
+      "pA_lower": 0.949456
+    },
+    {
+      "clip_id": "LAVDF_FF_001606_82855c10ee",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001611_386da04bbd",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.929678,
+      "pA_lower": 0.973177
+    },
+    {
+      "clip_id": "LAVDF_FF_001615_9dd93d77ec",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.762252,
+      "pA_lower": 0.960987
+    },
+    {
+      "clip_id": "LAVDF_FF_001619_1b457bad72",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.828941,
+      "pA_lower": 0.966296
+    },
+    {
+      "clip_id": "LAVDF_FF_001623_02e4aa752f",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001634_07873d6d5f",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001638_6fa0213004",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001642_bdb6cb5a9d",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001647_7b1364adf4",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 2.135484,
+      "pA_lower": 0.983639
+    },
+    {
+      "clip_id": "LAVDF_FF_001650_e66b7d291e",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001654_1aa4a48982",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.368389,
+      "pA_lower": 0.914405
+    },
+    {
+      "clip_id": "LAVDF_FF_001658_27924d0000",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.350275,
+      "pA_lower": 0.636934
+    },
+    {
+      "clip_id": "LAVDF_FF_001662_b547388c40",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.3179,
+      "pA_lower": 0.906231
+    },
+    {
+      "clip_id": "LAVDF_FF_001665_0e483222df",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.894425,
+      "pA_lower": 0.814453
+    },
+    {
+      "clip_id": "LAVDF_FF_001669_b377d309a6",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.537491,
+      "pA_lower": 0.704536
+    },
+    {
+      "clip_id": "LAVDF_FF_001672_eb458aecdb",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.445871,
+      "pA_lower": 0.672155
+    },
+    {
+      "clip_id": "LAVDF_FF_001676_fa013d0e4a",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.540532,
+      "pA_lower": 0.705585
+    },
+    {
+      "clip_id": "LAVDF_FF_001679_2e9012e92e",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.674283,
+      "pA_lower": 0.749934
+    },
+    {
+      "clip_id": "LAVDF_FF_001683_008f3d9f98",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001687_a7c87ce85c",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.109266,
+      "pA_lower": 0.866342
+    },
+    {
+      "clip_id": "LAVDF_FF_001691_1a3ad99c3e",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.828941,
+      "pA_lower": 0.966296
+    },
+    {
+      "clip_id": "LAVDF_FF_001695_081b17f433",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.064132,
+      "pA_lower": 0.980497
+    },
+    {
+      "clip_id": "LAVDF_FF_001699_4d3bf99389",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.771683,
+      "pA_lower": 0.779849
+    },
+    {
+      "clip_id": "LAVDF_FF_001702_0abb47fef6",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.216346,
+      "pA_lower": 0.585641
+    },
+    {
+      "clip_id": "LAVDF_FF_001706_300e14875a",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.78996,
+      "pA_lower": 0.785224
+    },
+    {
+      "clip_id": "LAVDF_FF_001710_67552d2b5a",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.119735,
+      "pA_lower": 0.868587
+    },
+    {
+      "clip_id": "LAVDF_FF_001714_a31cce1896",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.423245,
+      "pA_lower": 0.922667
+    },
+    {
+      "clip_id": "LAVDF_FF_001719_5eac5a6f02",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.314798,
+      "pA_lower": 0.623542
+    },
+    {
+      "clip_id": "LAVDF_FF_001723_d88575161b",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.593171,
+      "pA_lower": 0.723467
+    },
+    {
+      "clip_id": "LAVDF_FF_001727_045c43b47c",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.22631,
+      "pA_lower": 0.987003
+    },
+    {
+      "clip_id": "LAVDF_FF_001731_4165970aab",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 2.09799,
+      "pA_lower": 0.982047
+    },
+    {
+      "clip_id": "LAVDF_FF_001735_1486cb9cde",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.251837,
+      "pA_lower": 0.894685
+    },
+    {
+      "clip_id": "LAVDF_FF_001739_dbacac3ddc",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.993059,
+      "pA_lower": 0.839659
+    },
+    {
+      "clip_id": "LAVDF_FF_001743_0016c5fedf",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001747_0db5672798",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001751_3a078cf7fc",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001755_8ef8f37a58",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001759_2592c791f9",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001764_844f94922e",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001768_265cbdc6d6",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001772_2d742f39dc",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001776_ca5d28e4f0",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001780_41c18bfd19",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.152013,
+      "pA_lower": 0.875342
+    },
+    {
+      "clip_id": "LAVDF_FF_001784_874a0e5452",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001788_e989aaa7a9",
+      "true_label": 1,
+      "predicted_class": -1,
+      "correct": false,
+      "abstained": true,
+      "certified_radius": 0.0,
+      "pA_lower": 0.497668
+    },
+    {
+      "clip_id": "LAVDF_FF_001791_c83acb24d8",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.113041,
+      "pA_lower": 0.545001
+    },
+    {
+      "clip_id": "LAVDF_FF_001796_a3f79436f9",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001800_243914bdd5",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.804801,
+      "pA_lower": 0.789533
+    },
+    {
+      "clip_id": "LAVDF_FF_001804_e6e3352e08",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.627657,
+      "pA_lower": 0.948201
+    },
+    {
+      "clip_id": "LAVDF_FF_001808_1e2d2faafe",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.746985,
+      "pA_lower": 0.95968
+    },
+    {
+      "clip_id": "LAVDF_FF_001813_e53e96b667",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.70392,
+      "pA_lower": 0.955802
+    },
+    {
+      "clip_id": "LAVDF_FF_001817_155d456211",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.221586,
+      "pA_lower": 0.587682
+    },
+    {
+      "clip_id": "LAVDF_FF_001821_98fad2968d",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.54969,
+      "pA_lower": 0.708734
+    },
+    {
+      "clip_id": "LAVDF_FF_001825_b04704c794",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.344783,
+      "pA_lower": 0.634871
+    },
+    {
+      "clip_id": "LAVDF_FF_001829_350490eeee",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.894425,
+      "pA_lower": 0.814453
+    },
+    {
+      "clip_id": "LAVDF_FF_001833_331c49a29c",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.093816,
+      "pA_lower": 0.862982
+    },
+    {
+      "clip_id": "LAVDF_FF_001837_dc28502f54",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.571726,
+      "pA_lower": 0.941993
+    },
+    {
+      "clip_id": "LAVDF_FF_001841_c358e643dc",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.079957,
+      "pA_lower": 0.531864
+    },
+    {
+      "clip_id": "LAVDF_FF_001845_15830073a8",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.492699,
+      "pA_lower": 0.932242
+    },
+    {
+      "clip_id": "LAVDF_FF_001850_867ac70a0f",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.006746,
+      "pA_lower": 0.842972
+    },
+    {
+      "clip_id": "LAVDF_FF_001856_fcbf8d0865",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.448753,
+      "pA_lower": 0.673195
+    },
+    {
+      "clip_id": "LAVDF_FF_001861_f2300a1cfd",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001866_e10c88116c",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.771683,
+      "pA_lower": 0.779849
+    },
+    {
+      "clip_id": "LAVDF_FF_001870_ab86d4d011",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001874_97bd0e5593",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.09799,
+      "pA_lower": 0.982047
+    },
+    {
+      "clip_id": "LAVDF_FF_001878_c9897608c2",
+      "true_label": 1,
+      "predicted_class": -1,
+      "correct": false,
+      "abstained": true,
+      "certified_radius": 0.0,
+      "pA_lower": 0.463699
+    },
+    {
+      "clip_id": "LAVDF_FF_001882_293d28df84",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.811326,
+      "pA_lower": 0.964955
+    },
+    {
+      "clip_id": "LAVDF_FF_001886_3c934f4f74",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.431525,
+      "pA_lower": 0.666957
+    },
+    {
+      "clip_id": "LAVDF_FF_001889_7464108312",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.961915,
+      "pA_lower": 0.831954
+    },
+    {
+      "clip_id": "LAVDF_FF_001893_48c431a785",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.886476,
+      "pA_lower": 0.970385
+    },
+    {
+      "clip_id": "LAVDF_FF_001897_3efd70dad3",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.561208,
+      "pA_lower": 0.940763
+    },
+    {
+      "clip_id": "LAVDF_FF_001903_c5fc7448b8",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.45164,
+      "pA_lower": 0.674236
+    },
+    {
+      "clip_id": "LAVDF_FF_001907_f4b07a0c24",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001911_c6897f7126",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001915_ae84e0aaa8",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.466142,
+      "pA_lower": 0.679443
+    },
+    {
+      "clip_id": "LAVDF_FF_001919_4bae26051f",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.177691,
+      "pA_lower": 0.985285
+    },
+    {
+      "clip_id": "LAVDF_FF_001923_ccc0e87e1a",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.168676,
+      "pA_lower": 0.878733
+    },
+    {
+      "clip_id": "LAVDF_FF_001927_600d178d5c",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.284292,
+      "pA_lower": 0.988823
+    },
+    {
+      "clip_id": "LAVDF_FF_001931_8553611f42",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001935_0e7c054cc8",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001940_6bfeefbe3e",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.177691,
+      "pA_lower": 0.985285
+    },
+    {
+      "clip_id": "LAVDF_FF_001945_3afd5f4463",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.346267,
+      "pA_lower": 0.910892
+    },
+    {
+      "clip_id": "LAVDF_FF_001949_53478fb4f9",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.654368,
+      "pA_lower": 0.743562
+    },
+    {
+      "clip_id": "LAVDF_FF_001953_2423f0821b",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.059686,
+      "pA_lower": 0.523797
+    },
+    {
+      "clip_id": "LAVDF_FF_001958_24a853a493",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.284292,
+      "pA_lower": 0.988823
+    },
+    {
+      "clip_id": "LAVDF_FF_001962_5f90a538dd",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.342041,
+      "pA_lower": 0.63384
+    },
+    {
+      "clip_id": "LAVDF_FF_001966_d5c823f78a",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.073665,
+      "pA_lower": 0.858514
+    },
+    {
+      "clip_id": "LAVDF_FF_001970_a5bf5cd20d",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.439862,
+      "pA_lower": 0.925047
+    },
+    {
+      "clip_id": "LAVDF_FF_001975_77d622b42f",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.31209,
+      "pA_lower": 0.622514
+    },
+    {
+      "clip_id": "LAVDF_FF_001979_9540018a48",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.357651,
+      "pA_lower": 0.990805
+    },
+    {
+      "clip_id": "LAVDF_FF_001986_b8423b8663",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001990_878c57810d",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001994_e979444aec",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_001998_290fb487b1",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002002_8813a04261",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.033176,
+      "pA_lower": 0.978983
+    },
+    {
+      "clip_id": "LAVDF_FF_002006_4334ed8333",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002010_e49b217387",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.425817,
+      "pA_lower": 0.664879
+    },
+    {
+      "clip_id": "LAVDF_FF_002013_df3164fa77",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.125023,
+      "pA_lower": 0.86971
+    },
+    {
+      "clip_id": "LAVDF_FF_002017_79d687437a",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.525385,
+      "pA_lower": 0.700342
+    },
+    {
+      "clip_id": "LAVDF_FF_002021_85b0d31787",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.357651,
+      "pA_lower": 0.990805
+    },
+    {
+      "clip_id": "LAVDF_FF_002025_53ae2fe040",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.794376,
+      "pA_lower": 0.963623
+    },
+    {
+      "clip_id": "LAVDF_FF_002028_b7351b2502",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.828941,
+      "pA_lower": 0.966296
+    },
+    {
+      "clip_id": "LAVDF_FF_002033_e6bd2de849",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.233191,
+      "pA_lower": 0.891248
+    },
+    {
+      "clip_id": "LAVDF_FF_002038_252660c411",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.088731,
+      "pA_lower": 0.861864
+    },
+    {
+      "clip_id": "LAVDF_FF_002042_3d7e4ff67d",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.627657,
+      "pA_lower": 0.948201
+    },
+    {
+      "clip_id": "LAVDF_FF_002046_a48fa9ae01",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.89036,
+      "pA_lower": 0.813364
+    },
+    {
+      "clip_id": "LAVDF_FF_002049_be0965e4d0",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.492699,
+      "pA_lower": 0.932242
+    },
+    {
+      "clip_id": "LAVDF_FF_002054_112e265b83",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.537491,
+      "pA_lower": 0.704536
+    },
+    {
+      "clip_id": "LAVDF_FF_002058_6c978ab306",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002062_e47f3f29de",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.36093,
+      "pA_lower": 0.913232
+    },
+    {
+      "clip_id": "LAVDF_FF_002066_8ff1e9479c",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.284292,
+      "pA_lower": 0.988823
+    },
+    {
+      "clip_id": "LAVDF_FF_002071_fe8ca1b234",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.357651,
+      "pA_lower": 0.990805
+    },
+    {
+      "clip_id": "LAVDF_FF_002075_7cfa0deb76",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002079_c9f615859e",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.02065,
+      "pA_lower": 0.84629
+    },
+    {
+      "clip_id": "LAVDF_FF_002082_129150ef67",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.325659,
+      "pA_lower": 0.627659
+    },
+    {
+      "clip_id": "LAVDF_FF_002086_c64baafcce",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.064132,
+      "pA_lower": 0.980497
+    },
+    {
+      "clip_id": "LAVDF_FF_002089_721dd165d5",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.862359,
+      "pA_lower": 0.805755
+    },
+    {
+      "clip_id": "LAVDF_FF_002093_a33f2b3c94",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002099_830db55f3d",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.357651,
+      "pA_lower": 0.990805
+    },
+    {
+      "clip_id": "LAVDF_FF_002103_b0cf870410",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002107_ab3f135364",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.284292,
+      "pA_lower": 0.988823
+    },
+    {
+      "clip_id": "LAVDF_FF_002111_139732d1e6",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.22631,
+      "pA_lower": 0.987003
+    },
+    {
+      "clip_id": "LAVDF_FF_002115_8040b40386",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002119_c2305a9c2d",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.586881,
+      "pA_lower": 0.721358
+    },
+    {
+      "clip_id": "LAVDF_FF_002124_84e8c3274c",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.357651,
+      "pA_lower": 0.990805
+    },
+    {
+      "clip_id": "LAVDF_FF_002128_3d84bbf222",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.284292,
+      "pA_lower": 0.988823
+    },
+    {
+      "clip_id": "LAVDF_FF_002132_7f96e78e23",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.284292,
+      "pA_lower": 0.988823
+    },
+    {
+      "clip_id": "LAVDF_FF_002136_bd03720117",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002140_fc0a6a7d3b",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002144_152e2f2494",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002149_43797d6f2e",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002156_62644495df",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002160_3fd55e6656",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002164_499f31b6e3",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002168_ebc1c27bcd",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.521043,
+      "pA_lower": 0.935875
+    },
+    {
+      "clip_id": "LAVDF_FF_002172_1754521564",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.09799,
+      "pA_lower": 0.982047
+    },
+    {
+      "clip_id": "LAVDF_FF_002175_b2455194d8",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.09799,
+      "pA_lower": 0.982047
+    },
+    {
+      "clip_id": "LAVDF_FF_002179_f36d359df6",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.09799,
+      "pA_lower": 0.982047
+    },
+    {
+      "clip_id": "LAVDF_FF_002184_878edca4d1",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002188_04cf148ec8",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002193_ba6dcc3231",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002197_fb6a3e60d6",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.530815,
+      "pA_lower": 0.937092
+    },
+    {
+      "clip_id": "LAVDF_FF_002200_012ecdc73b",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.177691,
+      "pA_lower": 0.985285
+    },
+    {
+      "clip_id": "LAVDF_FF_002204_8b1b284f67",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.746579,
+      "pA_lower": 0.772341
+    },
+    {
+      "clip_id": "LAVDF_FF_002208_510a21836f",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002211_b6e6461f53",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002215_23fd6bfc7f",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002220_ce28901341",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.177691,
+      "pA_lower": 0.985285
+    },
+    {
+      "clip_id": "LAVDF_FF_002224_f3de486fc3",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002229_630dc82900",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.174313,
+      "pA_lower": 0.879865
+    },
+    {
+      "clip_id": "LAVDF_FF_002233_687aa63232",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.290699,
+      "pA_lower": 0.901596
+    },
+    {
+      "clip_id": "LAVDF_FF_002237_90118246d5",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.54969,
+      "pA_lower": 0.708734
+    },
+    {
+      "clip_id": "LAVDF_FF_002241_6edefbf5d3",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002245_f2621ba459",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.177691,
+      "pA_lower": 0.985285
+    },
+    {
+      "clip_id": "LAVDF_FF_002249_bad7735aaf",
+      "true_label": 1,
+      "predicted_class": -1,
+      "correct": false,
+      "abstained": true,
+      "certified_radius": 0.0,
+      "pA_lower": 0.496666
+    },
+    {
+      "clip_id": "LAVDF_FF_002254_7222e711cc",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002258_d41c4aadda",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.565075,
+      "pA_lower": 0.713989
+    },
+    {
+      "clip_id": "LAVDF_FF_002262_37e69c01af",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002267_7255922ba5",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.182477,
+      "pA_lower": 0.572396
+    },
+    {
+      "clip_id": "LAVDF_FF_002270_2f0d8d4379",
+      "true_label": 1,
+      "predicted_class": -1,
+      "correct": false,
+      "abstained": true,
+      "certified_radius": 0.0,
+      "pA_lower": 0.40037
+    },
+    {
+      "clip_id": "LAVDF_FF_002274_e4053e2d19",
+      "true_label": 1,
+      "predicted_class": -1,
+      "correct": false,
+      "abstained": true,
+      "certified_radius": 0.0,
+      "pA_lower": 0.497668
+    },
+    {
+      "clip_id": "LAVDF_FF_002277_33400265ed",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.71162,
+      "pA_lower": 0.76165
+    },
+    {
+      "clip_id": "LAVDF_FF_002281_06afebafbb",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002285_fc0549adc6",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002289_cca6ba01a8",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002293_9325d82d3b",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002297_cc5821c793",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002301_68573a6f45",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002305_344324ee4b",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002309_f699554668",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002314_a9b1b9c9e3",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002319_8b58b830d5",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002323_2a9ffc33b8",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002329_c540e05d12",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002334_74c3bce5ac",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002338_371e7709c6",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.22631,
+      "pA_lower": 0.987003
+    },
+    {
+      "clip_id": "LAVDF_FF_002341_5669e12075",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002345_014419469d",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002349_df0d0897a4",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002353_d0cd4e17c3",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002358_4954d4150d",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.431496,
+      "pA_lower": 0.923856
+    },
+    {
+      "clip_id": "LAVDF_FF_002361_971a1727b1",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.324878,
+      "pA_lower": 0.907394
+    },
+    {
+      "clip_id": "LAVDF_FF_002365_a359286b1e",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.297397,
+      "pA_lower": 0.902753
+    },
+    {
+      "clip_id": "LAVDF_FF_002368_33571c7a4c",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.691117,
+      "pA_lower": 0.755254
+    },
+    {
+      "clip_id": "LAVDF_FF_002372_fb60e2ae93",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.574382,
+      "pA_lower": 0.717145
+    },
+    {
+      "clip_id": "LAVDF_FF_002376_5e6f663780",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.615986,
+      "pA_lower": 0.946951
+    },
+    {
+      "clip_id": "LAVDF_FF_002380_58f0e267bf",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.033176,
+      "pA_lower": 0.978983
+    },
+    {
+      "clip_id": "LAVDF_FF_002383_29d901a529",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.940302,
+      "pA_lower": 0.826469
+    },
+    {
+      "clip_id": "LAVDF_FF_002387_41bbc58061",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002390_26115fed5a",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "LAVDF_FF_002394_48ba0740fb",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.43725,
+      "pA_lower": 0.669035
+    },
+    {
+      "clip_id": "LAVDF_FF_002399_9035b8a88e",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.310995,
+      "pA_lower": 0.90507
+    },
+    {
+      "clip_id": "LAVDF_FF_002403_a45d0ac90f",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.469057,
+      "pA_lower": 0.680485
+    },
+    {
+      "clip_id": "LAVDF_FF_002407_593045bc7b",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.13094,
+      "pA_lower": 0.552089
+    },
+    {
+      "clip_id": "LAVDF_FF_002410_4068002b9f",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.425817,
+      "pA_lower": 0.664879
+    },
+    {
+      "clip_id": "LAVDF_FF_002414_622014d1b4",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.801072,
+      "pA_lower": 0.788455
+    },
+    {
+      "clip_id": "LAVDF_FF_002418_647d8251d3",
+      "true_label": 1,
+      "predicted_class": -1,
+      "correct": false,
+      "abstained": true,
+      "certified_radius": 0.0,
+      "pA_lower": 0.454746
+    },
+    {
+      "clip_id": "LAVDF_FF_002422_46ad0c4fb1",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.866434,
+      "pA_lower": 0.96901
+    },
+    {
+      "clip_id": "LAVDF_FF_002426_b700b25b22",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.847285,
+      "pA_lower": 0.967647
+    },
+    {
+      "clip_id": "LAVDF_FF_002429_1528d1c316",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.746985,
+      "pA_lower": 0.95968
+    },
+    {
+      "clip_id": "LAVDF_FF_002433_1f4f2b570a",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.43725,
+      "pA_lower": 0.669035
+    },
+    {
+      "clip_id": "LAVDF_FF_002437_c17c6c9d30",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.357651,
+      "pA_lower": 0.990805
+    },
+    {
+      "clip_id": "LAVDF_FF_002440_187b2c83a1",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.357651,
+      "pA_lower": 0.990805
+    },
+    {
+      "clip_id": "LAVDF_FF_002444_16d89dab31",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.033176,
+      "pA_lower": 0.978983
+    },
+    {
+      "clip_id": "LAVDF_FF_002447_1705355324",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.639597,
+      "pA_lower": 0.949456
+    },
+    {
+      "clip_id": "LAVDF_FF_002458_6deaa5a31b",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    }
+  ]
+}

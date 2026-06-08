@@ -1,0 +1,2823 @@
+{
+  "config": {
+    "sigma": 1.0,
+    "noise_mode": "joint",
+    "n0": 100,
+    "n": 1000,
+    "alpha": 0.001,
+    "condition": "clean",
+    "checkpoint": "/kaggle/working/elevation_experiments/baseline_no_noise/best.pt"
+  },
+  "summary": {
+    "total_samples": 300,
+    "correct_predictions": 277,
+    "abstained": 2,
+    "accuracy": 0.9233333333333333,
+    "abstain_rate": 0.006666666666666667,
+    "certified_correct": 277,
+    "certified_accuracy_at_0": 0.9233333333333333,
+    "mean_certified_radius": 2.1733600512507016,
+    "median_certified_radius": 2.4632626147808114,
+    "max_certified_radius": 2.4632626147808114,
+    "elapsed_seconds": 21.7
+  },
+  "certified_accuracy_at_radii": {
+    "r_0.00": 0.9233333333333333,
+    "r_0.10": 0.9133333333333333,
+    "r_0.25": 0.9133333333333333,
+    "r_0.50": 0.9,
+    "r_0.75": 0.8766666666666667,
+    "r_1.00": 0.8633333333333333,
+    "r_1.50": 0.82
+  },
+  "certified_accuracy_curve": {
+    "radii": [
+      0.0,
+      0.05,
+      0.1,
+      0.15,
+      0.2,
+      0.25,
+      0.3,
+      0.35,
+      0.4,
+      0.45,
+      0.5,
+      0.55,
+      0.6,
+      0.65,
+      0.7,
+      0.75,
+      0.8,
+      0.85,
+      0.9,
+      0.95,
+      1.0,
+      1.05,
+      1.1,
+      1.15,
+      1.2,
+      1.25,
+      1.3,
+      1.35,
+      1.4,
+      1.45,
+      1.5,
+      1.55,
+      1.6,
+      1.65,
+      1.7,
+      1.75,
+      1.8,
+      1.85,
+      1.9,
+      1.95,
+      2.0
+    ],
+    "certified_accuracy": [
+      0.9233333333333333,
+      0.92,
+      0.9133333333333333,
+      0.9133333333333333,
+      0.9133333333333333,
+      0.9133333333333333,
+      0.91,
+      0.91,
+      0.9033333333333333,
+      0.9,
+      0.9,
+      0.9,
+      0.9,
+      0.89,
+      0.8833333333333333,
+      0.8766666666666667,
+      0.8733333333333333,
+      0.87,
+      0.8666666666666667,
+      0.8666666666666667,
+      0.8633333333333333,
+      0.8633333333333333,
+      0.85,
+      0.85,
+      0.85,
+      0.8466666666666667,
+      0.8366666666666667,
+      0.8333333333333334,
+      0.8333333333333334,
+      0.8266666666666667,
+      0.82,
+      0.8166666666666667,
+      0.81,
+      0.8066666666666666,
+      0.8066666666666666,
+      0.8066666666666666,
+      0.8,
+      0.79,
+      0.7866666666666666,
+      0.78,
+      0.7733333333333333
+    ]
+  },
+  "per_sample_results": [
+    {
+      "clip_id": "RR_00063_f8413fd40e",
+      "true_label": 0,
+      "predicted_class": 1,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 2.357651,
+      "pA_lower": 0.990805
+    },
+    {
+      "clip_id": "RR_00080_6921a14500",
+      "true_label": 0,
+      "predicted_class": 0,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.284292,
+      "pA_lower": 0.988823
+    },
+    {
+      "clip_id": "FR_00368_id09174_wavtolip_edc5390cd5",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00005_id01227_wavtolip_92b65b85ac",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00009_0_48f3fbfc1b",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.953114,
+      "pA_lower": 0.974597
+    },
+    {
+      "clip_id": "RR_00028_ddda3a4f12",
+      "true_label": 0,
+      "predicted_class": 1,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00005_id01124_wavtolip_d97d855e72",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.284292,
+      "pA_lower": 0.988823
+    },
+    {
+      "clip_id": "FF_00052_id00220_wavtolip_a88f49cd53",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.22631,
+      "pA_lower": 0.987003
+    },
+    {
+      "clip_id": "FR_00017_id01091_oM2XdIGMM2c_876cde7a65",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00032_id02838_kaCQlSGlLe8_id01783_wavtolip_67ccd9c2f4",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00045_id02040_wavtolip_11538239be",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00092_id00049_S_EHTUF-mQY_faceswap_id00529_wavtolip_46ac0a5b75",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00154_id04537_G1e1UFopjfI_a0051f0fa8",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.674283,
+      "pA_lower": 0.749934
+    },
+    {
+      "clip_id": "RR_00160_d5aec0e085",
+      "true_label": 0,
+      "predicted_class": 0,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.762252,
+      "pA_lower": 0.960987
+    },
+    {
+      "clip_id": "FR_00278_id01163_QSMeUEH3lJM_c262c85aa6",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.033176,
+      "pA_lower": 0.978983
+    },
+    {
+      "clip_id": "FR_00013_id01026_rM4ZERt7oM0_808705e0a7",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00005_id01201_Q8XWfmNiWYA_7a8a7599cb",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.366833,
+      "pA_lower": 0.643128
+    },
+    {
+      "clip_id": "FR_00021_id00055_wavtolip_0036313638",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00110_id06437_3BZvvzBhj8s_faceswap_88f0517c50",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.561208,
+      "pA_lower": 0.940763
+    },
+    {
+      "clip_id": "FF_00114_id07210_0160kET2rUM_id04562_wavtolip_d92934aadf",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.135484,
+      "pA_lower": 0.983639
+    },
+    {
+      "clip_id": "FF_00187_2_id01123_wavtolip_1eac10a904",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00181_id00243_oWwEIXM3oZQ_c996602208",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.284292,
+      "pA_lower": 0.988823
+    },
+    {
+      "clip_id": "FF_00021_id03678_dsfCxodI9i8_id03678_wavtolip_56bcafe9e1",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00221_id06343__Tf30YR4M3w_id06437_wavtolip_4d2c963dea",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00063_id00179_Ux9OYyipQi8_id01042_wavtolip_6ce38ffd42",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00347_id07161_wavtolip_be1b320bb8",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00028_id04701_7mnc8w6jRlM_dee6165acd",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00118_id03599_wavtolip_279b7e6c7c",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00005_id01216_IRxEWpT_lZs_414e677679",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00030_id06462_Nn79kE76MA4_faceswap_id04414_wavtolip_d9af55d2de",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00043_id02464_1hxJsZYV7mI_faceswap_id00428_wavtolip_b5b00759e1",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.284292,
+      "pA_lower": 0.988823
+    },
+    {
+      "clip_id": "FF_00078_id00358_wavtolip_f43beba674",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00025_id00080_y29QtxBTASE_87de6383b2",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00010_id04057_SmHwNbR-498_2d26f6b6f9",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "RR_00011_b24e9d2a3d",
+      "true_label": 0,
+      "predicted_class": 0,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.07742,
+      "pA_lower": 0.530855
+    },
+    {
+      "clip_id": "FF_00027_id04583_M10zZFjuAb0_id03897_wavtolip_dd23bd6040",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00015_id04222_wavtolip_b5d58bd37a",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00015_id00365_XV-imLNJvfk_id00332_wavtolip_e9931e3c80",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00052_id07689_wavtolip_cf05c2e5c3",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00028_id09181_wavtolip_e0de14bf8b",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00005_id00032_AQMDc6SKNXs_89169df627",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.284292,
+      "pA_lower": 0.988823
+    },
+    {
+      "clip_id": "FF_00015_id03757_wavtolip_515942a535",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00019_id04144__FJg9YswRzQ_id00363_wavtolip_88cf33d61d",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00195_id00169__V1xAwwG29U_82d22d4df9",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00347_id07194_wavtolip_8f2d7b9b77",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00037_id00068_A7uFnQw--bY_a421a116f7",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00078_id00781_wavtolip_61276ff1b8",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00015_id04073_KT7B07WFWyM_48b9c868a7",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00083_id00708_wavtolip_0c9353e0d1",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.357651,
+      "pA_lower": 0.990805
+    },
+    {
+      "clip_id": "FF_00052_3_id02464_wavtolip_5e8d0b443f",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00063_id00330_zCFFgGSIZ_s_5a1762dee7",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00143_id01544_wavtolip_0914e3c98c",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.064132,
+      "pA_lower": 0.980497
+    },
+    {
+      "clip_id": "FF_00048_2_id01105_wavtolip_463a5e4be5",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00015_id00498_wavtolip_a6ef7cf8d7",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00013_id04490_wavtolip_c19ccf736b",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00150_id00461_Ort9NW3SJU4_id07236_wavtolip_39b5ac916b",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00025_id06427_dBBAKe2EA_o_faceswap_id02587_wavtolip_cf1cc32f38",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00288_id03525_wavtolip_15824f341a",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "RR_00036_4d71943712",
+      "true_label": 0,
+      "predicted_class": 0,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.757271,
+      "pA_lower": 0.775556
+    },
+    {
+      "clip_id": "FF_00135_id06752_wavtolip_76f51e99c1",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00171_id02466_VOgaA7O5yWY_id01223_wavtolip_06795eafcd",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.135484,
+      "pA_lower": 0.983639
+    },
+    {
+      "clip_id": "FF_00012_id00020_VXYAbbQWyQM_id01172_wavtolip_2d38e8711e",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00109_id00173_UHoMXLSjlDo_fcd4ffed7f",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00138_id09175_wavtolip_4b50785498",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00028_id02466_VOgaA7O5yWY_aa1695888f",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00043_id00569_wavtolip_ceed8c7c20",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00020_id00262_wavtolip_d12b47a5d5",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "RR_00010_1fb3a599c9",
+      "true_label": 0,
+      "predicted_class": 1,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00067_id06462_wavtolip_462dd61a33",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00245_id05743_Fjri4MXHXWY_c24f5b80fb",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00015_id04537_G1e1UFopjfI_343735df1e",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00005_id01182_zca-PHR_U40_a1e3595367",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.687732,
+      "pA_lower": 0.754189
+    },
+    {
+      "clip_id": "FR_00046_id00330_zCFFgGSIZ_s_faceswap_b107514013",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.083678,
+      "pA_lower": 0.860746
+    },
+    {
+      "clip_id": "FF_00015_id02948__ZEDGNWjuFE_faceswap_id01783_wavtolip_10c0dd4423",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00014_id00241_DlI4wqSFwbI_id00498_wavtolip_231214fb75",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00186_id01026_rM4ZERt7oM0_faceswap_83d1ead5f8",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "RR_00021_25655e3dd7",
+      "true_label": 0,
+      "predicted_class": 1,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00092_id01392_wavtolip_b65233191d",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.177691,
+      "pA_lower": 0.985285
+    },
+    {
+      "clip_id": "FR_00206_id01544_wavtolip_cd4c8f8b25",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "RR_00078_3ec47ddeac",
+      "true_label": 0,
+      "predicted_class": 1,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00043_id01096_wavtolip_451c4ebd3d",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_06152_id06776_wavtolip_c791c48688",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.177691,
+      "pA_lower": 0.985285
+    },
+    {
+      "clip_id": "FF_00384_id05252_CMxIX3absYM_faceswap_id00577_wavtolip_0b01394e96",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00010_id02005_7_Egh9mW5y4_51647c4377",
+      "true_label": 1,
+      "predicted_class": -1,
+      "correct": false,
+      "abstained": true,
+      "certified_radius": 0.0,
+      "pA_lower": 0.462704
+    },
+    {
+      "clip_id": "FR_00054_id06438_wavtolip_66614095b0",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "RR_00040_1dbdae5c1a",
+      "true_label": 0,
+      "predicted_class": 0,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.431496,
+      "pA_lower": 0.923856
+    },
+    {
+      "clip_id": "FR_00005_id00415_saYfEadFy_s_92b944ec89",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.004598,
+      "pA_lower": 0.977497
+    },
+    {
+      "clip_id": "FR_00052_id00591_wavtolip_30bd952b10",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00183_1_id00740_wavtolip_a5935e0a7b",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00221_id00082_wavtolip_45eb19c25d",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00254_id04564_xUz03LwKRtQ_id07008_wavtolip_5819498719",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.953114,
+      "pA_lower": 0.974597
+    },
+    {
+      "clip_id": "FR_00015_id00597_uJ61GYESokY_faceswap_4f150e7558",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00283_2_id03757_wavtolip_07fa989bd6",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00025_id00458_wavtolip_03d2f12ab8",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00083_id07136_4e43eS5p3_M_id00488_wavtolip_174d11c2d4",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00245_0_id00597_wavtolip_9659fdf42a",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00408_id05252_CMxIX3absYM_faceswap_16e6dc7e51",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.465687,
+      "pA_lower": 0.928633
+    },
+    {
+      "clip_id": "FF_00032_id05631_wavtolip_584dc9c49d",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "RR_00420_61cff573e1",
+      "true_label": 0,
+      "predicted_class": 1,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "RF_00074_fake_0832ef3ca6",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00019_id04774_wavtolip_dcb9c6e6ed",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.284292,
+      "pA_lower": 0.988823
+    },
+    {
+      "clip_id": "RR_00078_5d2c029cb3",
+      "true_label": 0,
+      "predicted_class": 0,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.62827,
+      "pA_lower": 0.735086
+    },
+    {
+      "clip_id": "FF_00405_id05435_wavtolip_66cd2206c4",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.277499,
+      "pA_lower": 0.899287
+    },
+    {
+      "clip_id": "RF_00202_fake_75cf1b4e30",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.605834,
+      "pA_lower": 0.727687
+    },
+    {
+      "clip_id": "FF_00021_id03559_pgetxl1qbzM_id00149_wavtolip_7504e35a9c",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00033_id00220_wavtolip_e82f9771e4",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00039_id02464_1hxJsZYV7mI_aad111acb1",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "RR_00078_68af9c7f40",
+      "true_label": 0,
+      "predicted_class": -1,
+      "correct": false,
+      "abstained": true,
+      "certified_radius": 0.0,
+      "pA_lower": 0.494662
+    },
+    {
+      "clip_id": "FR_00032_id08402_wavtolip_324e691294",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00052_id02808_wavtolip_4ee1dd1996",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00092_id01002_wavtolip_3d56c0298c",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00092_id02332_wavtolip_174ac7ab8a",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00092_id03716_s-lxbGafZQA_faceswap_id00434_wavtolip_3aa6a246e5",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00005_id03858_wavtolip_cded8cbf40",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.828941,
+      "pA_lower": 0.966296
+    },
+    {
+      "clip_id": "FR_00052_0_cab9c36768",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00322_id00186_KTjDxHTlzg0_id00709_wavtolip_49a5373a7a",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00120_id00520_wavtolip_45b8185fe6",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00028_id01175_Q_36xlWL6_o_1b8221be07",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00219_id06158_wavtolip_8fae50e602",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00005_id05631_wavtolip_26c6c32b29",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00032_id06807_wavtolip_9d05115793",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00005_id06470_XoAiqCrOlyk_id07102_wavtolip_df2f163c28",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00126_id05235_ASy8lP3SRtw_faceswap_id01838_wavtolip_7e3d2db397",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00028_id01532_wavtolip_1d5f362938",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00052_2_id04490_wavtolip_4aaec8f984",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00412_id03180_wavtolip_23ab3ba5cc",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00083_id04689_wavtolip_7651e686b1",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00092_id04529_S92uo-UShxE_faceswap_id00417_wavtolip_4d209d3c99",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00005_id03651_wavtolip_d1110ac875",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00221_id00773_2j3lUETJ57I_faceswap_id00860_wavtolip_b7737d2e90",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00088_id00332__zNddcZV1EU_id00042_wavtolip_b0509afae7",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00206_id01175_Q_36xlWL6_o_681c6ca713",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00360_id01051_jPxk6s6FM6Y_faceswap_3f10864544",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.242631,
+      "pA_lower": 0.595854
+    },
+    {
+      "clip_id": "RR_00150_85a65a1a97",
+      "true_label": 0,
+      "predicted_class": 1,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00217_id00548_wavtolip_c09df754eb",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00015_219b93f99c",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.255857,
+      "pA_lower": 0.600969
+    },
+    {
+      "clip_id": "FF_00044_id00186_KTjDxHTlzg0_id01099_wavtolip_81c6722b96",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00056_id06470_wavtolip_7104cc8691",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.811326,
+      "pA_lower": 0.964955
+    },
+    {
+      "clip_id": "FR_00028_id00775_yeCUxHgUHxc_520b49ccae",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00005_id03371_wavtolip_40073d6823",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.739505,
+      "pA_lower": 0.7702
+    },
+    {
+      "clip_id": "FR_00002_0_aae14f5c2f",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00268_id00241_wavtolip_73770cd404",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00043_id00098_wavtolip_aa453261cf",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00005_id03620_YkXM5A8w07E_id03858_wavtolip_f9a0e7fc2e",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00017_id07799_wavtolip_41f667be2c",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "RF_00118_fake_314fe34567",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.078656,
+      "pA_lower": 0.85963
+    },
+    {
+      "clip_id": "RF_00027_fake_9257536b55",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.177691,
+      "pA_lower": 0.985285
+    },
+    {
+      "clip_id": "FR_00109_id00366_RSOgEoek8WM_3689a0a4e2",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00005_id00253_cyTfcQDjvU0_id01157_wavtolip_cae3790e92",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00015_id01123_wavtolip_4d2e5e654b",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00409_id01163_QSMeUEH3lJM_55917cc524",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.22631,
+      "pA_lower": 0.987003
+    },
+    {
+      "clip_id": "FR_00083_id00816_wavtolip_cb6381b38e",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.177691,
+      "pA_lower": 0.985285
+    },
+    {
+      "clip_id": "RR_00044_24f628daa6",
+      "true_label": 0,
+      "predicted_class": 1,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.677191,
+      "pA_lower": 0.953247
+    },
+    {
+      "clip_id": "FR_00113_id00535_wavtolip_30faaec744",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "RF_00430_fake_4d18bf2c17",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.811326,
+      "pA_lower": 0.964955
+    },
+    {
+      "clip_id": "FR_00114_id03344_vyNnOo6lU0o_d3114db169",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.09799,
+      "pA_lower": 0.982047
+    },
+    {
+      "clip_id": "FR_00347_id04561_tU_UYY5hSvc_94ec9ff615",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00322_id00186_KTjDxHTlzg0_74b8359bfc",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "RF_00037_fake_fc24271b92",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.09799,
+      "pA_lower": 0.982047
+    },
+    {
+      "clip_id": "FR_00125_id00365_wavtolip_35482b3e24",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.357651,
+      "pA_lower": 0.990805
+    },
+    {
+      "clip_id": "FR_00160_id01192_kAht8HG7-1s_83fddb94eb",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00002_id06152_wavtolip_8811287b36",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00015_id00098_wavtolip_098f5fee15",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00072_id06428_A9nvRKd1afA_id06254_wavtolip_cbcb277021",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00006_id06467_wavtolip_b478d83dce",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00005_id01920_w9C_knCPD94_c61544331b",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.239352,
+      "pA_lower": 0.892392
+    },
+    {
+      "clip_id": "RR_00028_9abc584baa",
+      "true_label": 0,
+      "predicted_class": 1,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 2.357651,
+      "pA_lower": 0.990805
+    },
+    {
+      "clip_id": "FF_00195_id04601_x4Apx8z6nOg_id00745_wavtolip_12eb0264b9",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00043_id05845_XfMHm6CEwPw_id06232_wavtolip_2ddbe23e68",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "RR_00092_26d6e5e891",
+      "true_label": 0,
+      "predicted_class": 1,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.586881,
+      "pA_lower": 0.721358
+    },
+    {
+      "clip_id": "FR_00021_id00735_ivJSkq5hGOQ_712974ab57",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00032_id02587_KzwJPH5_8j0_id06462_wavtolip_53e12c0978",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00065_id00581_7AxvP19LGKg_faceswap_1865ed095f",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00005_id00496_wavtolip_57c40caef1",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.732473,
+      "pA_lower": 0.76806
+    },
+    {
+      "clip_id": "FR_00311_id00188_wavtolip_515be50946",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.862359,
+      "pA_lower": 0.805755
+    },
+    {
+      "clip_id": "FR_00005_id00701_wavtolip_b700097341",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.988543,
+      "pA_lower": 0.838557
+    },
+    {
+      "clip_id": "FR_00015_id00287_2NpfYjyMsPM_083678ea81",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "RR_00039_a0222d7592",
+      "true_label": 0,
+      "predicted_class": 1,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.064748,
+      "pA_lower": 0.525813
+    },
+    {
+      "clip_id": "RR_00136_f009bf4e76",
+      "true_label": 0,
+      "predicted_class": 0,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.369605,
+      "pA_lower": 0.644162
+    },
+    {
+      "clip_id": "FF_00160_id06054_wavtolip_86642c9cde",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00088_id00633_UXrTMta1EDM_faceswap_362d867ec6",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00059_id04820_wavtolip_401a9553df",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 2.135484,
+      "pA_lower": 0.983639
+    },
+    {
+      "clip_id": "FF_00015_id04222_wavtolip_4f1dffbc78",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00249_id01532_XnlWp_s_f7Q_id05106_wavtolip_b68df8a230",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00014_id00292_qELK8N_DykA_id00358_wavtolip_98cb5e826d",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "RF_00037_fake_da5a54fa7d",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.357651,
+      "pA_lower": 0.990805
+    },
+    {
+      "clip_id": "FF_00186_id01026_rM4ZERt7oM0_id05435_wavtolip_c629e9d9f0",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00384_id02617_wavtolip_11b739eb20",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00080_id04705_wavtolip_0480c0d92a",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00005_0_id00076_wavtolip_11da3b0cca",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.929678,
+      "pA_lower": 0.973177
+    },
+    {
+      "clip_id": "FF_00078_id08652_wavtolip_cf539688c8",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00009_id01182_zca-PHR_U40_462a7c71de",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00099_id09171_B-JRLp6chC0_faceswap_id08819_wavtolip_e82de6a68a",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00052_id01589_ZCwF6XVRiAU_id07102_wavtolip_7c8298a1c3",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00038_id00350_75IFJNFAMIM_id06753_wavtolip_0e974cc10c",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00171_id00261_wavtolip_ad34d42a57",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.284292,
+      "pA_lower": 0.988823
+    },
+    {
+      "clip_id": "FR_00420_id00581_7AxvP19LGKg_b9d1033a16",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00037_id00098_wavtolip_1aa5e700a8",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00206_0_8fadd96ff5",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.22631,
+      "pA_lower": 0.987003
+    },
+    {
+      "clip_id": "FF_00052_id04820_wavtolip_830f10e788",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00005_id02365_wavtolip_3b08832da6",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.284292,
+      "pA_lower": 0.988823
+    },
+    {
+      "clip_id": "FR_00028_id00971_edWrVVn-rC4_dabcce131b",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00130_id01002_wavtolip_6fa84625ca",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00307_id04219_wavtolip_82acc59803",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00135_id04070_wavtolip_03c29f490f",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.22631,
+      "pA_lower": 0.987003
+    },
+    {
+      "clip_id": "FF_00083_id04055_wavtolip_679d01295c",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "RR_00092_b69d3fffd1",
+      "true_label": 0,
+      "predicted_class": 1,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 2.004598,
+      "pA_lower": 0.977497
+    },
+    {
+      "clip_id": "FF_00015_id00813_dKs9CWJIkSI_id00897_wavtolip_a54382d7da",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00005_id02005_7_Egh9mW5y4_faceswap_id04727_wavtolip_2f83e8f6b5",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00051_id03889_wavtolip_77c0606286",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.440119,
+      "pA_lower": 0.670075
+    },
+    {
+      "clip_id": "FR_00160_id00272_VLY1boTtbRM_070a2da7a1",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00171_id00100_sZ0Ex4WUEgM_id00398_wavtolip_c73f9f52ea",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00253_id00018_sap-FjURHlc_id00029_wavtolip_8110ed5a4e",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00025_id04144_wavtolip_d1e553c4eb",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00053_id03678_wavtolip_e5ba8dd16a",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00015_id00981_wavtolip_81840940d5",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "RR_00052_0495b8c0ec",
+      "true_label": 0,
+      "predicted_class": 1,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 2.357651,
+      "pA_lower": 0.990805
+    },
+    {
+      "clip_id": "FF_00118_id00732_wavtolip_8daec18745",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00118_id06438_wavtolip_07e5da28ec",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00081_id00373_5NXv3Dxkd6E_id00484_wavtolip_96ecbc8d41",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00136_id00383_n6i0VWqGcKI_id00752_wavtolip_d521fa98c3",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00017_id04691_wavtolip_294e29e90f",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00317_id07179_wavtolip_6ae4e49312",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00118_id00943_LxSv2rnBGA8_1db7103d1a",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.492699,
+      "pA_lower": 0.932242
+    },
+    {
+      "clip_id": "RR_00002_db8f25fcad",
+      "true_label": 0,
+      "predicted_class": 0,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.270994,
+      "pA_lower": 0.898135
+    },
+    {
+      "clip_id": "FF_00065_id04245_nQD_PRlBDyw_id00592_wavtolip_003c0bffbc",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.258164,
+      "pA_lower": 0.895834
+    },
+    {
+      "clip_id": "FF_00025_id03559_pgetxl1qbzM_faceswap_id00739_wavtolip_71f6c35173",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00078_id02332_hlo8q3-L9vI_faceswap_4736cf3570",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.058871,
+      "pA_lower": 0.855171
+    },
+    {
+      "clip_id": "FR_00021_id01610_l8zb_iaDJJA_63ccee15fc",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00092_id00832_Jr4-dXRChME_6ed144d42e",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00120_id00535_BhvTIJ-YG5s_e6a9cd66bc",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.615986,
+      "pA_lower": 0.946951
+    },
+    {
+      "clip_id": "FF_00017_id02040_wavtolip_619f802b40",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00298_id02586_dEYzYDsbAeo_f7aa1bfcf7",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00017_id00265_wavtolip_09a1c8b01e",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.357651,
+      "pA_lower": 0.990805
+    },
+    {
+      "clip_id": "FR_00052_id00374_w1qI7y9AGTc_ae648d077b",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "RR_00092_e4c3763ebf",
+      "true_label": 0,
+      "predicted_class": 1,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.98405,
+      "pA_lower": 0.837455
+    },
+    {
+      "clip_id": "FF_00028_id00835_wavtolip_fd76d25ad4",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00143_id00732_amGRpH0AJCs_faceswap_id07210_wavtolip_29397d3495",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00053_id04583_wavtolip_073e9d0521",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00048_id01099_ZpgbIKxzkrg_129b6c5b12",
+      "true_label": 1,
+      "predicted_class": 0,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.297397,
+      "pA_lower": 0.902753
+    },
+    {
+      "clip_id": "FF_00078_id00589_uOzKwYEVR6s_id00330_wavtolip_b9b381e8f1",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00041_id00740_wavtolip_95c4b7e668",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00072_id00305_wavtolip_79295147fa",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.55089,
+      "pA_lower": 0.939536
+    },
+    {
+      "clip_id": "FR_00043_id06437_wavtolip_913976ff6a",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.615405,
+      "pA_lower": 0.730856
+    },
+    {
+      "clip_id": "FF_00078_id00919_wavtolip_708750d329",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00197_id00946_wavtolip_9143f5ba75",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.838957,
+      "pA_lower": 0.799253
+    },
+    {
+      "clip_id": "FR_00195_id00860_wavtolip_c4f9deaf8b",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.22631,
+      "pA_lower": 0.987003
+    },
+    {
+      "clip_id": "FF_00005_id01171_wavtolip_b46451e42a",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.284292,
+      "pA_lower": 0.988823
+    },
+    {
+      "clip_id": "FF_00466_id00560_wavtolip_75b244a165",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00048_0_id00060_wavtolip_b82701f34c",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00083_id01192_kAht8HG7-1s_faceswap_id00708_wavtolip_bf2b6ab936",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00028_id02586_wavtolip_a939174d05",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "RR_00043_0a0725429d",
+      "true_label": 0,
+      "predicted_class": 1,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.346267,
+      "pA_lower": 0.910892
+    },
+    {
+      "clip_id": "FR_00050_id00475_wavtolip_32f17787b4",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.004598,
+      "pA_lower": 0.977497
+    },
+    {
+      "clip_id": "FR_00092_id03559_pgetxl1qbzM_2b8059de65",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00069_id05434_6p7kCmdOjDQ_e08207beac",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00020_id00330_wavtolip_19d4b8eb12",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00015_id00597_wavtolip_c961142343",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00052_1_6da787e9e5",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.22631,
+      "pA_lower": 0.987003
+    },
+    {
+      "clip_id": "FF_00120_id00990_wavtolip_6472791dff",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00118_id00282_wavtolip_e17b56ebde",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.135484,
+      "pA_lower": 0.983639
+    },
+    {
+      "clip_id": "FF_00098_id06462_Nn79kE76MA4_id04057_wavtolip_0aad5219e9",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00002_id00359_wavtolip_c490a80cb1",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00154_id00169__V1xAwwG29U_id01201_wavtolip_96f52b7258",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00276_2_id04526_wavtolip_f73bbbccbe",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00037_0_f5cd3c0503",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.22631,
+      "pA_lower": 0.987003
+    },
+    {
+      "clip_id": "FF_00122_id00271_wavtolip_9a1b2f1fde",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00001_id05252_CMxIX3absYM_faceswap_id03569_wavtolip_a0715104e7",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.135484,
+      "pA_lower": 0.983639
+    },
+    {
+      "clip_id": "FF_00043_id04216_uDwxIsHkBIM_id01239_wavtolip_779d2cbdd8",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00015_id00241_wavtolip_dba1ddacb4",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.501991,
+      "pA_lower": 0.93345
+    },
+    {
+      "clip_id": "FF_00005_id01170_7eoTTk4xyNo_id00391_wavtolip_d0d9441666",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00092_id00270_wavtolip_3525141e90",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.177691,
+      "pA_lower": 0.985285
+    },
+    {
+      "clip_id": "FF_00015_id06467_wavtolip_5cb3208b91",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00002_id00589_uOzKwYEVR6s_5e648a833a",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.886476,
+      "pA_lower": 0.970385
+    },
+    {
+      "clip_id": "FF_00063_id07179_wavtolip_6ed083e4bd",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.22631,
+      "pA_lower": 0.987003
+    },
+    {
+      "clip_id": "FR_00010_id03371_truKMXt8Dak_faceswap_43125ccee1",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.014272,
+      "pA_lower": 0.505693
+    },
+    {
+      "clip_id": "FR_00110_id08299_wavtolip_8ec61583d2",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00016_id00025_PjSeVtbvSjA_id01225_wavtolip_0b3aa9a76e",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "RR_00195_7e3f3809b5",
+      "true_label": 0,
+      "predicted_class": 1,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.89036,
+      "pA_lower": 0.813364
+    },
+    {
+      "clip_id": "FF_00015_id00816_wavtolip_1c69d1e12f",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.929678,
+      "pA_lower": 0.973177
+    },
+    {
+      "clip_id": "FF_00114_id03344_vyNnOo6lU0o_id00773_wavtolip_39e06ab422",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00090_id01637_5VjcPZm8knM_3d8b7aa38d",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00020_id03620_wavtolip_3a6889d4a8",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_1_2_6639df37e4",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00015_id00594_2WHHoksbeVw_faceswap_45a8d4b714",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.423245,
+      "pA_lower": 0.922667
+    },
+    {
+      "clip_id": "FR_00160_id01201_wavtolip_99fd247dfe",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 0.092659,
+      "pA_lower": 0.536913
+    },
+    {
+      "clip_id": "FR_00083_id00971_wavtolip_d7a40ee377",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.357651,
+      "pA_lower": 0.990805
+    },
+    {
+      "clip_id": "FF_00078_id00495_E46aiMUC4A0_id00328_wavtolip_4e481ddc7c",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00067_id03379_wavtolip_9cc4039851",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.357651,
+      "pA_lower": 0.990805
+    },
+    {
+      "clip_id": "FF_00043_id00080_wavtolip_26e21a7204",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "RR_00028_e9d7ad52d4",
+      "true_label": 0,
+      "predicted_class": 1,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 1.439862,
+      "pA_lower": 0.925047
+    },
+    {
+      "clip_id": "RR_00051_4970150f48",
+      "true_label": 0,
+      "predicted_class": 0,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.068704,
+      "pA_lower": 0.857399
+    },
+    {
+      "clip_id": "FR_00028_id07901_wavtolip_2deda4ab41",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FR_00027_id00634_z5t9oJizDQg_f5bac0e4a8",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "RR_00105_7b7ca74070",
+      "true_label": 0,
+      "predicted_class": 1,
+      "correct": false,
+      "abstained": false,
+      "certified_radius": 0.044521,
+      "pA_lower": 0.517755
+    },
+    {
+      "clip_id": "FR_00015_id00262_3p7sRWAAh1Q_faceswap_142fc4a9bc",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.762252,
+      "pA_lower": 0.960987
+    },
+    {
+      "clip_id": "FR_00083_id06445_wavtolip_c54502fb7d",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00083_id00371_t20i0HtPwW0_id02838_wavtolip_8675c7d43d",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.463263,
+      "pA_lower": 0.993116
+    },
+    {
+      "clip_id": "FF_00202_id00735_wavtolip_52ee5ae3ca",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 1.324878,
+      "pA_lower": 0.907394
+    },
+    {
+      "clip_id": "FF_00005_id00428_Kr7n-68JWww_faceswap_id00398_wavtolip_4d741fa43a",
+      "true_label": 1,
+      "predicted_class": 1,
+      "correct": true,
+      "abstained": false,
+      "certified_radius": 2.357651,
+      "pA_lower": 0.990805
+    }
+  ]
+}

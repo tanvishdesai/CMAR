@@ -1,0 +1,11 @@
+{
+  "phase2_dir": "/kaggle/working/phase2",
+  "n_encoder_rows": 1,
+  "n_anisotropic_rows": 3,
+  "n_conformal_rows": 288,
+  "outputs": {
+    "encoder_scaling_csv": "/kaggle/working/phase2/summary/phase2_encoder_scaling.csv",
+    "anisotropic_csv": "/kaggle/working/phase2/summary/phase2_anisotropic.csv",
+    "conformal_csv": "/kaggle/working/phase2/summary/phase2_conformal.csv"
+  }
+}
