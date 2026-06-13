@@ -1,15 +1,37 @@
+# Python
 __pycache__/
 *.py[cod]
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+*.egg-info/
 
+# Model checkpoints and large tensors
 cmar_cache/
 cmar_runs/
 cmar_figures/
 *.pt
 *.pth
 *.ckpt
+
+# Logs
 *.jsonl
 
+# Local environment
 cmar_environment_local.json
+
+# Kaggle/HuggingFace artifacts
+__huggingface_repos__.json
+skills-lock.json
+
+# LaTeX build artifacts
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.log
+paper/*.out
+paper/*.synctex.gz
+
+# IDE
+.vscode/
+.idea/

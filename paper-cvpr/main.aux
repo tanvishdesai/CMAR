@@ -1,0 +1,208 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{oquab2024dinov2}
+\citation{radford2023whisper}
+\citation{cohen2019certified}
+\@writefile{toc}{\contentsline {section}{\numberline {1}\hskip -1em.~Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{\texorpdfstring {\hskip -1em.~}{}Introduction}{section.1}{}}
+\newlabel{sec:intro@cref}{{[section][1][]1}{[1][1][]1}{}{}{}}
+\@writefile{brf}{\backcite{oquab2024dinov2}{{1}{1}{section.1}}}
+\@writefile{brf}{\backcite{radford2023whisper}{{1}{1}{section.1}}}
+\@writefile{brf}{\backcite{cohen2019certified}{{1}{1}{section.1}}}
+\citation{mittal2020emotions}
+\citation{chugh2020not}
+\citation{feng2023self}
+\citation{yang2023avoid}
+\citation{astrid2025local}
+\citation{khalid2021fakeavceleb}
+\citation{cai2022lavdf}
+\citation{cohen2019certified}
+\citation{lecuyer2019certified}
+\citation{salman2019provably}
+\citation{yang2020randomized}
+\citation{eiras2022ancer}
+\citation{wang2024mmcert}
+\citation{angelopoulos2023conformal,romano2020classification}
+\citation{gendler2022adversarially}
+\citation{oquab2024dinov2}
+\citation{radford2023whisper}
+\@writefile{toc}{\contentsline {section}{\numberline {2}\hskip -1em.~Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{\texorpdfstring {\hskip -1em.~}{}Related Work}{section.2}{}}
+\newlabel{sec:related@cref}{{[section][2][]2}{[1][2][]2}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Audio-visual deepfake detection.}{2}{section*.1}\protected@file@percent }
+\@writefile{brf}{\backcite{mittal2020emotions}{{2}{2}{section*.1}}}
+\@writefile{brf}{\backcite{chugh2020not}{{2}{2}{section*.1}}}
+\@writefile{brf}{\backcite{feng2023self}{{2}{2}{section*.1}}}
+\@writefile{brf}{\backcite{yang2023avoid}{{2}{2}{section*.1}}}
+\@writefile{brf}{\backcite{astrid2025local}{{2}{2}{section*.1}}}
+\@writefile{brf}{\backcite{khalid2021fakeavceleb}{{2}{2}{section*.1}}}
+\@writefile{brf}{\backcite{cai2022lavdf}{{2}{2}{section*.1}}}
+\@writefile{toc}{\contentsline {paragraph}{Certified robustness via randomized smoothing.}{2}{section*.2}\protected@file@percent }
+\@writefile{brf}{\backcite{cohen2019certified}{{2}{2}{section*.2}}}
+\@writefile{brf}{\backcite{lecuyer2019certified}{{2}{2}{section*.2}}}
+\@writefile{brf}{\backcite{salman2019provably}{{2}{2}{section*.2}}}
+\@writefile{brf}{\backcite{yang2020randomized}{{2}{2}{section*.2}}}
+\@writefile{brf}{\backcite{eiras2022ancer}{{2}{2}{section*.2}}}
+\@writefile{brf}{\backcite{wang2024mmcert}{{2}{2}{section*.2}}}
+\@writefile{toc}{\contentsline {paragraph}{Conformal prediction.}{2}{section*.3}\protected@file@percent }
+\@writefile{brf}{\backcite{angelopoulos2023conformal}{{2}{2}{section*.3}}}
+\@writefile{brf}{\backcite{romano2020classification}{{2}{2}{section*.3}}}
+\@writefile{brf}{\backcite{gendler2022adversarially}{{2}{2}{section*.3}}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}\hskip -1em.~Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{\texorpdfstring {\hskip -1em.~}{}Method}{section.3}{}}
+\newlabel{sec:method@cref}{{[section][3][]3}{[1][2][]2}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}\hskip -1em.~Feature extraction and detector}{2}{subsection.3.1}\protected@file@percent }
+\newlabel{ssec:detector}{{3.1}{2}{\texorpdfstring {\hskip -1em.~}{}Feature extraction and detector}{subsection.3.1}{}}
+\newlabel{ssec:detector@cref}{{[subsection][1][3]3.1}{[1][2][]2}{}{}{}}
+\@writefile{brf}{\backcite{oquab2024dinov2}{{2}{3.1}{subsection.3.1}}}
+\@writefile{brf}{\backcite{radford2023whisper}{{2}{3.1}{subsection.3.1}}}
+\citation{cohen2019certified}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces \textbf  {CertAV pipeline.} Frozen DINOv2 and Whisper encoders produce temporal visual and audio features. A transformer aggregator and temporal pooling map each modality to a $256$-d sequence; a two-layer bidirectional cross-modal attention module fuses them; segment logits are averaged into a binary real/fake decision. Certification injects Gaussian (isotropic or PCA-aligned anisotropic) noise in the joint feature space and returns a prediction, an abstention flag, and an $\ell _2$ certified radius.}}{3}{figure.caption.4}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:arch}{{1}{3}{\textbf {CertAV pipeline.} Frozen DINOv2 and Whisper encoders produce temporal visual and audio features. A transformer aggregator and temporal pooling map each modality to a $256$-d sequence; a two-layer bidirectional cross-modal attention module fuses them; segment logits are averaged into a binary real/fake decision. Certification injects Gaussian (isotropic or PCA-aligned anisotropic) noise in the joint feature space and returns a prediction, an abstention flag, and an $\ell _2$ certified radius}{figure.caption.4}{}}
+\newlabel{fig:arch@cref}{{[figure][1][]1}{[1][2][]3}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}\hskip -1em.~Threat model}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{ssec:threat}{{3.2}{3}{\texorpdfstring {\hskip -1em.~}{}Threat model}{subsection.3.2}{}}
+\newlabel{ssec:threat@cref}{{[subsection][2][3]3.2}{[1][3][]3}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}\hskip -1em.~Isotropic randomized smoothing}{3}{subsection.3.3}\protected@file@percent }
+\newlabel{ssec:iso}{{3.3}{3}{\texorpdfstring {\hskip -1em.~}{}Isotropic randomized smoothing}{subsection.3.3}{}}
+\newlabel{ssec:iso@cref}{{[subsection][3][3]3.3}{[1][3][]3}{}{}{}}
+\newlabel{eq:smoothed}{{2}{3}{\texorpdfstring {\hskip -1em.~}{}Isotropic randomized smoothing}{equation.2}{}}
+\newlabel{eq:smoothed@cref}{{[equation][2][]2}{[1][3][]3}{}{}{}}
+\@writefile{brf}{\backcite{cohen2019certified}{{3}{3.3}{equation.2}}}
+\newlabel{eq:cohen}{{3}{3}{\texorpdfstring {\hskip -1em.~}{}Isotropic randomized smoothing}{equation.3}{}}
+\newlabel{eq:cohen@cref}{{[equation][3][]3}{[1][3][]3}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}\hskip -1em.~Manifold-aware anisotropic smoothing}{3}{subsection.3.4}\protected@file@percent }
+\newlabel{ssec:aniso}{{3.4}{3}{\texorpdfstring {\hskip -1em.~}{}Manifold-aware anisotropic smoothing}{subsection.3.4}{}}
+\newlabel{ssec:aniso@cref}{{[subsection][4][3]3.4}{[1][3][]3}{}{}{}}
+\citation{romano2020classification,angelopoulos2023conformal}
+\citation{gendler2022adversarially}
+\citation{cohen2019certified}
+\newlabel{eq:budget}{{4}{4}{\texorpdfstring {\hskip -1em.~}{}Manifold-aware anisotropic smoothing}{equation.4}{}}
+\newlabel{eq:budget@cref}{{[equation][4][]4}{[1][4][]4}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}\hskip -1em.~Robust conformal prediction}{4}{subsection.3.5}\protected@file@percent }
+\newlabel{ssec:conformal}{{3.5}{4}{\texorpdfstring {\hskip -1em.~}{}Robust conformal prediction}{subsection.3.5}{}}
+\newlabel{ssec:conformal@cref}{{[subsection][5][3]3.5}{[1][4][]4}{}{}{}}
+\@writefile{brf}{\backcite{angelopoulos2023conformal}{{4}{3.5}{subsection.3.5}}}
+\@writefile{brf}{\backcite{romano2020classification}{{4}{3.5}{subsection.3.5}}}
+\@writefile{brf}{\backcite{gendler2022adversarially}{{4}{3.5}{subsection.3.5}}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}\hskip -1em.~Theoretical Analysis}{4}{section.4}\protected@file@percent }
+\newlabel{sec:theory}{{4}{4}{\texorpdfstring {\hskip -1em.~}{}Theoretical Analysis}{section.4}{}}
+\newlabel{sec:theory@cref}{{[section][4][]4}{[1][4][]4}{}{}{}}
+\newlabel{assm:subspace}{{1}{4}{Subspace invariance}{assumption.1}{}}
+\newlabel{assm:subspace@cref}{{[assumption][1][]1}{[1][4][]4}{}{}{}}
+\newlabel{eq:invariance}{{5}{4}{Subspace invariance}{equation.5}{}}
+\newlabel{eq:invariance@cref}{{[equation][5][]5}{[1][4][]4}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}\hskip -1em.~Certifiability scaling}{4}{subsection.4.1}\protected@file@percent }
+\newlabel{thm:scaling}{{1}{4}{Certifiability Scaling}{theorem.1}{}}
+\newlabel{thm:scaling@cref}{{[theorem][1][]1}{[1][4][]4}{}{}{}}
+\@writefile{brf}{\backcite{cohen2019certified}{{4}{4.1}{equation.7}}}
+\newlabel{rem:effnoise}{{1}{4}{}{remark.1}{}}
+\newlabel{rem:effnoise@cref}{{[remark][1][]1}{[1][4][]4}{}{}{}}
+\citation{khalid2021fakeavceleb}
+\citation{cai2022lavdf}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}\hskip -1em.~Robustness amplification and encoder selection}{5}{subsection.4.2}\protected@file@percent }
+\newlabel{cor:amp}{{1}{5}{Robustness Amplification}{corollary.1}{}}
+\newlabel{cor:amp@cref}{{[corollary][1][]1}{[1][4][]5}{}{}{}}
+\newlabel{eq:expected}{{8}{5}{Robustness Amplification}{equation.8}{}}
+\newlabel{eq:expected@cref}{{[equation][8][]8}{[1][5][]5}{}{}{}}
+\newlabel{eq:amp}{{9}{5}{Robustness Amplification}{equation.9}{}}
+\newlabel{eq:amp@cref}{{[equation][9][]9}{[1][5][]5}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}\hskip -1em.~Empirical validation}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{ssec:theoryval}{{4.3}{5}{\texorpdfstring {\hskip -1em.~}{}Empirical validation}{subsection.4.3}{}}
+\newlabel{ssec:theoryval@cref}{{[subsection][3][4]4.3}{[1][5][]5}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Joint feature-space certification on FakeAVCeleb (five seeds, mean$\pm $std). C@$r$ is certified accuracy (\%) at radius $r$.}}{5}{table.caption.6}\protected@file@percent }
+\newlabel{tab:main}{{1}{5}{Joint feature-space certification on FakeAVCeleb (five seeds, mean$\pm $std). C@$r$ is certified accuracy (\%) at radius $r$}{table.caption.6}{}}
+\newlabel{tab:main@cref}{{[table][1][]1}{[1][5][]5}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Certified accuracy vs.\ radius. Larger $\sigma $ shifts the curve right; the $\sigma =1.0$ model retains high certified accuracy through radius $1.5$.}}{5}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:curves}{{2}{5}{Certified accuracy vs.\ radius. Larger $\sigma $ shifts the curve right; the $\sigma =1.0$ model retains high certified accuracy through radius $1.5$}{figure.caption.7}{}}
+\newlabel{fig:curves@cref}{{[figure][2][]2}{[1][5][]5}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}\hskip -1em.~Experiments}{5}{section.5}\protected@file@percent }
+\newlabel{sec:exp}{{5}{5}{\texorpdfstring {\hskip -1em.~}{}Experiments}{section.5}{}}
+\newlabel{sec:exp@cref}{{[section][5][]5}{[1][5][]5}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Setup.}{5}{section*.5}\protected@file@percent }
+\@writefile{brf}{\backcite{khalid2021fakeavceleb}{{5}{5}{section*.5}}}
+\@writefile{brf}{\backcite{cai2022lavdf}{{5}{5}{section*.5}}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}\hskip -1em.~Isotropic certification}{5}{subsection.5.1}\protected@file@percent }
+\citation{oquab2024dinov2}
+\citation{radford2021clip}
+\citation{radford2023whisper}
+\citation{hsu2021hubert}
+\citation{chen2022wavlm}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Baselines at $\sigma =1.0$. The no-noise model certifies within $1.9\%$ of the noise-trained model; feature-space PGD-AT inflates the radius but collapses validation AUC.}}{6}{table.caption.8}\protected@file@percent }
+\newlabel{tab:baselines}{{2}{6}{Baselines at $\sigma =1.0$. The no-noise model certifies within $1.9\%$ of the noise-trained model; feature-space PGD-AT inflates the radius but collapses validation AUC}{table.caption.8}{}}
+\newlabel{tab:baselines@cref}{{[table][2][]2}{[1][5][]6}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Five encoder families (no-noise baseline, $\sigma =1.0$). $d$ is the $90\%$-variance PCA dimension; $\mathcal  {A}=\sqrt  {D/d}$. Lower $d/D$ tracks larger $\bar  R$.}}{6}{table.caption.9}\protected@file@percent }
+\newlabel{tab:encoder}{{3}{6}{Five encoder families (no-noise baseline, $\sigma =1.0$). $d$ is the $90\%$-variance PCA dimension; $\mathcal {A}=\sqrt {D/d}$. Lower $d/D$ tracks larger $\bar R$}{table.caption.9}{}}
+\newlabel{tab:encoder@cref}{{[table][3][]3}{[1][6][]6}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}\hskip -1em.~Geometry, not training, drives certifiability}{6}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}\hskip -1em.~Encoder-scaling study}{6}{subsection.5.3}\protected@file@percent }
+\@writefile{brf}{\backcite{oquab2024dinov2}{{6}{5.3}{figure.caption.10}}}
+\@writefile{brf}{\backcite{radford2021clip}{{6}{5.3}{figure.caption.10}}}
+\@writefile{brf}{\backcite{radford2023whisper}{{6}{5.3}{figure.caption.10}}}
+\@writefile{brf}{\backcite{hsu2021hubert}{{6}{5.3}{figure.caption.10}}}
+\@writefile{brf}{\backcite{chen2022wavlm}{{6}{5.3}{figure.caption.10}}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Encoder scaling. Self-supervised audio encoders (WavLM, HuBERT) give the lowest $d/D$ and largest radii; the contrastive CLIP visual encoder gives the highest $d/D$ and the smallest radius despite the best clean accuracy.}}{6}{figure.caption.10}\protected@file@percent }
+\newlabel{fig:scatter}{{3}{6}{Encoder scaling. Self-supervised audio encoders (WavLM, HuBERT) give the lowest $d/D$ and largest radii; the contrastive CLIP visual encoder gives the highest $d/D$ and the smallest radius despite the best clean accuracy}{figure.caption.10}{}}
+\newlabel{fig:scatter@cref}{{[figure][3][]3}{[1][6][]6}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Anisotropic smoothing at equalized budget $\mathrm  {trace}(\Sigma )=D\sigma ^2$ ($\sigma =1.0$, seed $2026$). $R_{\mathcal  {S}}$ is the on-manifold radius; $R_{\ell _2}$ the worst-case radius. For anisotropic rows, $\mathrm  {C}_{\mathcal  {S}}$@1.0 is certified accuracy w.r.t.\ the on-manifold radius $R_{\mathcal  {S}}$, \emph  {not} the worst-case $R_{\ell _2}$ (the two coincide for the isotropic row); it is therefore not a like-for-like comparison with the isotropic $88.0$, but the appropriate metric under a manifold-aware threat model. Strategy~2 gives the largest $R_{\mathcal  {S}}$ and zero abstention.}}{6}{table.caption.11}\protected@file@percent }
+\newlabel{tab:aniso}{{4}{6}{Anisotropic smoothing at equalized budget $\mathrm {trace}(\Sigma )=D\sigma ^2$ ($\sigma =1.0$, seed $2026$). $R_{\Smanifold }$ is the on-manifold radius; $R_{\ell _2}$ the worst-case radius. For anisotropic rows, $\mathrm {C}_{\Smanifold }$@1.0 is certified accuracy w.r.t.\ the on-manifold radius $R_{\Smanifold }$, \emph {not} the worst-case $R_{\ell _2}$ (the two coincide for the isotropic row); it is therefore not a like-for-like comparison with the isotropic $88.0$, but the appropriate metric under a manifold-aware threat model. Strategy~2 gives the largest $R_{\Smanifold }$ and zero abstention}{table.caption.11}{}}
+\newlabel{tab:aniso@cref}{{[table][4][]4}{[1][6][]6}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Isotropic smoothing certifies a sphere (radius $2.22$, equal in all directions); manifold-aware smoothing (S2) certifies an ellipsoid with on-manifold axis $7.63$ and near-zero off-manifold axes. PGD attacks point $82\%$ off-manifold ($\cos ^2\theta \!\approx \!0.18$), where the classifier is provably invariant.}}{6}{figure.caption.12}\protected@file@percent }
+\newlabel{fig:ellipse}{{4}{6}{Isotropic smoothing certifies a sphere (radius $2.22$, equal in all directions); manifold-aware smoothing (S2) certifies an ellipsoid with on-manifold axis $7.63$ and near-zero off-manifold axes. PGD attacks point $82\%$ off-manifold ($\cos ^2\theta \!\approx \!0.18$), where the classifier is provably invariant}{figure.caption.12}{}}
+\newlabel{fig:ellipse@cref}{{[figure][4][]4}{[1][6][]6}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}\hskip -1em.~Manifold-aware anisotropic smoothing}{6}{subsection.5.4}\protected@file@percent }
+\citation{gendler2022adversarially}
+\citation{romano2020classification}
+\citation{croce2021robustbench}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Split conformal prediction on the $\sigma =1.0$ model ($\alpha =0.10$, seed $2026$). Marginal coverage and singleton rate are stable under PGD; class-conditional coverage exposes the $1{:}10$ imbalance.}}{7}{table.caption.13}\protected@file@percent }
+\newlabel{tab:conformal}{{5}{7}{Split conformal prediction on the $\sigma =1.0$ model ($\alpha =0.10$, seed $2026$). Marginal coverage and singleton rate are stable under PGD; class-conditional coverage exposes the $1{:}10$ imbalance}{table.caption.13}{}}
+\newlabel{tab:conformal@cref}{{[table][5][]5}{[1][7][]7}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}\hskip -1em.~Robust conformal prediction}{7}{subsection.5.5}\protected@file@percent }
+\@writefile{brf}{\backcite{gendler2022adversarially}{{7}{5.5}{table.caption.13}}}
+\@writefile{brf}{\backcite{romano2020classification}{{7}{5.5}{table.caption.13}}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Modality ablation (five seeds). Unimodal certificates can match or exceed joint radii but protect a strictly smaller threat set.}}{7}{table.caption.14}\protected@file@percent }
+\newlabel{tab:modality}{{6}{7}{Modality ablation (five seeds). Unimodal certificates can match or exceed joint radii but protect a strictly smaller threat set}{table.caption.14}{}}
+\newlabel{tab:modality@cref}{{[table][6][]6}{[1][7][]7}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Transfer and degradation at $\sigma =1.0$. LAV-DF is cross-dataset; degradations are on FakeAVCeleb.}}{7}{table.caption.15}\protected@file@percent }
+\newlabel{tab:transfer}{{7}{7}{Transfer and degradation at $\sigma =1.0$. LAV-DF is cross-dataset; degradations are on FakeAVCeleb}{table.caption.15}{}}
+\newlabel{tab:transfer@cref}{{[table][7][]7}{[1][7][]7}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}\hskip -1em.~Modality, transfer, and degradation}{7}{subsection.5.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Composed input-space certificate.}{7}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}\hskip -1em.~\texttt  {av-robustbench}}{7}{section.6}\protected@file@percent }
+\newlabel{sec:bench}{{6}{7}{\texorpdfstring {\hskip -1em.~}{}\texttt {av-robustbench}}{section.6}{}}
+\newlabel{sec:bench@cref}{{[section][6][]6}{[1][7][]7}{}{}{}}
+\bibstyle{ieeenat_fullname}
+\bibdata{main}
+\bibcite{angelopoulos2023conformal}{{1}{2023}{{Angelopoulos and Bates}}{{}}}
+\bibcite{astrid2025local}{{2}{2025}{{Astrid et~al.}}{{Astrid, Ghorbel, and Aouada}}}
+\bibcite{cai2022lavdf}{{3}{2022}{{Cai et~al.}}{{Cai, Ghosh, Stefanov, Dhall, Cai, Rezatofighi, Haffari, and Hayat}}}
+\bibcite{chen2022wavlm}{{4}{2022}{{Chen et~al.}}{{Chen, Wang, Chen, Wu, Liu, Chen, Li, Kanda, Yoshioka, Xiao, Wu, Zhou, Ren, Qian, Qian, Zeng, Yu, and Wei}}}
+\bibcite{chugh2020not}{{5}{2020}{{Chugh et~al.}}{{Chugh, Gupta, Dhall, and Subramanian}}}
+\bibcite{cohen2019certified}{{6}{2019}{{Cohen et~al.}}{{Cohen, Rosenfeld, and Kolter}}}
+\bibcite{croce2021robustbench}{{7}{2021}{{Croce et~al.}}{{Croce, Andriushchenko, Sehwag, Debenedetti, Flammarion, Chiang, Mittal, and Hein}}}
+\bibcite{eiras2022ancer}{{8}{2022}{{Eiras et~al.}}{{Eiras, Alfarra, Torr, Kumar, Dokania, Ghanem, and Bibi}}}
+\bibcite{feng2023self}{{9}{2023}{{Feng et~al.}}{{Feng, Chen, and Owens}}}
+\bibcite{gendler2022adversarially}{{10}{2022}{{Gendler et~al.}}{{Gendler, Weng, Daniel, and Romano}}}
+\bibcite{hsu2021hubert}{{11}{2021}{{Hsu et~al.}}{{Hsu, Bolte, Tsai, Lakhotia, Salakhutdinov, and Mohamed}}}
+\bibcite{khalid2021fakeavceleb}{{12}{2021}{{Khalid et~al.}}{{Khalid, Tariq, Kim, and Woo}}}
+\@writefile{brf}{\backcite{croce2021robustbench}{{8}{6}{section.6}}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}\hskip -1em.~Limitations}{8}{section.7}\protected@file@percent }
+\newlabel{sec:limitations}{{7}{8}{\texorpdfstring {\hskip -1em.~}{}Limitations}{section.7}{}}
+\newlabel{sec:limitations@cref}{{[section][7][]7}{[1][8][]8}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}\hskip -1em.~Conclusion}{8}{section.8}\protected@file@percent }
+\newlabel{sec:conclusion}{{8}{8}{\texorpdfstring {\hskip -1em.~}{}Conclusion}{section.8}{}}
+\newlabel{sec:conclusion@cref}{{[section][8][]8}{[1][8][]8}{}{}{}}
+\bibcite{lecuyer2019certified}{{13}{2019}{{Lecuyer et~al.}}{{Lecuyer, Atlidakis, Geambasu, Hsu, and Jana}}}
+\bibcite{mittal2020emotions}{{14}{2020}{{Mittal et~al.}}{{Mittal, Bhattacharya, Chandra, Bera, and Manocha}}}
+\bibcite{oquab2024dinov2}{{15}{2024}{{Oquab et~al.}}{{Oquab, Darcet, Moutakanni, Vo, Szafraniec, Khalidov, Fernandez, Haziza, Massa, El-Nouby, et~al.}}}
+\bibcite{radford2021clip}{{16}{2021}{{Radford et~al.}}{{Radford, Kim, Hallacy, Ramesh, Goh, Agarwal, Sastry, Askell, Mishkin, Clark, Krueger, and Sutskever}}}
+\bibcite{radford2023whisper}{{17}{2023}{{Radford et~al.}}{{Radford, Kim, Xu, Brockman, McLeavey, and Sutskever}}}
+\bibcite{romano2020classification}{{18}{2020}{{Romano et~al.}}{{Romano, Sesia, and Cand{\`e}s}}}
+\bibcite{salman2019provably}{{19}{2019}{{Salman et~al.}}{{Salman, Li, Razenshteyn, Zhang, Zhang, Bubeck, and Yang}}}
+\bibcite{wang2024mmcert}{{20}{2024}{{Wang et~al.}}{{Wang, Fu, Zou, and Jia}}}
+\bibcite{yang2020randomized}{{21}{2020}{{Yang et~al.}}{{Yang, Duan, Hu, Salman, Razenshteyn, and Li}}}
+\bibcite{yang2023avoid}{{22}{2023}{{Yang et~al.}}{{Yang, Zhou, Chen, Guo, Ba, Xia, Cao, and Ren}}}
+\gdef \@abspage@last{9}

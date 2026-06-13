@@ -1,0 +1,73 @@
+\section{Theoretical Analysis}
+\label{sec:theory}
+
+We now explain why frozen multimodal representations certify unusually well, and why lower intrinsic dimension yields larger radii. Let $f:\RR^D\to\{0,1\}$ be the base detector on the $D$-dimensional frozen feature $\z$. Let $\Smanifold\subset\RR^D$ be the $d$-dimensional subspace spanned by the top-$d$ principal components of the training features ($d=d_{\mathrm{int}}\ll D$ at the $90\%$-variance threshold), and let $P_\Smanifold$, $P_\perp=I-P_\Smanifold$ be the orthogonal projections onto $\Smanifold$ and its complement.
+
+\begin{assumption}[Subspace invariance]
+\label{assm:subspace}
+For all $\z\in\Smanifold$ and all $\del\in\RR^D$,
+\begin{equation}
+f(\z+\del)=f(\z+P_\Smanifold\del).
+\label{eq:invariance}
+\end{equation}
+\end{assumption}
+
+Equation~\eqref{eq:invariance} states that only the on-manifold component of a perturbation affects the output. This is reasonable because $f$ is trained on features drawn from $\Smanifold$: the decision boundary lies within $\Smanifold$ and the classifier receives no gradient signal off it. It is an idealization; we quantify its empirical validity in Sec.~\ref{ssec:theoryval}.
+
+\subsection{Certifiability scaling}
+
+\begin{theorem}[Certifiability Scaling]
+\label{thm:scaling}
+Let $f$ satisfy Assumption~\ref{assm:subspace} for a $d$-dimensional subspace $\Smanifold$, and let $g$ be the smoothed classifier~\eqref{eq:smoothed} with $\eps\sim\mathcal{N}(0,\sigma^2 I_D)$. Then for any $\z\in\Smanifold$, the top-class probability $p_A$ of $g$ depends on $\eps$ only through its projection $\eps_\Smanifold=P_\Smanifold\eps\sim\mathcal{N}(0,\sigma^2 I_d)$. Equivalently, $p_A$ equals the top-class probability of the same classifier restricted to $\Smanifold$ under $d$-dimensional smoothing at noise level $\sigma$, and the certified radius is $\Rcert=\sigma\,\Phi^{-1}(p_A)$.
+\end{theorem}
+
+\begin{proof}
+Decompose $\eps=\eps_\Smanifold+\eps_\perp$ with $\eps_\Smanifold=P_\Smanifold\eps$ and $\eps_\perp=P_\perp\eps$. Since $P_\Smanifold$ and $P_\perp$ are complementary orthogonal projections of a spherical Gaussian, $\eps_\Smanifold$ and $\eps_\perp$ are independent, with $\eps_\Smanifold\sim\mathcal{N}(0,\sigma^2 I_d)$ and $\eps_\perp\sim\mathcal{N}(0,\sigma^2 I_{D-d})$. By Assumption~\ref{assm:subspace}, for $\z\in\Smanifold$,
+\begin{equation}
+f(\z+\eps)=f(\z+\eps_\Smanifold)\quad\text{for all }\eps_\perp .
+\end{equation}
+Taking probabilities over $\eps$ and using independence,
+\begin{align}
+\Pr_{\eps}[f(\z+\eps)=c]
+&=\mathbb{E}_{\eps_\perp}\Pr_{\eps_\Smanifold}[f(\z+\eps_\Smanifold)=c]\nonumber\\
+&=\Pr_{\eps_\Smanifold}[f(\z+\eps_\Smanifold)=c],
+\end{align}
+so $p_A$ is a function of the $d$-dimensional variable $\eps_\Smanifold$ alone. The radius $\Rcert=\sigma\,\Phi^{-1}(p_A)$ then follows from the Neyman-Pearson argument of Cohen et al.~\cite{cohen2019certified} applied within $\Smanifold$.
+\end{proof}
+
+\begin{remark}
+\label{rem:effnoise}
+The classifier effectively ``sees'' noise of magnitude $\sigma\sqrt{d}$ (the expected norm of $\eps_\Smanifold$), not $\sigma\sqrt{D}$. A classifier with on-manifold margin $m$ thus has $p_A=\Phi(m/\sigma)$ and $\Rcert=m$, independent of the ambient $D$. This is why isotropic radii in Table~\ref{tab:main} are large: most of the ambient noise lands in directions the classifier ignores.
+\end{remark}
+
+\subsection{Robustness amplification and encoder selection}
+
+\begin{corollary}[Robustness Amplification]
+\label{cor:amp}
+Under the conditions of Theorem~\ref{thm:scaling}, consider an adversary with budget $\|\del\|_2\le r$ whose direction $\mathbf{u}=\del/r$ is uniform on $\mathbb{S}^{D-1}$. Then
+\begin{equation}
+\mathbb{E}\!\left[\|P_\Smanifold\del\|_2^2\right]=\frac{d}{D}\,r^2,
+\label{eq:expected}
+\end{equation}
+so achieving on-manifold displacement $m$ requires total budget $r\ge m\sqrt{D/d}$. The amplification factor is
+\begin{equation}
+\mathcal{A}(D,d)=\sqrt{D/d_{\mathrm{int}}}.
+\label{eq:amp}
+\end{equation}
+Among encoders with the same ambient $D$, those with smaller $d_{\mathrm{int}}/D$ yield strictly larger $\mathcal{A}$ and are therefore inherently more certifiable.
+\end{corollary}
+
+\begin{proof}
+Write $\del=r\mathbf{u}$ with $\mathbf{u}$ uniform on $\mathbb{S}^{D-1}$. By symmetry $\mathbb{E}[u_i^2]=1/D$ for every coordinate, and since $P_\Smanifold$ selects a $d$-dimensional subspace,
+\begin{equation}
+\mathbb{E}\big[\|P_\Smanifold\mathbf{u}\|_2^2\big]=\sum_{i=1}^{d}\mathbb{E}[u_i^2]=\frac{d}{D},
+\end{equation}
+giving~\eqref{eq:expected}. To reach $\|P_\Smanifold\del\|_2\ge m$ in expectation requires $r=m/\sqrt{d/D}=m\sqrt{D/d}$, which is~\eqref{eq:amp}.
+\end{proof}
+
+Equation~\eqref{eq:amp} turns geometry into design guidance: \emph{to maximize certifiability, choose encoders whose representations have the lowest intrinsic-dimension ratio}. It also motivates anisotropic smoothing (Sec.~\ref{ssec:aniso}): noise placed in the $D-d$ off-manifold directions is wasted, so reallocating it on-manifold should enlarge the certified on-manifold radius.
+
+\subsection{Empirical validation}
+\label{ssec:theoryval}
+
+Three predictions of the theory are testable. First, \emph{encoder ordering}: Sec.~\ref{sec:exp} confirms that the lowest-$d/D$ encoder pairs achieve the largest radii and the highest-$d/D$ pair (CLIP) the smallest. Second, \emph{training vs.\ geometry}: Remark~\ref{rem:effnoise} predicts that the frozen geometry, not the training procedure, sets $p_A$; indeed a no-noise baseline certifies within $1.9\%$ of the noise-trained model (Table~\ref{tab:baselines}), because noise training can only refine the margin $m$ inside $\Smanifold$, not change $d/D$. Third, \emph{approximate invariance}: we measure the squared cosine alignment between PGD attack directions and $\Smanifold$ across the FakeAVCeleb test set and find $\cos^2\theta\approx 0.18$. Only $18\%$ of adversarial energy is on-manifold; the remaining $82\%$ targets directions to which the classifier is (approximately) invariant. This near-orthogonality is precisely the regime in which Assumption~\ref{assm:subspace} holds well enough for Theorem~\ref{thm:scaling} to be predictive, and it directly quantifies the headroom that anisotropic smoothing exploits.

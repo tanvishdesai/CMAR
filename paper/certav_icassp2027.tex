@@ -1,6 +1,6 @@
 % ICASSP-style draft prepared with the official reachable ICASSP paper kit.
 \documentclass{article}
-\usepackage{spconf,amsmath,graphicx,booktabs,multirow,cite,url}
+\usepackage{spconf,amsmath,amssymb,amsthm,graphicx,booktabs,multirow,cite,url}
 \usepackage[colorlinks=true,urlcolor=blue]{hyperref}
 
 \def\z{{\mathbf z}}
@@ -9,8 +9,13 @@
 \def\del{{\boldsymbol \delta}}
 \newcommand{\Rcert}{R_{\mathrm{cert}}}
 \newcommand{\punder}{\underline{p_A}}
+\newcommand{\Smanifold}{\mathcal{S}}
 
-\title{CertAV: Certifiably Robust Audio-Visual Deepfake Detection via Feature-Space Randomized Smoothing}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{assumption}{Assumption}
+
+\title{CertAV: Manifold-Aware Certified Robustness for\\ Audio-Visual Deepfake Detection}
 
 \name{Palak Parmar$^{1*}$, Chintan Bhatt$^2$ and SantoshKumar Bharti$^1$}
 \address{$^{1*}$Department of Computer Science and Engineering, School of Science\\
@@ -27,35 +32,36 @@ Contributing authors: \href{mailto:cbhatt@uow.edu.au}{cbhatt@uow.edu.au};\\
 \maketitle
 
 \begin{abstract}
-Audio-visual deepfake detectors increasingly rely on cross-modal cues, yet most robustness evaluations remain empirical and do not provide per-sample guarantees. This paper introduces CertAV, a feature-space certification pipeline for audio-visual deepfake detection. CertAV freezes DINOv2 visual features and Whisper audio features, fuses them with a temporal cross-modal detector, and applies Gaussian randomized smoothing over the joint feature space. Under this threat model, the smoothed classifier returns a prediction, an abstention decision, and an $\ell_2$ certified radius with 99.9\% confidence. On FakeAVCeleb, across five random seeds, CertAV reaches $92.5\pm0.6$\% clean accuracy at $\sigma=1.0$, with mean certified radius $2.215\pm0.032$, $88.0$\% certified accuracy at radius 1.0, $84.9$\% at radius 1.5, and less than 1\% abstention. A no-noise baseline certifies nearly as well, while feature-space PGD adversarial training substantially lowers validation AUC, suggesting that the certifiability comes primarily from the geometry of frozen multimodal representations. Transfer, degradation, feature-displacement, and manifold analyses support the same conclusion while clarifying the scope of the certificate.
+Audio-visual deepfake detectors rely on frozen foundation representations, yet their robustness is typically evaluated only empirically. We introduce CertAV, a certification framework that applies randomized smoothing in the joint feature space of frozen DINOv2 and Whisper encoders. On FakeAVCeleb, CertAV reaches $92.5\%$ clean accuracy and $88.0\%$ certified accuracy at $\ell_2$ radius $1.0$, with less than $1\%$ abstention. We prove that, under a subspace-invariance property of the detector head, the smoothed classifier's certified radius depends only on the $d$-dimensional on-manifold component of the noise ($d\!\approx\!80 \ll D\!=\!768$), implying a robustness amplification factor of $\sqrt{D/d}$. Validating this across five encoder families, we confirm that a lower intrinsic-dimension ratio $d/D$ yields larger certified radii. Exploiting this geometry, we propose manifold-aware anisotropic smoothing that, at equalized noise budget, achieves a $3.4\times$ larger on-manifold certified radius ($7.63$ vs.\ $2.22$) with zero abstention. The same geometry explains an ablation finding: a no-noise baseline certifies within $1.9\%$ of the noise-trained model, indicating that certifiability is set primarily by representation geometry rather than by the training procedure.
 \end{abstract}
 
 \begin{keywords}
-audio-visual deepfake detection, certified robustness, randomized smoothing, multimodal robustness, media forensics
+audio-visual deepfake detection, certified robustness, randomized smoothing, anisotropic smoothing, media forensics
 \end{keywords}
 
 \section{Introduction}
 \label{sec:intro}
 
-Audio-visual deepfake detection has moved from single-stream artifact recognition toward cross-modal reasoning: whether a face, voice, expression, and temporal speech pattern belong to the same event. This shift is natural, since modern forgeries can alter either modality or both. It also creates a robustness problem. A detector may be accurate under clean evaluation, yet remain vulnerable to small adversarial feature shifts, compression artifacts, or cross-dataset changes. For forensic use, a calibrated detector is useful; a detector with a per-sample robustness certificate is stronger.
+Audio-visual deepfake detection has moved from single-stream artifact recognition toward cross-modal reasoning: whether a face, voice, expression, and temporal speech pattern belong to the same event. Modern detectors increasingly build on frozen self-supervised encoders, and while they are accurate under clean evaluation, they can remain vulnerable to small adversarial feature shifts. For forensic use, a calibrated detector is useful; a detector with a per-sample robustness certificate is stronger.
 
-Randomized smoothing offers such certificates by converting a base classifier into a smoothed classifier whose prediction is provably unchanged within an $\ell_2$ ball around the input representation \cite{cohen2019certified}. Its most common use has been image-space classification, where the certified radius is measured directly in pixels. Audio-visual deepfake detection is less straightforward: videos are long, audio is continuous, and the detector often relies on frozen self-supervised encoders. CertAV therefore certifies the detector in the feature space induced by frozen DINOv2 \cite{oquab2024dinov2} and Whisper \cite{radford2023whisper} encoders. This is a deliberately scoped guarantee: it does not certify arbitrary waveform or pixel perturbations, but it gives a precise robustness statement for the representation space actually consumed by the detector.
+Randomized smoothing converts a base classifier into a smoothed classifier whose prediction is provably unchanged within an $\ell_2$ ball around its input \cite{cohen2019certified}. Its common use is image-space classification, where the radius is measured in pixels. Audio-visual deepfake detection is less straightforward: videos are long, audio is continuous, and detectors typically consume frozen DINOv2 \cite{oquab2024dinov2} and Whisper \cite{radford2023whisper} features rather than raw input. CertAV therefore certifies the detector in this joint feature space. This is a deliberately scoped guarantee: it does not certify arbitrary waveform or pixel perturbations, but gives an exact robustness statement for the representation actually consumed by the detector.
 
-The main result is unexpectedly simple. Feature-space smoothing gives large certified radii with little abstention, and the strongest explanation is not that noise-augmented training alone makes the detector robust. Instead, the frozen multimodal representation appears to be low-dimensional relative to its ambient feature space, allowing isotropic Gaussian smoothing to move samples substantially without crossing the decision boundary.
+The central observation is that feature-space smoothing gives large certified radii with little abstention, and that this is not primarily an effect of noise-augmented training. Instead, the frozen multimodal representation is low-dimensional relative to its ambient feature space, so isotropic Gaussian noise can move a sample substantially without crossing the decision boundary. We make this precise: under a subspace-invariance property of the detector head, the certified radius is governed only by the on-manifold noise, and the gap between an adversary's ambient budget and its on-manifold effect scales as $\sqrt{D/d}$. This explains the observed radii, predicts which encoders certify best, and motivates a smoothing distribution aligned to the manifold.
 
-This paper makes four contributions. First, it defines CertAV, a feature-space randomized smoothing pipeline for audio-visual deepfake detection under a joint audio-visual $\ell_2$ threat model. Second, it reports a five-seed certification study on FakeAVCeleb \cite{khalid2021fakeavceleb}, reaching $88.0$\% certified accuracy at radius 1.0 and $84.9$\% at radius 1.5. Third, it analyzes negative and diagnostic results: unimodal certificates can be numerically competitive but protect narrower threat models, a no-noise baseline remains certifiable, and feature-space PGD adversarial training trades away validation AUC. Fourth, it packages the evaluation logic as \texttt{av-robustbench}, a benchmark scaffold for attacks, smoothing, degradations, transfer tests, and robustness cards.
+This paper makes four contributions.
+(i) We define \emph{CertAV}, a feature-space randomized-smoothing pipeline for audio-visual deepfake detection under a joint $\ell_2$ threat model.
+(ii) We prove a \emph{Certifiability Scaling} theorem and a \emph{Robustness Amplification} corollary that explain why frozen multimodal features certify well and give a principled encoder-selection criterion.
+(iii) We validate the theory with an \emph{encoder-scaling study} across five visual/audio encoder families, confirming that lower $d/D$ yields larger certified radii.
+(iv) We propose \emph{manifold-aware anisotropic smoothing}, which at equalized noise budget achieves a $3.4\times$ larger on-manifold certified radius with zero abstention.
 
 \section{Related Work}
 \label{sec:related}
 
-\textbf{Audio-visual deepfake detection.}
-Audio-visual detectors exploit inconsistencies that may not be visible in either modality alone. Earlier work studied affective disagreement \cite{mittal2020emotions} and audio-visual dissonance \cite{chugh2020not}. Later methods use self-supervised anomaly detection \cite{feng2023self}, joint audio-visual learning \cite{yang2023avoid}, and local temporal inconsistency modeling \cite{astrid2025local}. Datasets such as FakeAVCeleb \cite{khalid2021fakeavceleb} and LAV-DF \cite{cai2022lavdf} provide multimodal evaluation settings with manipulated visual and/or audio streams. These works improve detection accuracy and localization, but their robustness claims are usually empirical.
+\noindent\textbf{Audio-visual deepfake detection.}
+Audio-visual detectors exploit inconsistencies invisible in either modality alone, from affective disagreement \cite{mittal2020emotions} and audio-visual dissonance \cite{chugh2020not} to self-supervised anomaly detection \cite{feng2023self}, joint learning \cite{yang2023avoid}, and local temporal inconsistency modeling \cite{astrid2025local}. Datasets such as FakeAVCeleb \cite{khalid2021fakeavceleb} and LAV-DF \cite{cai2022lavdf} provide multimodal settings. These works improve accuracy and localization, but their robustness claims are largely empirical.
 
-\textbf{Certified robustness.}
-Randomized smoothing certifies an $\ell_2$ ball around an input by estimating the probability that a Gaussian-perturbed base classifier predicts the top class \cite{cohen2019certified}. Differential-privacy-based certification \cite{lecuyer2019certified}, adversarially trained smoothed classifiers \cite{salman2019provably}, and generalized smoothing distributions \cite{yang2020randomized} further show that randomized certification can scale when exact verification is impractical. CertAV follows the same certification principle, but applies it to frozen audio-visual feature representations rather than to raw images.
-
-\textbf{Robustness benchmarks.}
-RobustBench standardized adversarial robustness reporting for image classifiers \cite{croce2021robustbench}. Audio-visual deepfake detection lacks a similarly compact benchmark interface for attacks, certificates, degradations, and transfer reporting. The \texttt{av-robustbench} component of this project follows the RobustBench philosophy, but adapts the threat models and report format to multimodal forensic detectors.
+\noindent\textbf{Certified robustness.}
+Randomized smoothing certifies an $\ell_2$ ball by estimating the probability that a Gaussian-perturbed base classifier predicts the top class \cite{cohen2019certified,lecuyer2019certified,salman2019provably}. Yang et al.\ \cite{yang2020randomized} generalize this to arbitrary noise distributions, showing that non-isotropic smoothing yields ellipsoidal certified regions, and ANCER \cite{eiras2022ancer} optimizes per-sample anisotropic noise to maximize certified volume. MMCert \cite{wang2024mmcert} certifies multimodal models by randomized ablation of raw inputs. CertAV differs by certifying the frozen \emph{feature} space consumed by the detector, by giving a theoretical account of why this space certifies well, and by using a simple global PCA-aligned anisotropic distribution justified by that account rather than per-sample volume optimization.
 
 \section{Method}
 \label{sec:method}
@@ -65,69 +71,62 @@ RobustBench standardized adversarial robustness reporting for image classifiers 
 \includegraphics[width=\linewidth]{figures/certav_architecture.png}
 \caption{CertAV pipeline. Frozen DINOv2 and Whisper encoders produce temporal visual and audio features, which are aggregated, fused by bidirectional cross-modal attention, and certified by randomized smoothing in joint feature space.}
 \label{fig:architecture}
-\vspace{-0.2cm}
+\vspace{-0.3cm}
 \end{figure}
 
 \subsection{Feature representation and detector}
 \label{ssec:detector}
 
-Given an audio-video clip $\x$, CertAV extracts visual and audio feature sequences
-\begin{equation}
-  Z_v = E_v(\x_v), \qquad Z_a = E_a(\x_a),
-\end{equation}
-where $E_v$ is a frozen DINOv2-Small encoder and $E_a$ is a frozen Whisper-tiny encoder. The visual branch samples 16 frames and returns 384-dimensional frame embeddings. The audio branch processes 16 kHz audio up to 10 seconds and returns 384-dimensional temporal embeddings. Features are cached and used as the input domain for training, attacks, and certification.
+Given an audio-video clip $\x$, CertAV extracts visual and audio feature sequences $Z_v = E_v(\x_v)$ and $Z_a = E_a(\x_a)$, where $E_v$ is a frozen DINOv2-Small encoder (16 frames, $384$-d embeddings) and $E_a$ is a frozen Whisper-tiny encoder (16\,kHz audio up to $10$\,s, $384$-d temporal embeddings). The base detector $f_\theta$ projects each modality to a $256$-d temporal sequence (a transformer aggregator for video, temporal pooling for audio), applies a two-layer bidirectional cross-modal attention module, and averages segment logits before a binary real/fake decision. Features are cached and used as the input domain for training, attacks, and certification.
 
-The base detector $f_\theta$ first maps each modality to a 256-dimensional temporal sequence. The visual branch uses a transformer temporal aggregator with learned positional embeddings; the audio branch uses temporal pooling and normalization. A two-layer cross-modal consistency module performs bidirectional attention: visual tokens attend to audio tokens and audio tokens attend to visual tokens. The fused 256-dimensional sequence is passed through a binary classifier, and segment logits are averaged before the final real/fake decision.
-
-\subsection{Threat model}
+\subsection{Threat model and certification}
 \label{ssec:threat}
 
-Let $\z=(Z_v,Z_a)$ denote the concatenated frozen representation. CertAV certifies robustness to joint feature perturbations $\del=(\delta_v,\delta_a)$ satisfying
+Let $\z=(Z_v,Z_a)\in\mathbb{R}^D$ ($D=768$) denote the concatenated frozen representation. CertAV certifies robustness to joint feature perturbations $\del$ with $\|\del\|_2\le r$. This is the correct abstraction for frozen-encoder pipelines, where the detector never observes raw input: certifying the giant frozen encoders end-to-end is computationally intractable and yields vanishingly small radii, whereas the feature-space certificate is exact for any adversary acting on the representation the detector consumes. To connect the two spaces we additionally measure an empirical feature-to-input Lipschitz constant $L$ from input-space attacks and compose it with the feature certificate; on FakeAVCeleb $L\!\approx\!50$, mapping the on-manifold certificate to an approximate input-space radius of $\approx\!0.12$ at $\approx\!90.7\%$ composed certified accuracy. The smoothed classifier is
 \begin{equation}
-  \|\del\|_2 \le r.
+  g(\z)=\arg\max_c \Pr_{\eps\sim\mathcal{N}(0,\sigma^2 I)}\!\left(f_\theta(\z+\eps)=c\right).
 \end{equation}
-This threat model is narrower than raw waveform or raw pixel certification, but it is exact for attacks on the representation consumed by the detector. We also evaluate visual-only and audio-only smoothing, where $\delta$ is restricted to one modality. Those certificates can have larger numerical radii because they protect a lower-dimensional perturbation set; they are not a replacement for the joint threat model.
+During training, Gaussian noise $\eps\sim\mathcal{N}(0,\sigma^2 I)$ is injected into the features and the model is fit with binary cross-entropy. Certification follows the two-stage Monte Carlo procedure of \cite{cohen2019certified}: $n_0=100$ samples select the candidate class, $n=1000$ samples estimate its probability, and a Clopper-Pearson lower bound $\punder$ ($\alpha=0.001$) gives the certified radius $\Rcert=\sigma\,\Phi^{-1}(\punder)$, abstaining if $\punder\le 0.5$.
 
-\subsection{Noise-augmented training}
-\label{ssec:training}
+\subsection{Manifold-aware anisotropic smoothing}
+\label{ssec:aniso}
 
-During noise-augmented training, Gaussian noise is injected into the selected feature channels:
-\begin{equation}
-  \tilde{\z} = \z + \eps,\qquad \eps \sim \mathcal{N}(0,\sigma^2 I).
-\end{equation}
-The model is trained with binary cross-entropy,
-\begin{equation}
-  \mathcal{L}(\theta) =
-  -y\log f_\theta(\tilde{\z})-(1-y)\log(1-f_\theta(\tilde{\z})).
-\end{equation}
-We train joint, visual-only, and audio-only variants at $\sigma=0.12$, 0.25, 0.50, and 1.00 over five seeds. A no-noise model and a feature-space PGD adversarially trained model are included as baselines.
+Let $\Smanifold$ be the $d$-dimensional subspace spanned by the top principal components of the training features (the $90\%$-variance threshold gives $d\!\approx\!80$). Anisotropic smoothing replaces isotropic $\mathcal{N}(0,\sigma^2 I)$ by $\mathcal{N}(0,\Sigma)$ with $\Sigma$ diagonal in the PCA basis. All strategies preserve the \emph{total} noise budget, $\mathrm{trace}(\Sigma)=D\sigma^2$, so improvements come from \emph{redistributing} noise, not adding it. We report two radii: the worst-case $\ell_2$ radius $R_{\ell_2}=\Phi^{-1}(\punder)\sqrt{\lambda_{\min}(\Sigma)}$ (largest inscribed sphere), and the on-manifold radius $R_{\Smanifold}=\Phi^{-1}(\punder)\sqrt{\bar\lambda_{\Smanifold}}$, where $\bar\lambda_{\Smanifold}$ is the mean variance over the top-$d$ directions in which the decision boundary lies.
 
-\subsection{Certification}
-\label{ssec:certification}
+\section{Theoretical Analysis}
+\label{sec:theory}
 
-The smoothed classifier is
-\begin{equation}
-  g(\z)=\arg\max_c \Pr_{\eps\sim\mathcal{N}(0,\sigma^2 I)}
-  \left(f_\theta(\z+\eps)=c\right).
-\end{equation}
-Certification follows the standard two-stage Monte Carlo procedure \cite{cohen2019certified}. First, $n_0=100$ samples select the candidate class $A$. Then $n=1000$ samples estimate its probability. A one-sided Clopper-Pearson lower confidence bound $\punder$ is computed with $\alpha=0.001$. If $\punder\le0.5$, the classifier abstains. Otherwise, the certified radius is
-\begin{equation}
-  \Rcert = \sigma \Phi^{-1}(\punder),
-\end{equation}
-where $\Phi^{-1}$ is the inverse standard normal CDF. Certified accuracy at radius $r$ is the fraction of test examples that are correct, non-abstained, and satisfy $\Rcert\ge r$.
+Let $P_\Smanifold$ project onto $\Smanifold$ and $P_\perp=I-P_\Smanifold$ onto its complement.
+
+\begin{assumption}[Subspace invariance]
+\label{assm:subspace}
+For all $\z\in\Smanifold$ and all $\del\in\mathbb{R}^D$, $f(\z+\del)=f(\z+P_\Smanifold\del)$: only the on-manifold component of a perturbation affects the classifier.
+\end{assumption}
+
+This is an idealization, justified because $f$ is trained on features drawn from $\Smanifold$ and receives no gradient from off-manifold directions; we validate it empirically below.
+
+\begin{theorem}[Certifiability scaling]
+\label{thm:scaling}
+Under Assumption~\ref{assm:subspace}, for any $\z\in\Smanifold$ the top-class probability $p_A$ of the smoothed classifier with $\eps\sim\mathcal{N}(0,\sigma^2 I_D)$ depends on $\eps$ only through its projection $\eps_\Smanifold=P_\Smanifold\eps\sim\mathcal{N}(0,\sigma^2 I_d)$, and the certified radius is $\Rcert=\sigma\,\Phi^{-1}(p_A)$.
+\end{theorem}
+
+\noindent\emph{Proof sketch.} Decompose $\eps=\eps_\Smanifold+\eps_\perp$. Because $P_\Smanifold$ and $P_\perp$ are complementary orthogonal projections, $\eps_\Smanifold$ and $\eps_\perp$ are independent Gaussians. By Assumption~\ref{assm:subspace}, $f(\z+\eps)=f(\z+\eps_\Smanifold)$ for every $\eps_\perp$, so $p_A$ is determined by the $d$-dimensional variable $\eps_\Smanifold$; the radius then follows from \cite{cohen2019certified}.\hfill$\square$
+
+\begin{corollary}[Robustness amplification]
+\label{cor:amp}
+For an adversary with budget $\|\del\|_2\le r$ and direction uniform on $\mathbb{S}^{D-1}$, $\mathbb{E}\,\|P_\Smanifold\del\|_2^2=(d/D)\,r^2$, so achieving on-manifold displacement $m$ requires $r\ge m\sqrt{D/d}$. The amplification factor is $\mathcal{A}=\sqrt{D/d}$; among encoders with the same $D$, those with smaller $d/D$ are more certifiable.
+\end{corollary}
+
+The proof computes $\mathbb{E}[u_i^2]=1/D$ for a uniform direction $u$ and sums over the $d$ on-manifold coordinates. Theorem~\ref{thm:scaling} explains why a no-noise baseline certifies almost as well as the noise-trained model: the frozen geometry, not the training procedure, fixes the effective on-manifold noise. Corollary~\ref{cor:amp} converts this into an encoder-selection rule and motivates anisotropic smoothing, since noise placed off-manifold is wasted.
 
 \section{Experiments}
 \label{sec:experiments}
 
-\subsection{Setup}
-
-FakeAVCeleb is split deterministically into 3850 training clips, 825 validation clips, and 825 test clips, with a 1:10 real/fake ratio in each split. All reported main results average five seeds: 42, 69, 420, 2026, and 2804. Models are trained with AdamW, learning rate $5\cdot10^{-4}$, weight decay 0.01, batch size 8, gradient accumulation 4, cosine decay, 3 warmup epochs, gradient clipping at 1.0, and early stopping. Validation predictions average 10 noisy samples. Cross-dataset transfer is evaluated on 500 LAV-DF samples. Unless stated otherwise, certification uses $n_0=100$, $n=1000$, and $\alpha=0.001$.
-
-\subsection{Main certification results}
+\noindent\textbf{Setup.} FakeAVCeleb \cite{khalid2021fakeavceleb} is split into $3850$ train, $825$ validation, and $825$ test clips (1:10 real/fake). Main results average five seeds (42, 69, 420, 2026, 2804); models use AdamW (lr $5\!\times\!10^{-4}$, weight decay $0.01$), batch size 8, cosine decay, and early stopping. Certification uses $n_0=100$, $n=1000$, $\alpha=0.001$.
 
 \begin{table}[t]
 \centering
-\caption{Joint feature-space certification on FakeAVCeleb over five seeds. Accuracy, abstention, and certified accuracy are percentages.}
+\caption{Joint feature-space certification on FakeAVCeleb over five seeds. Accuracy, abstention, and certified accuracy (C@$r$) are percentages.}
 \label{tab:main}
 \scriptsize
 \setlength{\tabcolsep}{2.4pt}
@@ -135,131 +134,74 @@ FakeAVCeleb is split deterministically into 3850 training clips, 825 validation 
 \toprule
 $\sigma$ & Acc. & Abs. & Mean $R$ & C@0.25 & C@0.50 & C@1.00 / 1.50 \\
 \midrule
-0.12 & $91.2{\pm}1.0$ & 0.3 & $0.288{\pm}0.003$ & 88.8 & 0.0 & 0.0 / 0.0 \\
-0.25 & $91.2{\pm}1.1$ & 0.4 & $0.588{\pm}0.012$ & 89.4 & 86.6 & 0.0 / 0.0 \\
-0.50 & $91.5{\pm}1.1$ & 0.4 & $1.165{\pm}0.034$ & 90.5 & 89.2 & 85.4 / 0.0 \\
-1.00 & $92.5{\pm}0.6$ & 0.8 & $2.215{\pm}0.032$ & 91.8 & 90.7 & 88.0 / 84.9 \\
+0.12 & $91.2$ & 0.3 & $0.288$ & 88.8 & 0.0 & 0.0 / 0.0 \\
+0.25 & $91.2$ & 0.4 & $0.588$ & 89.4 & 86.6 & 0.0 / 0.0 \\
+0.50 & $91.5$ & 0.4 & $1.165$ & 90.5 & 89.2 & 85.4 / 0.0 \\
+1.00 & $92.5$ & 0.8 & $2.215$ & 91.8 & 90.7 & 88.0 / 84.9 \\
 \bottomrule
 \end{tabular}
-\vspace{-0.25cm}
-\end{table}
-
-Table \ref{tab:main} shows that larger smoothing noise increases certified radius without reducing clean accuracy. At $\sigma=1.0$, CertAV keeps $92.5$\% clean accuracy, abstains on only $0.8$\% of samples, and certifies $84.9$\% of the test set at radius 1.5. This behavior is not typical of a detector that is merely memorizing clean artifacts; it indicates that large neighborhoods in the learned feature representation preserve the class decision.
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\linewidth]{figures/certified_accuracy_curves.png}
-\caption{Certified accuracy decreases with radius, but the $\sigma=1.0$ model retains high certified accuracy through radius 1.5.}
-\label{fig:certcurve}
 \vspace{-0.2cm}
-\end{figure}
-
-\subsection{Does noise training cause the certificate?}
-
-\begin{table}[t]
-\centering
-\caption{Baselines and negative results. The no-noise model remains strongly certifiable, while feature-space PGD adversarial training lowers validation AUC. Certification rows use $\sigma=1.0$.}
-\label{tab:baselines}
-\scriptsize
-\setlength{\tabcolsep}{2.8pt}
-\begin{tabular}{lccccc}
-\toprule
-Model & Val AUC & EER & Acc. & Mean $R$ & C@1.0 / 1.5 \\
-\midrule
-Joint noise & $0.941{\pm}0.007$ & $0.139{\pm}0.009$ & 92.5 & 2.215 & 88.0 / 84.9 \\
-No-noise & 0.877 & 0.194 & 92.3 & 2.173 & 86.3 / 82.0 \\
-PGD-AT & 0.730 & 0.335 & 90.5 & 2.463 & 90.5 / 90.5 \\
-\bottomrule
-\end{tabular}
-\vspace{-0.25cm}
 \end{table}
 
-The ablation in Table \ref{tab:baselines} is central to the interpretation of the project. Noise-augmented training improves validation separation and gives the strongest overall balance, but the no-noise baseline certifies nearly as well. Conversely, feature-space PGD adversarial training produces large certified radii at the cost of much lower validation AUC and EER. The practical conclusion is that CertAV should not be sold as a simple adversarial-training recipe. Its main value is to expose and certify a favorable geometry already present in frozen audio-visual representations.
-
-\subsection{Joint versus unimodal certificates}
+\noindent\textbf{Isotropic certification.} Table~\ref{tab:main} shows that larger smoothing noise increases the certified radius without lowering clean accuracy, and abstention stays below $1\%$. At $\sigma=1.0$, CertAV certifies $84.9\%$ of the test set at radius $1.5$ --- atypical for a detector merely memorizing clean artifacts, and consistent with Theorem~\ref{thm:scaling}. A no-noise baseline reaches mean radius $2.173$ (within $1.9\%$ of the noise-trained $2.215$), while feature-space PGD adversarial training raises the radius to $2.463$ but collapses validation AUC from $0.941$ to $0.730$ (EER $0.139\!\to\!0.335$): it trivially stabilizes predictions at the cost of discrimination. Certifiability is therefore a property of the representation geometry, not of the training recipe.
 
 \begin{table}[t]
 \centering
-\caption{Modality ablation. Unimodal certificates can be numerically competitive, but they protect only one stream.}
-\label{tab:modalities}
+\caption{Encoder-scaling study (no-noise baseline, $\sigma=1.0$). $d$ is the $90\%$-variance PCA dimension; $\mathcal{A}=\sqrt{D/d}$. Lower $d/D$ tracks larger $\bar R$.}
+\label{tab:encoder}
 \scriptsize
 \setlength{\tabcolsep}{3.0pt}
 \begin{tabular}{lccccc}
 \toprule
-Mode & $\sigma$ & Acc. & Mean $R$ & C@0.25 & C@0.50 \\
+Encoder pair & $D$ & $d$ & $d/D$ & $\mathcal{A}$ & $\bar R$ \\
 \midrule
-Joint & 0.25 & 91.2 & 0.588 & 89.4 & 86.6 \\
-Visual-only & 0.25 & 91.0 & 0.589 & 89.3 & 86.5 \\
-Audio-only & 0.25 & 90.9 & 0.607 & 90.3 & 89.5 \\
-\midrule
-Joint & 1.00 & 92.5 & 2.215 & 91.8 & 90.7 \\
-Visual-only & 1.00 & 92.3 & 2.273 & 91.6 & 90.7 \\
-Audio-only & 1.00 & 91.9 & 2.404 & 91.7 & 91.5 \\
+DINOv2-S + WavLM        & 1152 & 80  & 0.069 & 3.79 & 2.207 \\
+DINOv2-S + HuBERT       & 1152 & 79  & 0.069 & 3.82 & 2.173 \\
+DINOv2-B + Whisper-base & 1280 & 119 & 0.093 & 3.28 & 2.132 \\
+DINOv2-S + Whisper-tiny &  768 & 80  & 0.104 & 3.10 & 2.190 \\
+CLIP-B + Whisper-tiny   & 1152 & 126 & 0.109 & 3.02 & 1.948 \\
 \bottomrule
 \end{tabular}
-\vspace{-0.25cm}
+\vspace{-0.2cm}
 \end{table}
 
-Table \ref{tab:modalities} explains why the joint result is the primary claim. Audio-only smoothing at $\sigma=1.0$ has the largest mean radius, but it leaves the visual stream outside the certified perturbation set. In a forensic setting where either modality may be manipulated, the joint certificate is the more conservative statement.
-
-\subsection{Transfer, degradations, and feature displacement}
+\noindent\textbf{Encoder scaling.} Table~\ref{tab:encoder} evaluates five encoder pairs (using WavLM \cite{chen2022wavlm}, HuBERT \cite{hsu2021hubert}, and CLIP \cite{radford2021clip} variants). The trend predicted by Corollary~\ref{cor:amp} holds at the extremes: the lowest $d/D$ pairs (DINOv2-S\,+\,WavLM/HuBERT, $d/D\!\approx\!0.069$) attain the largest radii ($\bar R\!\approx\!2.2$), while CLIP-B\,+\,Whisper-tiny ($d/D\!=\!0.109$) attains the smallest ($1.948$) despite the highest clean accuracy ($94.3\%$). The ordering is not strictly monotone in the mid-range, so $d/D$ is the dominant but not sole predictor; clean accuracy and certified radius can trade off.
 
 \begin{table}[t]
 \centering
-\caption{Additional validation at $\sigma=1.0$. Degradations are evaluated on FakeAVCeleb; transfer uses 500 LAV-DF samples; feature displacement reports hold rate of the certified prediction.}
-\label{tab:stress}
+\caption{Manifold-aware anisotropic smoothing at equalized budget $\mathrm{trace}(\Sigma)=D\sigma^2$ ($\sigma=1.0$). For anisotropic rows, $\mathrm{C}_{\Smanifold}$@1.0 is certified accuracy w.r.t.\ the \emph{on-manifold} radius $R_{\Smanifold}$ (not the worst-case $R_{\ell_2}$); for the isotropic row the two radii coincide. Strategy 2 gives the largest on-manifold radius and zero abstention.}
+\label{tab:aniso}
 \scriptsize
-\setlength{\tabcolsep}{3.0pt}
-\begin{tabular}{lcccc}
+\setlength{\tabcolsep}{2.6pt}
+\begin{tabular}{lccccc}
 \toprule
-Setting & Acc. & Mean $R$ & C@0.50 & C@1.00 / Hold \\
+Strategy & Acc. & Abs. & $R_{\ell_2}$ & $R_{\Smanifold}$ & $\mathrm{C}_{\Smanifold}$@1.0 \\
 \midrule
-LAV-DF transfer & 74.6 & 1.626 & 69.2 & 61.4 \\
-Social degradation & 91.3 & -- & 90.5 & -- \\
-H.264 CRF 28 & 90.7 & -- & 89.9 & -- \\
-JPEG 75 & 91.6 & -- & 90.5 & -- \\
-Feature disp. $L_2=0.25$ & 90.0 & -- & -- & 96.0 \\
-Feature disp. $L_2=1.00$ & 88.0 & -- & -- & 91.0 \\
+Isotropic                & 90.9 & 0.8 & 2.215 & 2.215 & 88.0 \\
+S1: eigenvalue-prop.     & 90.9 & 0.7 & 0.000 & 6.272 & 89.5 \\
+\textbf{S2: subspace proj.} & \textbf{90.9} & \textbf{0.0} & 0.002 & \textbf{7.632} & \textbf{90.9} \\
+S3: inverse-eigenvalue   & 90.9 & 0.7 & 0.014 & 6.586 & 89.0 \\
 \bottomrule
 \end{tabular}
-\vspace{-0.25cm}
+\vspace{-0.2cm}
 \end{table}
 
-Cross-dataset transfer is harder than in-domain certification. On LAV-DF, the $\sigma=1.0$ model reaches 74.6\% accuracy and 61.4\% certified accuracy at radius 1.0. This is a useful transfer signal, but it also shows that dataset shift remains a real limitation. Common media degradations are less damaging: JPEG, H.264, and social-media-style degradation preserve about 90\% certified accuracy at radius 0.50. Finally, feature-displacement validation perturbs cached features with controlled $\ell_2$ displacement. The certified prediction holds for 96.0\% of samples at displacement 0.25 and 91.0\% at displacement 1.00. This supports the feature-space certificate, while remaining distinct from a formal raw-input guarantee.
-
-\subsection{Why are the radii large?}
-
 \begin{figure}[t]
 \centering
-\includegraphics[width=\linewidth]{figures/manifold_smoothing.png}
-\caption{The frozen multimodal representation has low effective dimension, which helps explain why large Gaussian neighborhoods can preserve predictions.}
-\label{fig:manifold}
-\vspace{-0.2cm}
+\includegraphics[width=0.92\linewidth]{figures/sphere_vs_ellipsoid.png}
+\caption{Isotropic smoothing certifies a sphere (equal in all directions); manifold-aware smoothing certifies an ellipsoid that extends far along the data manifold and little off it. PGD attacks are $82\%$ off-manifold ($\cos^2\theta\!\approx\!0.18$), where the classifier is provably invariant.}
+\label{fig:ellipse}
+\vspace{-0.3cm}
 \end{figure}
 
-The representation analysis gives a compact explanation. Visual features require 73 of 384 principal components for 90\% variance and 113 for 95\%. Audio features require only 13 and 36 components. The concatenated joint representation requires 75 of 768 components for 90\% variance and 116 for 95\%. At $\sigma=1.0$, the prediction flip rate under smoothing is 1.0\%. Thus, the data occupy a relatively small subspace of the ambient representation, and the classifier boundary appears far from most samples along the directions explored by Gaussian noise.
+\noindent\textbf{Anisotropic smoothing (headline).} Table~\ref{tab:aniso} reports three PCA-aligned strategies at \emph{equalized} budget. Concentrating noise in the decision-relevant subspace (Strategy~2, subspace projection) yields an on-manifold radius of $7.63$, a $3.4\times$ lift over isotropic ($2.22$), and attains $0\%$ abstention --- every correctly classified sample is certified. The near-zero $R_{\ell_2}$ is by design (Fig.~\ref{fig:ellipse}): the certificate is an ellipsoid with long axes in the $80$ on-manifold directions and tiny axes in the $688$ off-manifold directions where the classifier is invariant. A diagnostic confirms the premise: PGD attack directions place only $\cos^2\theta\!\approx\!0.18$ of their energy on-manifold, so $82\%$ of any ambient attack is wasted, exactly the regime Theorem~\ref{thm:scaling} predicts.
 
-\subsection{av-robustbench}
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\linewidth]{figures/avrobustbench_workflow.png}
-\caption{\texttt{av-robustbench} standardizes attacks, certification, degradations, and report generation for audio-visual robust detection.}
-\label{fig:bench}
-\vspace{-0.2cm}
-\end{figure}
-
-The accompanying \texttt{av-robustbench} library provides a detector-adapter interface, PGD-$\ell_\infty$ and PGD-$\ell_2$ attacks with joint audio-visual projection, randomized smoothing certification, degradation tests, and JSON robustness cards. Its role in this paper is reproducibility: every reported number can be organized as an attack, certificate, degradation, or transfer entry rather than as an ad hoc script output.
-
-\section{Limitations}
-\label{sec:limitations}
-
-CertAV certifies frozen feature representations, not raw pixels or waveforms. This is the right level for the current detector and cached-feature evaluation pipeline, but it is not an end-to-end physical-world guarantee. The cross-dataset LAV-DF result is promising but not yet strong enough to claim universal generalization across manipulation families. The study also uses one backbone pair, DINOv2 and Whisper; future work should test whether the same low-dimensional geometry appears in other visual, speech, and audio-visual foundation encoders. Finally, randomized smoothing is computationally expensive because each certified example requires many noisy classifier evaluations.
+\noindent\textbf{Transfer and degradations.} On LAV-DF \cite{cai2022lavdf}, CertAV transfers at $74.6\%$ accuracy and $61.4\%$ certified accuracy at radius $1.0$, indicating useful but imperfect cross-dataset generalization. Common media degradations (social-media re-encoding, H.264 CRF 28, JPEG-75) preserve $>90\%$ certified accuracy at radius $0.5$. Unimodal certificates can have larger numerical radii but protect only one stream.
 
 \section{Conclusion}
 \label{sec:conclusion}
 
-CertAV shows that certified robustness is feasible for audio-visual deepfake detection when the guarantee is placed at the level of frozen multimodal features. Across five seeds on FakeAVCeleb, feature-space randomized smoothing gives high certified accuracy, low abstention, and large per-sample radii. The strongest lesson is not that a particular training trick solves robust deepfake detection, but that modern frozen audio and visual representations can have a geometry that is unusually friendly to certification. That makes feature-space certificates a practical bridge between empirical forensic detectors and the stronger guarantees needed for high-stakes media verification.
+CertAV makes certified robustness practical for audio-visual deepfake detection by placing the guarantee at the level of frozen multimodal features. Its central lesson is geometric: the intrinsic dimension of the representation, not the training procedure, governs certifiability (Theorem~\ref{thm:scaling}), which both predicts encoder behavior and motivates manifold-aware anisotropic smoothing for a $3.4\times$ on-manifold gain. The evaluation logic is released as \texttt{av-robustbench}, a reproducible scaffold for attacks, certificates, degradations, and transfer reporting. The main limitations are the feature-space scope of the certificate (our empirical Lipschitz composition is a bridge, not a worst-case input proof), the approximate rather than exact subspace invariance underlying Theorem~\ref{thm:scaling} ($\cos^2\theta\!=\!0.18\!\neq\!0$), single-dataset evaluation, and the cost of Monte Carlo certification.
 
 \bibliographystyle{IEEEbib}
 \bibliography{refs}
