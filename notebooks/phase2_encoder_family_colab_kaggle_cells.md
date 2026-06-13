@@ -33,8 +33,9 @@ especially `KAGGLE_USERNAME`, `KAGGLE_KEY`, and `PAIR_NAME`.
 
 Recommended parallel pattern:
 
-- Account 1: `PAIR_NAME = "clip_whispertiny"`
-- Account 2: `PAIR_NAME = "dinov2small_whisperbase"`
+- Account 1: `PAIR_NAME = "dinov2base_whisperbase"`
+- Account 2: `PAIR_NAME = "dinov2small_wavlm"`
+- Account 3: `PAIR_NAME = "mae_whispertiny"`
 
 ```python
 import json
@@ -100,6 +101,29 @@ ENCODER_PAIRS = {
         "audio": "facebook/hubert-base-ls960",
         "dataset_suffix": "cmar-encoder-cache-dinov2small-hubert",
         "title": "CMAR Encoder Cache DINOv2 Small HuBERT",
+    },
+    # ---- Phase 2.1: three new pairs for scaling-law validation ----
+    "dinov2base_whisperbase": {
+        "visual": "facebook/dinov2-base",
+        "audio": "openai/whisper-base",
+        "dataset_suffix": "cmar-encoder-cache-dinov2base-whisperbase",
+        "title": "CMAR Encoder Cache DINOv2 Base Whisper Base",
+        # ViT-Base is 2× wider than Small; micro-batch avoids T4 OOM.
+        "visual_micro_batch": 4,
+    },
+    "dinov2small_wavlm": {
+        "visual": "facebook/dinov2-small",
+        "audio": "microsoft/wavlm-base",
+        "dataset_suffix": "cmar-encoder-cache-dinov2small-wavlm",
+        "title": "CMAR Encoder Cache DINOv2 Small WavLM",
+    },
+    "mae_whispertiny": {
+        "visual": "facebook/vit-mae-base",
+        "audio": "openai/whisper-tiny",
+        "dataset_suffix": "cmar-encoder-cache-mae-whispertiny",
+        "title": "CMAR Encoder Cache MAE ViT-B Whisper Tiny",
+        # MAE ViT-Base is same size as DINOv2-Base; micro-batch for safety.
+        "visual_micro_batch": 4,
     },
 }
 
@@ -488,7 +512,7 @@ main()
 Attach these Kaggle datasets:
 
 - `cmar-code`, mounted as `/kaggle/input/datasets/vasuaashadesai/cmar-code/CMAR`
-- the three Colab-uploaded pair-cache datasets from Part A
+- all six Colab-uploaded pair-cache datasets from Part A (three existing + three new)
 
 Run these cells after all required pair caches have been uploaded.
 
@@ -551,9 +575,14 @@ else:
 PRIMARY_SEED = 2026
 
 ENCODER_PAIRS = [
+    # Existing pairs (already preprocessed).
     "clip_whispertiny",
     "dinov2small_whisperbase",
     "dinov2small_hubert",
+    # Phase 2.1 new pairs.
+    "dinov2base_whisperbase",
+    "dinov2small_wavlm",
+    "mae_whispertiny",
 ]
 ```
 

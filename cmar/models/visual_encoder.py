@@ -156,6 +156,9 @@ def build_visual_feature_extractor(
         # compared to the HF CLIPVisionModelWithProjection path.
         "openai/clip-vit-base-patch16": "vit_base_patch16_clip_224.openai",
         "clip-vit-base-patch16": "vit_base_patch16_clip_224.openai",
+        # MAE ViT-B/16 for Phase 2 encoder-family scaling-law study.
+        "facebook/vit-mae-base": "vit_base_patch16_mae",
+        "vit-mae-base": "vit_base_patch16_mae",
     }
     if model_name in aliases or model_name.startswith("vit_"):
         return DINOv2FeatureExtractor(
